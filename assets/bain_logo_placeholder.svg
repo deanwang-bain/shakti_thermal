@@ -1,0 +1,5 @@
+<svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bain logo placeholder">
+  <rect x="2" y="2" width="236" height="76" rx="10" fill="#FFFFFF" stroke="#CB2026" stroke-width="3"/>
+  <circle cx="34" cy="40" r="14" fill="#CB2026"/>
+  <text x="58" y="47" font-family="Arial" font-size="24" fill="#CB2026" font-weight="700">Placeholder</text>
+</svg>

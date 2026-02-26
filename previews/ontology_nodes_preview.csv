@@ -1,0 +1,16 @@
+node_id,node_type,canonical_name,description
+ASSET::STS-PLANT,asset,Shakti Thermal Station,System=Plant Level=Plant
+ASSET::STS-U1,asset,Unit 1 (660 MW),System=Unit Level=Unit
+ASSET::STS-U2,asset,Unit 2 (660 MW),System=Unit Level=Unit
+ASSET::STS-U1-BOILER,asset,Boiler System,System=Boiler Level=System
+ASSET::STS-U1-TURBINE,asset,Turbine System,System=Turbine Level=System
+ASSET::STS-U1-GENERATOR,asset,Generator System,System=Generator Level=System
+ASSET::STS-U1-COOLING,asset,Cooling System,System=Cooling Level=System
+ASSET::STS-U1-ELECTRICAL,asset,Electrical System,System=Electrical Level=System
+ASSET::STS-U1-CONTROLS,asset,Controls System,System=Controls Level=System
+ASSET::STS-U1-BOI-FURNACE,asset,Furnace,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-IDFANS,asset,ID Fans,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-FDPAFANS,asset,FD/PA Fans,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-DAMPERS,asset,Dampers,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-MILLS,asset,Mills,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-APH,asset,Air Preheater,System=Boiler Level=Subsystem

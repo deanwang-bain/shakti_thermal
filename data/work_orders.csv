@@ -1,0 +1,221 @@
+wo_id,asset_description_raw,long_text,maintenance_type,cost_usd,labor_hours,linked_event_id,standard_asset_id_truth
+WO-00001,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,2599.9,36.7,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00002,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5999.02,14.8,EVT-DRAFT-20240112-13,STS-U1-IDF-A
+WO-00003,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,6769.24,31.0,EVT-DRAFT-20241219-26,STS-U1-IDF-A
+WO-00004,BRG2 VIB,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,14929.09,18.1,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2
+WO-00005,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,19530.87,7.6,EVT-2023-09-PM1,STS-U1-SH-OUT
+WO-00006,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5658.07,29.5,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00007,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8688.95,37.1,,STS-U1-IDF-A
+WO-00008,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,5375.76,47.6,EVT-DRAFT-20230305-02,STS-U1-IDF-A
+WO-00009,AIR PREHEATER clog,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,4573.57,41.9,,STS-U1-APH-1
+WO-00010,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,6304.98,21.0,EVT-DRAFT-20230927-07,STS-U1-IDF-A
+WO-00011,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4971.33,6.4,EVT-DRAFT-20240106-12,STS-U1-IDF-A
+WO-00012,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,8276.54,4.0,EVT-DRAFT-20230303-01,STS-U1-IDF-A
+WO-00013,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5776.72,13.5,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00014,CWP-2 low suction,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,4283.44,25.5,,STS-U1-CWP-2
+WO-00015,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,6279.22,43.9,,STS-U1-APH-1
+WO-00016,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7796.99,25.7,EVT-2024-06-AUXDRIFT,STS-U1-CTF-BANK1
+WO-00017,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,7830.4,9.9,EVT-2023-07-WETCOAL,STS-U1-MILL-3
+WO-00018,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,6132.2,28.9,EVT-DRAFT-20240106-12,STS-U1-IDF-A
+WO-00019,Air preheater fouling,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,7530.37,43.0,,STS-U1-APH-1
+WO-00020,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,6940.46,10.8,EVT-DRAFT-20231104-08,STS-U1-IDF-A
+WO-00021,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Preventive,8490.38,11.0,,STS-U1-CWP-2
+WO-00022,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,10244.98,10.8,EVT-DRAFT-20240112-13,STS-U1-IDF-A
+WO-00023,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7870.12,16.1,EVT-2023-05-TUBELEAK,STS-U1-SH-OUT
+WO-00024,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,3181.78,39.2,EVT-2023-09-PM1,STS-U1-SH-OUT
+WO-00025,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,3034.0,42.2,EVT-DRAFT-20240720-20,STS-U1-IDF-A
+WO-00026,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,22459.98,37.6,EVT-2024-06-AUXDRIFT,STS-U1-CTF-BANK1
+WO-00027,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,62125.35,21.6,EVT-DRAFT-20231104-08,STS-U1-IDF-A
+WO-00028,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,18581.66,40.5,,STS-U1-CWP-2
+WO-00029,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,12779.45,44.1,EVT-2024-07-WETCOAL,STS-U1-MILL-3
+WO-00030,BRG2 VIB,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,5160.47,11.8,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2
+WO-00031,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,8206.35,40.9,,STS-U1-TB-BRG2
+WO-00032,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,6269.32,45.8,,STS-U1-IDF-A
+WO-00033,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7299.31,38.4,EVT-DRAFT-20230403-04,STS-U1-IDF-A
+WO-00034,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,13121.64,10.3,,STS-U1-TB-BRG2
+WO-00035,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,14690.67,32.2,EVT-DRAFT-20240408-14,STS-U1-IDF-A
+WO-00036,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,7307.19,20.7,,STS-U1-TB-BRG2
+WO-00037,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,4257.7,21.8,EVT-2024-07-WETCOAL,STS-U1-MILL-3
+WO-00038,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,5826.26,30.4,EVT-DRAFT-20241130-25,STS-U1-IDF-A
+WO-00039,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,14943.51,35.0,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2
+WO-00040,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,6807.0,23.8,EVT-DRAFT-20240724-21,STS-U1-IDF-A
+WO-00041,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4820.4,37.1,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+WO-00042,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,5981.95,43.2,EVT-DRAFT-20231108-09,STS-U1-IDF-A
+WO-00043,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,11390.06,16.8,,STS-U1-IDF-A
+WO-00044,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4686.85,20.7,EVT-DRAFT-20231123-10,STS-U1-IDF-A
+WO-00045,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8600.76,45.8,EVT-DRAFT-20240612-18,STS-U1-IDF-A
+WO-00046,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,1680.0,42.9,,STS-U1-CWP-2
+WO-00047,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,10957.63,22.5,,STS-U1-TB-BRG2
+WO-00048,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8910.68,13.8,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+WO-00049,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,20459.2,37.0,EVT-DRAFT-20240701-19,STS-U1-IDF-A
+WO-00050,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,11656.29,27.2,EVT-2023-07-WETCOAL,STS-U1-MILL-3
+WO-00051,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8157.58,16.1,EVT-DRAFT-20231230-11,STS-U1-IDF-A
+WO-00052,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,2690.59,31.1,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+WO-00053,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8570.4,28.5,EVT-DRAFT-20240408-14,STS-U1-IDF-A
+WO-00054,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,13996.73,45.6,EVT-DRAFT-20231108-09,STS-U1-IDF-A
+WO-00055,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,8617.72,8.0,EVT-DRAFT-20230927-07,STS-U1-IDF-A
+WO-00056,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,13405.68,5.7,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00057,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7917.14,14.1,EVT-DRAFT-20231230-11,STS-U1-IDF-A
+WO-00058,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Preventive,4613.35,32.7,,STS-U1-CWP-2
+WO-00059,Air preheater fouling,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,6662.89,4.2,,STS-U1-APH-1
+WO-00060,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,6990.49,20.8,EVT-2024-09-PM2,STS-U1-CTF-BANK1
+WO-00061,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,17638.05,36.9,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2
+WO-00062,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7984.7,14.3,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00063,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8905.55,43.8,EVT-DRAFT-20241106-24,STS-U1-IDF-A
+WO-00064,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,4676.91,24.8,,STS-U1-APH-1
+WO-00065,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,4493.95,5.6,,STS-U1-MILL-3
+WO-00066,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,15156.45,40.0,EVT-DRAFT-20240531-17,STS-U1-IDF-A
+WO-00067,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,10496.28,45.1,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00068,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,30213.56,11.4,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+WO-00069,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,10545.78,5.0,EVT-2024-06-AUXDRIFT,STS-U1-CTF-BANK1
+WO-00070,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7455.26,15.7,EVT-DRAFT-20240531-17,STS-U1-IDF-A
+WO-00071,AIR PREHEATER clog,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,3646.66,33.5,,STS-U1-APH-1
+WO-00072,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,2930.11,12.6,,STS-U1-TB-BRG2
+WO-00073,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,9195.91,40.7,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00074,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,19836.0,33.5,,STS-U1-MILL-3
+WO-00075,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,14047.41,23.3,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2
+WO-00076,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,16390.92,46.2,EVT-DRAFT-20240415-15,STS-U1-IDF-A
+WO-00077,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Preventive,12272.29,5.7,,STS-U1-APH-1
+WO-00078,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,9037.41,47.9,EVT-DRAFT-20240701-19,STS-U1-IDF-A
+WO-00079,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,8818.33,43.7,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00080,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,20664.26,16.0,,STS-U1-IDF-A
+WO-00081,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,5428.42,6.2,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00082,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,1913.56,26.0,,STS-U1-MILL-3
+WO-00083,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,10684.21,45.1,EVT-DRAFT-20230403-04,STS-U1-IDF-A
+WO-00084,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4225.14,46.4,,STS-U1-IDF-A
+WO-00085,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,21506.7,13.8,EVT-DRAFT-20230403-04,STS-U1-IDF-A
+WO-00086,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,6532.82,28.9,EVT-DRAFT-20240612-18,STS-U1-IDF-A
+WO-00087,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Preventive,10393.2,24.1,,STS-U1-CWP-2
+WO-00088,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4544.99,38.6,,STS-U1-IDF-A
+WO-00089,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,12811.78,34.0,EVT-DRAFT-20240408-14,STS-U1-IDF-A
+WO-00090,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4931.45,11.7,EVT-DRAFT-20230305-02,STS-U1-IDF-A
+WO-00091,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,5147.71,36.9,,STS-U1-APH-1
+WO-00092,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,6788.68,34.3,EVT-DRAFT-20240106-12,STS-U1-IDF-A
+WO-00093,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,10347.48,6.1,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+WO-00094,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7823.86,39.5,EVT-DRAFT-20241130-25,STS-U1-IDF-A
+WO-00095,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,21535.28,9.2,EVT-DRAFT-20230403-04,STS-U1-IDF-A
+WO-00096,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,7102.1,40.3,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00097,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,5177.85,20.3,,STS-U1-MILL-3
+WO-00098,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,6882.2,26.2,EVT-DRAFT-20230513-05,STS-U1-IDF-A
+WO-00099,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,9400.94,47.1,EVT-DRAFT-20240531-17,STS-U1-IDF-A
+WO-00100,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4487.19,14.1,EVT-2024-09-PM2,STS-U1-CTF-BANK1
+WO-00101,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,6290.35,31.6,EVT-2024-07-WETCOAL,STS-U1-MILL-3
+WO-00102,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,9910.52,11.7,,STS-U1-TB-BRG2
+WO-00103,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,10338.32,24.4,EVT-DRAFT-20231123-10,STS-U1-IDF-A
+WO-00104,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8262.77,40.4,,STS-U1-IDF-A
+WO-00105,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,5794.06,26.0,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00106,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4950.09,45.5,EVT-DRAFT-20240112-13,STS-U1-IDF-A
+WO-00107,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,11914.38,16.5,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00108,BRG2 VIB,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,4622.86,39.3,,STS-U1-TB-BRG2
+WO-00109,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,8339.66,33.1,,STS-U1-TB-BRG2
+WO-00110,AIR PREHEATER clog,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,16447.54,46.0,,STS-U1-APH-1
+WO-00111,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,14433.16,38.0,,STS-U1-IDF-A
+WO-00112,Air preheater fouling,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,13311.85,11.0,,STS-U1-APH-1
+WO-00113,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5702.48,8.3,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00114,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,12881.68,35.4,EVT-2023-07-WETCOAL,STS-U1-MILL-3
+WO-00115,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,12191.34,31.0,EVT-DRAFT-20231108-09,STS-U1-IDF-A
+WO-00116,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,11730.81,23.3,EVT-DRAFT-20240106-12,STS-U1-IDF-A
+WO-00117,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,9965.51,20.5,,STS-U1-IDF-A
+WO-00118,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,16769.78,23.1,,STS-U1-APH-1
+WO-00119,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,18123.54,8.2,,STS-U1-IDF-A
+WO-00120,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5325.11,30.4,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+WO-00121,Air preheater fouling,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Preventive,7228.88,15.0,,STS-U1-APH-1
+WO-00122,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,16112.72,45.7,,STS-U1-IDF-A
+WO-00123,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,6958.02,8.2,EVT-2024-07-WETCOAL,STS-U1-MILL-3
+WO-00124,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,6342.91,9.7,EVT-2023-07-WETCOAL,STS-U1-MILL-3
+WO-00125,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4526.89,29.9,EVT-DRAFT-20240408-14,STS-U1-IDF-A
+WO-00126,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4044.53,9.8,,STS-U1-IDF-A
+WO-00127,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7113.74,26.7,EVT-DRAFT-20241130-25,STS-U1-IDF-A
+WO-00128,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,9027.09,9.9,EVT-2023-07-WETCOAL,STS-U1-MILL-3
+WO-00129,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,24677.26,36.1,,STS-U1-IDF-A
+WO-00130,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,5560.63,32.7,EVT-DRAFT-20240612-18,STS-U1-IDF-A
+WO-00131,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,15531.88,42.4,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00132,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,5317.22,22.8,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00133,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,2408.09,35.9,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00134,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5171.53,43.5,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00135,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,13308.75,35.1,EVT-DRAFT-20240512-16,STS-U1-IDF-A
+WO-00136,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7351.43,28.8,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00137,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7046.25,30.5,EVT-DRAFT-20240415-15,STS-U1-IDF-A
+WO-00138,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,11813.01,40.0,,STS-U1-CWP-2
+WO-00139,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4617.4,17.0,EVT-DRAFT-20230305-02,STS-U1-IDF-A
+WO-00140,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,20440.29,12.0,EVT-DRAFT-20231104-08,STS-U1-IDF-A
+WO-00141,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,17507.52,4.5,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00142,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,8115.92,28.1,EVT-DRAFT-20240512-16,STS-U1-IDF-A
+WO-00143,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,4037.8,14.7,,STS-U1-TB-BRG2
+WO-00144,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,9579.78,37.7,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00145,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,8904.75,42.2,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00146,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,1861.92,44.6,EVT-DRAFT-20230513-05,STS-U1-IDF-A
+WO-00147,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,3626.02,13.8,EVT-DRAFT-20231104-08,STS-U1-IDF-A
+WO-00148,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,11938.47,7.2,EVT-DRAFT-20230513-05,STS-U1-IDF-A
+WO-00149,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7188.28,31.9,EVT-DRAFT-20240512-16,STS-U1-IDF-A
+WO-00150,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7682.61,20.6,EVT-DRAFT-20231230-11,STS-U1-IDF-A
+WO-00151,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,3799.97,40.7,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2
+WO-00152,BRG2 VIB,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,4264.6,15.4,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2
+WO-00153,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,5778.38,31.9,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2
+WO-00154,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,16713.3,32.9,EVT-DRAFT-20240112-13,STS-U1-IDF-A
+WO-00155,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,3304.46,16.7,,STS-U1-IDF-A
+WO-00156,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,6946.45,4.0,EVT-DRAFT-20230303-01,STS-U1-IDF-A
+WO-00157,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,8922.41,9.3,EVT-DRAFT-20240531-17,STS-U1-IDF-A
+WO-00158,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,2490.56,35.0,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00159,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,18010.76,29.3,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00160,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,1919.95,28.8,EVT-DRAFT-20230305-02,STS-U1-IDF-A
+WO-00161,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,14172.93,11.6,EVT-DRAFT-20240701-19,STS-U1-IDF-A
+WO-00162,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7426.23,31.0,EVT-DRAFT-20241130-25,STS-U1-IDF-A
+WO-00163,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,6755.12,15.5,EVT-2023-03-MILLTRIP,STS-U1-MILL-3
+WO-00164,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,15533.06,11.4,EVT-DRAFT-20240830-22,STS-U1-IDF-A
+WO-00165,CW pump cavit,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,5142.79,38.4,,STS-U1-CWP-2
+WO-00166,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7716.33,6.5,,STS-U1-IDF-A
+WO-00167,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7210.13,15.8,EVT-DRAFT-20241219-26,STS-U1-IDF-A
+WO-00168,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4132.92,19.9,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00169,AIR PREHEATER clog,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,5563.11,38.7,,STS-U1-APH-1
+WO-00170,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,4853.57,44.6,,STS-U1-TB-BRG2
+WO-00171,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Preventive,8962.22,22.4,,STS-U1-APH-1
+WO-00172,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,16140.31,23.7,EVT-2024-07-WETCOAL,STS-U1-MILL-3
+WO-00173,BRG2 VIB,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,2118.99,11.7,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2
+WO-00174,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,7161.23,26.5,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2
+WO-00175,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,9183.72,36.8,EVT-DRAFT-20240531-17,STS-U1-IDF-A
+WO-00176,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,16427.79,23.9,EVT-DRAFT-20240701-19,STS-U1-IDF-A
+WO-00177,Mill3 trip,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,3208.81,38.1,,STS-U1-MILL-3
+WO-00178,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,13640.43,23.6,EVT-DRAFT-20231230-11,STS-U1-IDF-A
+WO-00179,CWP-2 low suction,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Preventive,9728.99,25.0,,STS-U1-CWP-2
+WO-00180,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,7470.09,46.9,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00181,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,34722.1,15.0,EVT-DRAFT-20240720-20,STS-U1-IDF-A
+WO-00182,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,4176.23,11.9,EVT-2024-07-WETCOAL,STS-U1-MILL-3
+WO-00183,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4533.0,4.5,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00184,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,16969.76,18.9,EVT-DRAFT-20241106-24,STS-U1-IDF-A
+WO-00185,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,9570.16,9.6,EVT-DRAFT-20231104-08,STS-U1-IDF-A
+WO-00186,Air preheater fouling,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,8406.29,39.0,,STS-U1-APH-1
+WO-00187,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,6226.34,5.2,EVT-DRAFT-20230303-01,STS-U1-IDF-A
+WO-00188,BRG2 VIB,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,6548.47,43.9,,STS-U1-TB-BRG2
+WO-00189,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,13077.86,24.0,EVT-2023-09-PM1,STS-U1-SH-OUT
+WO-00190,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4662.81,9.9,EVT-DRAFT-20241106-24,STS-U1-IDF-A
+WO-00191,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4225.58,22.7,EVT-DRAFT-20231108-09,STS-U1-IDF-A
+WO-00192,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,10595.09,42.0,,STS-U1-APH-1
+WO-00193,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,11051.84,43.0,EVT-DRAFT-20240112-13,STS-U1-IDF-A
+WO-00194,PF mill three feeder issue,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Corrective,9274.58,12.6,,STS-U1-MILL-3
+WO-00195,CWP-2 low suction,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,13865.4,30.8,,STS-U1-CWP-2
+WO-00196,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,22999.49,29.9,EVT-2024-09-PM2,STS-U1-CTF-BANK1
+WO-00197,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,13956.07,44.7,,STS-U1-CWP-2
+WO-00198,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,18612.93,36.8,EVT-DRAFT-20231108-09,STS-U1-IDF-A
+WO-00199,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,9733.96,44.1,,STS-U1-IDF-A
+WO-00200,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Preventive,15372.82,9.0,,STS-U1-APH-1
+WO-00201,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,4375.66,38.4,EVT-DRAFT-20240612-18,STS-U1-IDF-A
+WO-00202,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,6433.64,12.4,,STS-U1-TB-BRG2
+WO-00203,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,4004.18,35.1,EVT-DRAFT-20240415-15,STS-U1-IDF-A
+WO-00204,Draft fan #1 oscill,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,25102.19,32.6,EVT-DRAFT-20240902-23,STS-U1-IDF-A
+WO-00205,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,18521.35,9.5,EVT-2023-02-TB-VIB,STS-U1-TB-BRG2
+WO-00206,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Corrective,10152.05,21.9,,STS-U1-CWP-2
+WO-00207,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,30846.92,41.7,EVT-2023-05-TUBELEAK,STS-U1-SH-OUT
+WO-00208,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,3069.6,11.6,EVT-DRAFT-20230303-01,STS-U1-IDF-A
+WO-00209,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,1547.22,39.7,EVT-2024-06-AUXDRIFT,STS-U1-CTF-BANK1
+WO-00210,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,7922.88,43.6,,STS-U1-IDF-A
+WO-00211,turbine bearing 2 vibration,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Preventive,4646.85,36.6,,STS-U1-TB-BRG2
+WO-00212,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,2325.2,30.1,EVT-DRAFT-20240701-19,STS-U1-IDF-A
+WO-00213,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,18263.08,20.2,EVT-DRAFT-20231230-11,STS-U1-IDF-A
+WO-00214,IDF-A spd var,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,25781.51,23.4,EVT-DRAFT-20230309-03,STS-U1-IDF-A
+WO-00215,Condenser pump B noise,CW pump cavitation suspected; inspect strainer/valves; review NPSH.,Preventive,8939.33,13.7,,STS-U1-CWP-2
+WO-00216,Pulverizer-3 current spike,"Mill 3 current spike/trip; check moisture, feeder calibration, classifier, rejects.",Preventive,14714.43,6.5,,STS-U1-MILL-3
+WO-00217,IDF A damper sat,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Preventive,5412.76,35.9,,STS-U1-IDF-A
+WO-00218,APH DP high,APH DP elevated; recommend cleaning/seal inspection; review sootblowing.,Corrective,5273.44,43.1,,STS-U1-APH-1
+WO-00219,Induced draft fan hunting,Unstable furnace draft control; ID fan variance; damper saturation near 98–100%. Verify tuning and DP transmitter.,Corrective,35283.95,30.7,EVT-DRAFT-20231230-11,STS-U1-IDF-A
+WO-00220,TB brg2 vib hi,BRG2 vibration exceeded alert; spectrum check; verify oil/alignment.,Corrective,16480.62,20.3,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2

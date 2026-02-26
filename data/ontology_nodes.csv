@@ -1,0 +1,825 @@
+node_id,node_type,canonical_name,description
+ASSET::STS-PLANT,asset,Shakti Thermal Station,System=Plant Level=Plant
+ASSET::STS-U1,asset,Unit 1 (660 MW),System=Unit Level=Unit
+ASSET::STS-U2,asset,Unit 2 (660 MW),System=Unit Level=Unit
+ASSET::STS-U1-BOILER,asset,Boiler System,System=Boiler Level=System
+ASSET::STS-U1-TURBINE,asset,Turbine System,System=Turbine Level=System
+ASSET::STS-U1-GENERATOR,asset,Generator System,System=Generator Level=System
+ASSET::STS-U1-COOLING,asset,Cooling System,System=Cooling Level=System
+ASSET::STS-U1-ELECTRICAL,asset,Electrical System,System=Electrical Level=System
+ASSET::STS-U1-CONTROLS,asset,Controls System,System=Controls Level=System
+ASSET::STS-U1-BOI-FURNACE,asset,Furnace,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-IDFANS,asset,ID Fans,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-FDPAFANS,asset,FD/PA Fans,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-DAMPERS,asset,Dampers,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-MILLS,asset,Mills,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-APH,asset,Air Preheater,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-SH,asset,Superheater,System=Boiler Level=Subsystem
+ASSET::STS-U1-BOI-ECO,asset,Economizer,System=Boiler Level=Subsystem
+ASSET::STS-U1-TUR-HP,asset,HP Section,System=Turbine Level=Subsystem
+ASSET::STS-U1-TUR-IP,asset,IP Section,System=Turbine Level=Subsystem
+ASSET::STS-U1-TUR-LP,asset,LP Section,System=Turbine Level=Subsystem
+ASSET::STS-U1-TUR-BRG,asset,Bearings,System=Turbine Level=Subsystem
+ASSET::STS-U1-TUR-CV,asset,Control Valves,System=Turbine Level=Subsystem
+ASSET::STS-U1-GEN-ROTOR,asset,Rotor,System=Generator Level=Subsystem
+ASSET::STS-U1-GEN-STATOR,asset,Stator,System=Generator Level=Subsystem
+ASSET::STS-U1-GEN-H2,asset,Hydrogen System,System=Generator Level=Subsystem
+ASSET::STS-U1-COL-CT,asset,Cooling Tower,System=Cooling Level=Subsystem
+ASSET::STS-U1-COL-CND,asset,Condenser,System=Cooling Level=Subsystem
+ASSET::STS-U1-COL-CWP,asset,CW Pumps,System=Cooling Level=Subsystem
+ASSET::STS-U1-ELC-XFMR,asset,Transformer,System=Electrical Level=Subsystem
+ASSET::STS-U1-ELC-SWYD,asset,Switchyard,System=Electrical Level=Subsystem
+ASSET::STS-U1-CTL-DCS,asset,Unit DCS,System=Controls Level=Subsystem
+ASSET::STS-U1-CTL-INST,asset,Instrumentation,System=Controls Level=Subsystem
+ASSET::STS-U1-IDF-A,asset,ID Fan A,System=Boiler Level=Component
+ASSET::STS-U1-IDF-B,asset,ID Fan B,System=Boiler Level=Component
+ASSET::STS-U1-DAMPER-FG,asset,Flue Gas Damper,System=Boiler Level=Component
+ASSET::STS-U1-APH-1,asset,Air Preheater Rotor,System=Boiler Level=Component
+ASSET::STS-U1-SH-OUT,asset,Superheater Outlet,System=Boiler Level=Component
+ASSET::STS-U1-ECO-IN,asset,Economizer Inlet,System=Boiler Level=Component
+ASSET::STS-U1-MILL-1,asset,Coal Mill 1,System=Boiler Level=Component
+ASSET::STS-U1-MILL-2,asset,Coal Mill 2,System=Boiler Level=Component
+ASSET::STS-U1-MILL-3,asset,Coal Mill 3,System=Boiler Level=Component
+ASSET::STS-U1-MILL-4,asset,Coal Mill 4,System=Boiler Level=Component
+ASSET::STS-U1-MILL-5,asset,Coal Mill 5,System=Boiler Level=Component
+ASSET::STS-U1-MILL-6,asset,Coal Mill 6,System=Boiler Level=Component
+ASSET::STS-U1-TB-BRG2,asset,Turbine Bearing #2,System=Turbine Level=Component
+ASSET::STS-U1-TB-CV-HP,asset,HP Control Valves,System=Turbine Level=Component
+ASSET::STS-U1-CND,asset,Surface Condenser,System=Cooling Level=Component
+ASSET::STS-U1-CTF-BANK1,asset,Cooling Tower Fans Bank 1,System=Cooling Level=Component
+ASSET::STS-U1-CWP-1,asset,CW Pump 1,System=Cooling Level=Component
+ASSET::STS-U1-CWP-2,asset,CW Pump 2,System=Cooling Level=Component
+ASSET::STS-U1-XFMR-GSU,asset,GSU Transformer,System=Electrical Level=Component
+ASSET::STS-U1-SWYD-1,asset,Switchyard Bay 1,System=Electrical Level=Component
+ASSET::STS-U1-DCS,asset,Unit DCS Controller,System=Controls Level=Component
+TAG::TAG-U1-FurnaceDraftPressure_Pa,sensor,FurnaceDraftPressure_Pa,Furnace draft pressure (negative pull).
+TAG::TAG-U1-IDFanSpeed_pct,sensor,IDFanSpeed_pct,ID fan A speed (%).
+TAG::TAG-U1-DamperPosition_pct,sensor,DamperPosition_pct,Flue gas damper position.
+TAG::TAG-U1-O2_pct,sensor,O2_pct,Flue gas O₂ for combustion trim.
+TAG::TAG-U1-MillCurrent_A,sensor,MillCurrent_A,Representative mill motor current.
+TAG::TAG-U1-TurbineVibration_mm_s,sensor,TurbineVibration_mm_s,Turbine bearing #2 vibration.
+TAG::TAG-U1-CondenserTemp_C,sensor,CondenserTemp_C,Condenser temperature proxy.
+TAG::TAG-U1-AuxLoad_MW,sensor,AuxLoad_MW,Auxiliary load estimate.
+TAG::TAG-U1-NetGeneration_MW,sensor,NetGeneration_MW,Net generation (export).
+TAG::TAG-U1-CondenserVacuum_kPa,sensor,CondenserVacuum_kPa,Condenser pressure proxy.
+EVENT::EVT-2023-02-TB-VIB,event,Forced,Turbine-side: Turbine vibration alarm; BRG2 high overall.
+EVENT::EVT-DRAFT-20230303-01,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20230305-02,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20230309-03,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2023-03-MILLTRIP,event,Forced,Boiler-side: Mill trip (Mill 3); flame instability.
+EVENT::EVT-DRAFT-20230403-04,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2023-05-TUBELEAK,event,Forced,Boiler-side: Boiler tube leak; draft swing; protective trip.
+EVENT::EVT-DRAFT-20230513-05,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20230524-06,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2023-07-WETCOAL,event,Partial Derate,Fuel quality: Monsoon wet-coal reduced stable firing margin; sustained cap.
+EVENT::EVT-2023-09-PM1,event,Planned,"Planned Maintenance: Annual shutdown: SH inspection, APH wash, ID fan alignment."
+EVENT::EVT-DRAFT-20230927-07,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20231104-08,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20231108-09,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20231123-10,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20231230-11,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240106-12,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240112-13,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2024-02-TB-VIB,event,Forced,Turbine-side: Turbine vibration alarm; BRG2 high overall.
+EVENT::EVT-2024-03-CW-CONSTR,event,Forced,Cooling constraints: Condenser backpressure high; CW pump cavitation; trip.
+EVENT::EVT-DRAFT-20240408-14,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240415-15,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240512-16,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240531-17,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2024-06-AUXDRIFT,event,Partial Derate,Cooling constraints: CT fan degradation; sustained cap + aux drift.
+EVENT::EVT-DRAFT-20240612-18,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240701-19,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2024-07-WETCOAL,event,Partial Derate,Fuel quality: Monsoon wet coal + draft sensitivity; conservative cap.
+EVENT::EVT-DRAFT-20240720-20,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240724-21,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240830-22,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20240902-23,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-2024-09-PM2,event,Planned,Planned Maintenance: Cooling tower fan refurbishment + condenser recovery activities.
+EVENT::EVT-DRAFT-20241106-24,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20241130-25,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+EVENT::EVT-DRAFT-20241219-26,event,Partial Derate,Boiler-side: Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.
+WO::WO-00001,work_order,Mill3 trip,Corrective
+WO::WO-00002,work_order,IDF A damper sat,Preventive
+WO::WO-00003,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00004,work_order,BRG2 VIB,Preventive
+WO::WO-00005,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00006,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00007,work_order,Induced draft fan hunting,Corrective
+WO::WO-00008,work_order,Induced draft fan hunting,Corrective
+WO::WO-00009,work_order,AIR PREHEATER clog,Corrective
+WO::WO-00010,work_order,IDF A damper sat,Corrective
+WO::WO-00011,work_order,Induced draft fan hunting,Corrective
+WO::WO-00012,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00013,work_order,IDF-A spd var,Preventive
+WO::WO-00014,work_order,CWP-2 low suction,Corrective
+WO::WO-00015,work_order,APH DP high,Corrective
+WO::WO-00016,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00017,work_order,PF mill three feeder issue,Preventive
+WO::WO-00018,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00019,work_order,Air preheater fouling,Corrective
+WO::WO-00020,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00021,work_order,CW pump cavit,Preventive
+WO::WO-00022,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00023,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00024,work_order,Induced draft fan hunting,Corrective
+WO::WO-00025,work_order,IDF A damper sat,Corrective
+WO::WO-00026,work_order,IDF A damper sat,Corrective
+WO::WO-00027,work_order,IDF A damper sat,Preventive
+WO::WO-00028,work_order,Condenser pump B noise,Corrective
+WO::WO-00029,work_order,Pulverizer-3 current spike,Preventive
+WO::WO-00030,work_order,BRG2 VIB,Corrective
+WO::WO-00031,work_order,TB brg2 vib hi,Corrective
+WO::WO-00032,work_order,Induced draft fan hunting,Corrective
+WO::WO-00033,work_order,IDF A damper sat,Corrective
+WO::WO-00034,work_order,TB brg2 vib hi,Corrective
+WO::WO-00035,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00036,work_order,turbine bearing 2 vibration,Corrective
+WO::WO-00037,work_order,PF mill three feeder issue,Corrective
+WO::WO-00038,work_order,IDF-A spd var,Corrective
+WO::WO-00039,work_order,TB brg2 vib hi,Preventive
+WO::WO-00040,work_order,Induced draft fan hunting,Preventive
+WO::WO-00041,work_order,IDF-A spd var,Preventive
+WO::WO-00042,work_order,Induced draft fan hunting,Corrective
+WO::WO-00043,work_order,IDF A damper sat,Corrective
+WO::WO-00044,work_order,Induced draft fan hunting,Preventive
+WO::WO-00045,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00046,work_order,Condenser pump B noise,Corrective
+WO::WO-00047,work_order,turbine bearing 2 vibration,Corrective
+WO::WO-00048,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00049,work_order,IDF-A spd var,Corrective
+WO::WO-00050,work_order,PF mill three feeder issue,Preventive
+WO::WO-00051,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00052,work_order,IDF-A spd var,Preventive
+WO::WO-00053,work_order,Induced draft fan hunting,Corrective
+WO::WO-00054,work_order,IDF A damper sat,Corrective
+WO::WO-00055,work_order,IDF-A spd var,Preventive
+WO::WO-00056,work_order,Induced draft fan hunting,Corrective
+WO::WO-00057,work_order,IDF-A spd var,Preventive
+WO::WO-00058,work_order,CW pump cavit,Preventive
+WO::WO-00059,work_order,Air preheater fouling,Corrective
+WO::WO-00060,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00061,work_order,CW pump cavit,Corrective
+WO::WO-00062,work_order,Induced draft fan hunting,Preventive
+WO::WO-00063,work_order,Induced draft fan hunting,Corrective
+WO::WO-00064,work_order,APH DP high,Corrective
+WO::WO-00065,work_order,Mill3 trip,Preventive
+WO::WO-00066,work_order,IDF A damper sat,Corrective
+WO::WO-00067,work_order,Induced draft fan hunting,Preventive
+WO::WO-00068,work_order,IDF A damper sat,Corrective
+WO::WO-00069,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00070,work_order,Induced draft fan hunting,Preventive
+WO::WO-00071,work_order,AIR PREHEATER clog,Corrective
+WO::WO-00072,work_order,turbine bearing 2 vibration,Corrective
+WO::WO-00073,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00074,work_order,Mill3 trip,Preventive
+WO::WO-00075,work_order,Condenser pump B noise,Corrective
+WO::WO-00076,work_order,IDF-A spd var,Corrective
+WO::WO-00077,work_order,APH DP high,Preventive
+WO::WO-00078,work_order,IDF-A spd var,Corrective
+WO::WO-00079,work_order,PF mill three feeder issue,Corrective
+WO::WO-00080,work_order,IDF-A spd var,Corrective
+WO::WO-00081,work_order,Pulverizer-3 current spike,Corrective
+WO::WO-00082,work_order,Pulverizer-3 current spike,Preventive
+WO::WO-00083,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00084,work_order,IDF-A spd var,Preventive
+WO::WO-00085,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00086,work_order,Induced draft fan hunting,Preventive
+WO::WO-00087,work_order,Condenser pump B noise,Preventive
+WO::WO-00088,work_order,IDF A damper sat,Corrective
+WO::WO-00089,work_order,IDF A damper sat,Corrective
+WO::WO-00090,work_order,IDF A damper sat,Corrective
+WO::WO-00091,work_order,APH DP high,Corrective
+WO::WO-00092,work_order,IDF-A spd var,Corrective
+WO::WO-00093,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00094,work_order,IDF A damper sat,Preventive
+WO::WO-00095,work_order,IDF A damper sat,Corrective
+WO::WO-00096,work_order,Pulverizer-3 current spike,Corrective
+WO::WO-00097,work_order,Mill3 trip,Corrective
+WO::WO-00098,work_order,IDF-A spd var,Corrective
+WO::WO-00099,work_order,IDF A damper sat,Preventive
+WO::WO-00100,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00101,work_order,PF mill three feeder issue,Corrective
+WO::WO-00102,work_order,turbine bearing 2 vibration,Preventive
+WO::WO-00103,work_order,IDF-A spd var,Preventive
+WO::WO-00104,work_order,IDF-A spd var,Corrective
+WO::WO-00105,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00106,work_order,IDF A damper sat,Preventive
+WO::WO-00107,work_order,Pulverizer-3 current spike,Corrective
+WO::WO-00108,work_order,BRG2 VIB,Preventive
+WO::WO-00109,work_order,turbine bearing 2 vibration,Corrective
+WO::WO-00110,work_order,AIR PREHEATER clog,Corrective
+WO::WO-00111,work_order,IDF A damper sat,Preventive
+WO::WO-00112,work_order,Air preheater fouling,Corrective
+WO::WO-00113,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00114,work_order,Mill3 trip,Corrective
+WO::WO-00115,work_order,IDF A damper sat,Preventive
+WO::WO-00116,work_order,Induced draft fan hunting,Preventive
+WO::WO-00117,work_order,IDF A damper sat,Preventive
+WO::WO-00118,work_order,APH DP high,Corrective
+WO::WO-00119,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00120,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00121,work_order,Air preheater fouling,Preventive
+WO::WO-00122,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00123,work_order,Pulverizer-3 current spike,Corrective
+WO::WO-00124,work_order,Pulverizer-3 current spike,Corrective
+WO::WO-00125,work_order,IDF-A spd var,Corrective
+WO::WO-00126,work_order,IDF A damper sat,Preventive
+WO::WO-00127,work_order,Induced draft fan hunting,Preventive
+WO::WO-00128,work_order,PF mill three feeder issue,Corrective
+WO::WO-00129,work_order,IDF-A spd var,Corrective
+WO::WO-00130,work_order,IDF A damper sat,Corrective
+WO::WO-00131,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00132,work_order,Pulverizer-3 current spike,Preventive
+WO::WO-00133,work_order,Induced draft fan hunting,Preventive
+WO::WO-00134,work_order,IDF A damper sat,Preventive
+WO::WO-00135,work_order,IDF A damper sat,Preventive
+WO::WO-00136,work_order,IDF-A spd var,Preventive
+WO::WO-00137,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00138,work_order,CW pump cavit,Corrective
+WO::WO-00139,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00140,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00141,work_order,IDF-A spd var,Preventive
+WO::WO-00142,work_order,Induced draft fan hunting,Preventive
+WO::WO-00143,work_order,turbine bearing 2 vibration,Preventive
+WO::WO-00144,work_order,IDF-A spd var,Preventive
+WO::WO-00145,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00146,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00147,work_order,Induced draft fan hunting,Corrective
+WO::WO-00148,work_order,Induced draft fan hunting,Corrective
+WO::WO-00149,work_order,IDF A damper sat,Corrective
+WO::WO-00150,work_order,IDF A damper sat,Corrective
+WO::WO-00151,work_order,CW pump cavit,Corrective
+WO::WO-00152,work_order,BRG2 VIB,Corrective
+WO::WO-00153,work_order,CW pump cavit,Corrective
+WO::WO-00154,work_order,IDF A damper sat,Corrective
+WO::WO-00155,work_order,Induced draft fan hunting,Corrective
+WO::WO-00156,work_order,Induced draft fan hunting,Preventive
+WO::WO-00157,work_order,Induced draft fan hunting,Preventive
+WO::WO-00158,work_order,IDF A damper sat,Preventive
+WO::WO-00159,work_order,IDF A damper sat,Corrective
+WO::WO-00160,work_order,IDF A damper sat,Preventive
+WO::WO-00161,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00162,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00163,work_order,Mill3 trip,Preventive
+WO::WO-00164,work_order,IDF-A spd var,Corrective
+WO::WO-00165,work_order,CW pump cavit,Corrective
+WO::WO-00166,work_order,IDF A damper sat,Corrective
+WO::WO-00167,work_order,Induced draft fan hunting,Preventive
+WO::WO-00168,work_order,IDF A damper sat,Corrective
+WO::WO-00169,work_order,AIR PREHEATER clog,Corrective
+WO::WO-00170,work_order,TB brg2 vib hi,Corrective
+WO::WO-00171,work_order,APH DP high,Preventive
+WO::WO-00172,work_order,Pulverizer-3 current spike,Corrective
+WO::WO-00173,work_order,BRG2 VIB,Corrective
+WO::WO-00174,work_order,TB brg2 vib hi,Corrective
+WO::WO-00175,work_order,Induced draft fan hunting,Preventive
+WO::WO-00176,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00177,work_order,Mill3 trip,Corrective
+WO::WO-00178,work_order,IDF-A spd var,Corrective
+WO::WO-00179,work_order,CWP-2 low suction,Preventive
+WO::WO-00180,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00181,work_order,IDF-A spd var,Corrective
+WO::WO-00182,work_order,PF mill three feeder issue,Corrective
+WO::WO-00183,work_order,IDF-A spd var,Corrective
+WO::WO-00184,work_order,Induced draft fan hunting,Corrective
+WO::WO-00185,work_order,Induced draft fan hunting,Preventive
+WO::WO-00186,work_order,Air preheater fouling,Corrective
+WO::WO-00187,work_order,IDF-A spd var,Preventive
+WO::WO-00188,work_order,BRG2 VIB,Preventive
+WO::WO-00189,work_order,IDF-A spd var,Preventive
+WO::WO-00190,work_order,IDF-A spd var,Corrective
+WO::WO-00191,work_order,IDF A damper sat,Preventive
+WO::WO-00192,work_order,APH DP high,Corrective
+WO::WO-00193,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00194,work_order,PF mill three feeder issue,Corrective
+WO::WO-00195,work_order,CWP-2 low suction,Corrective
+WO::WO-00196,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00197,work_order,Condenser pump B noise,Corrective
+WO::WO-00198,work_order,IDF A damper sat,Corrective
+WO::WO-00199,work_order,Induced draft fan hunting,Corrective
+WO::WO-00200,work_order,APH DP high,Preventive
+WO::WO-00201,work_order,IDF A damper sat,Corrective
+WO::WO-00202,work_order,TB brg2 vib hi,Corrective
+WO::WO-00203,work_order,Draft fan #1 oscill,Preventive
+WO::WO-00204,work_order,Draft fan #1 oscill,Corrective
+WO::WO-00205,work_order,turbine bearing 2 vibration,Corrective
+WO::WO-00206,work_order,Condenser pump B noise,Corrective
+WO::WO-00207,work_order,IDF-A spd var,Preventive
+WO::WO-00208,work_order,IDF A damper sat,Corrective
+WO::WO-00209,work_order,IDF-A spd var,Corrective
+WO::WO-00210,work_order,Induced draft fan hunting,Corrective
+WO::WO-00211,work_order,turbine bearing 2 vibration,Preventive
+WO::WO-00212,work_order,Induced draft fan hunting,Corrective
+WO::WO-00213,work_order,IDF-A spd var,Corrective
+WO::WO-00214,work_order,IDF-A spd var,Preventive
+WO::WO-00215,work_order,Condenser pump B noise,Preventive
+WO::WO-00216,work_order,Pulverizer-3 current spike,Preventive
+WO::WO-00217,work_order,IDF A damper sat,Preventive
+WO::WO-00218,work_order,APH DP high,Corrective
+WO::WO-00219,work_order,Induced draft fan hunting,Corrective
+WO::WO-00220,work_order,TB brg2 vib hi,Corrective
+LOG::LOG-00001,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00002,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00003,shift_log,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00004,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00005,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00006,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00007,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00008,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00009,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00010,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00011,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00012,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00013,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00014,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00015,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00016,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00017,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00018,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00019,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00020,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00021,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00022,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00023,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00024,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00025,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00026,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00027,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00028,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00029,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00030,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00031,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00032,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00033,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00034,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00035,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00036,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00037,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00038,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00039,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00040,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00041,shift_log,Control Room Operator,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00042,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00043,shift_log,Shift Supervisor,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00044,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00045,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00046,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00047,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00048,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00049,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00050,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00051,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00052,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00053,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00054,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00055,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00056,shift_log,Control Room Operator,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00057,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00058,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00059,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00060,shift_log,Control Room Operator,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00061,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00062,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00063,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00064,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00065,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00066,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00067,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00068,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00069,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00070,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00071,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00072,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00073,shift_log,Shift Supervisor,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00074,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00075,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00076,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00077,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00078,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00079,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00080,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00081,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00082,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00083,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00084,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00085,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00086,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00087,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00088,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00089,shift_log,Control Room Operator,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00090,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00091,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00092,shift_log,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00093,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00094,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00095,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00096,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00097,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00098,shift_log,Control Room Operator,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00099,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00100,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00101,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00102,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00103,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00104,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00105,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00106,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00107,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00108,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00109,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00110,shift_log,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00111,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00112,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00113,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00114,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00115,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00116,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00117,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00118,shift_log,Shift Supervisor,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00119,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00120,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00121,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00122,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00123,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00124,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00125,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00126,shift_log,Control Room Operator,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00127,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00128,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00129,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00130,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00131,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00132,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00133,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00134,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00135,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00136,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00137,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00138,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00139,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00140,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00141,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00142,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00143,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00144,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00145,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00146,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00147,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00148,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00149,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00150,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00151,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00152,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00153,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00154,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00155,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00156,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00157,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00158,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00159,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00160,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00161,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00162,shift_log,Control Room Operator,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00163,shift_log,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00164,shift_log,Control Room Operator,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00165,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00166,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00167,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00168,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00169,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00170,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00171,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00172,shift_log,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00173,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00174,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00175,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00176,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00177,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00178,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00179,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00180,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00181,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00182,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00183,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00184,shift_log,Shift Supervisor,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00185,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00186,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00187,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00188,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00189,shift_log,Control Room Operator,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00190,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00191,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00192,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00193,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00194,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00195,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00196,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00197,shift_log,Shift Supervisor,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00198,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00199,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00200,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00201,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00202,shift_log,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.
+LOG::LOG-00203,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00204,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00205,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00206,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00207,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00208,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00209,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00210,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00211,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00212,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00213,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00214,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00215,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00216,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00217,shift_log,Control Room Operator,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00218,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00219,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00220,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00221,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00222,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00223,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00224,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00225,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00226,shift_log,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00227,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00228,shift_log,Shift Supervisor,BRG2 crossed alert briefly; checked lube oil; stabilized.
+LOG::LOG-00229,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00230,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00231,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00232,shift_log,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00233,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00234,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+LOG::LOG-00235,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00236,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00237,shift_log,Control Room Operator,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00238,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00239,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00240,shift_log,Control Room Operator,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00241,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00242,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00243,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00244,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00245,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00246,shift_log,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00247,shift_log,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.
+LOG::LOG-00248,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00249,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00250,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00251,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00252,shift_log,Control Room Operator,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00253,shift_log,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.
+LOG::LOG-00254,shift_log,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00255,shift_log,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.
+LOG::LOG-00256,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00257,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjusted feeder; watched stability.
+LOG::LOG-00258,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
+LOG::LOG-00259,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
+LOG::LOG-00260,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
+ROLE::Performance Analyst,role,Performance Analyst,Fictional operational role
+ROLE::Shift Supervisor,role,Shift Supervisor,Fictional operational role
+ROLE::Maintenance Planner,role,Maintenance Planner,Fictional operational role
+ROLE::Reliability Engineer,role,Reliability Engineer,Fictional operational role
+ROLE::Control Room Operator,role,Control Room Operator,Fictional operational role
+EMAIL::EML-00001,email,Cooling performance issue,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00002,email,Planned outage scope,Event EVT-2023-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00003,email,Controls issue review,Event EVT-DRAFT-20230927-07 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00004,email,Cooling performance issue,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00005,email,Controls issue review,Event EVT-DRAFT-20240701-19 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00006,email,Draft instability follow-up,Event EVT-DRAFT-20240112-13 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00007,email,Planned outage scope,Event EVT-DRAFT-20240408-14 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00008,email,Cooling performance issue,Event EVT-DRAFT-20241130-25 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00009,email,Fuel moisture concerns,Event EVT-2024-09-PM2 recap: category=Planned Maintenance. Please review STS-U1-CTF-BANK1. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00010,email,Turbine vibration investigation,Event EVT-2024-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00011,email,Fuel moisture concerns,Event EVT-2024-09-PM2 recap: category=Planned Maintenance. Please review STS-U1-CTF-BANK1. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00012,email,Planned outage scope,Event EVT-DRAFT-20240701-19 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00013,email,Turbine vibration investigation,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00014,email,Draft instability follow-up,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00015,email,Controls issue review,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00016,email,Planned outage scope,Event EVT-DRAFT-20240701-19 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00017,email,Controls issue review,Event EVT-2024-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00018,email,Fuel moisture concerns,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00019,email,Turbine vibration investigation,Event EVT-DRAFT-20240724-21 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00020,email,Planned outage scope,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00021,email,Draft instability follow-up,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00022,email,Planned outage scope,Event EVT-DRAFT-20230403-04 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00023,email,Fuel moisture concerns,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00024,email,Turbine vibration investigation,Event EVT-DRAFT-20230403-04 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00025,email,Controls issue review,Event EVT-DRAFT-20231108-09 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00026,email,Draft instability follow-up,Event EVT-DRAFT-20230403-04 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00027,email,Draft instability follow-up,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00028,email,Cooling performance issue,Event EVT-2024-06-AUXDRIFT recap: category=Cooling constraints. Please review STS-U1-CTF-BANK1. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00029,email,Controls issue review,Event EVT-2023-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00030,email,Cooling performance issue,Event EVT-DRAFT-20231108-09 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00031,email,Cooling performance issue,Event EVT-2023-09-PM1 recap: category=Planned Maintenance. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00032,email,Planned outage scope,Event EVT-2023-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00033,email,Turbine vibration investigation,Event EVT-2023-05-TUBELEAK recap: category=Boiler-side. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00034,email,Controls issue review,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00035,email,Controls issue review,Event EVT-DRAFT-20240612-18 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00036,email,Draft instability follow-up,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00037,email,Fuel moisture concerns,Event EVT-2023-03-MILLTRIP recap: category=Boiler-side. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00038,email,Turbine vibration investigation,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00039,email,Controls issue review,Event EVT-DRAFT-20241106-24 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00040,email,Turbine vibration investigation,Event EVT-2023-05-TUBELEAK recap: category=Boiler-side. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00041,email,Planned outage scope,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00042,email,Turbine vibration investigation,Event EVT-DRAFT-20240724-21 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00043,email,Fuel moisture concerns,Event EVT-DRAFT-20240724-21 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00044,email,Draft instability follow-up,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00045,email,Turbine vibration investigation,Event EVT-2023-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00046,email,Controls issue review,Event EVT-DRAFT-20240112-13 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00047,email,Turbine vibration investigation,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00048,email,Cooling performance issue,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00049,email,Cooling performance issue,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00050,email,Cooling performance issue,Event EVT-2023-09-PM1 recap: category=Planned Maintenance. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00051,email,Controls issue review,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00052,email,Draft instability follow-up,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00053,email,Planned outage scope,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00054,email,Fuel moisture concerns,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00055,email,Draft instability follow-up,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00056,email,Controls issue review,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00057,email,Planned outage scope,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00058,email,Fuel moisture concerns,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00059,email,Controls issue review,Event EVT-DRAFT-20240701-19 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00060,email,Turbine vibration investigation,Event EVT-2023-03-MILLTRIP recap: category=Boiler-side. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00061,email,Turbine vibration investigation,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00062,email,Planned outage scope,Event EVT-DRAFT-20240724-21 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00063,email,Fuel moisture concerns,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00064,email,Controls issue review,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00065,email,Planned outage scope,Event EVT-DRAFT-20231123-10 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00066,email,Fuel moisture concerns,Event EVT-DRAFT-20241106-24 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00067,email,Controls issue review,Event EVT-DRAFT-20241106-24 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00068,email,Cooling performance issue,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00069,email,Cooling performance issue,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00070,email,Planned outage scope,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00071,email,Fuel moisture concerns,Event EVT-DRAFT-20240830-22 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00072,email,Fuel moisture concerns,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00073,email,Planned outage scope,Event EVT-DRAFT-20241130-25 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00074,email,Controls issue review,Event EVT-DRAFT-20230305-02 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00075,email,Fuel moisture concerns,Event EVT-DRAFT-20230927-07 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00076,email,Fuel moisture concerns,Event EVT-DRAFT-20230403-04 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00077,email,Turbine vibration investigation,Event EVT-DRAFT-20231123-10 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00078,email,Planned outage scope,Event EVT-DRAFT-20231123-10 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00079,email,Planned outage scope,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00080,email,Turbine vibration investigation,Event EVT-DRAFT-20240701-19 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00081,email,Controls issue review,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00082,email,Cooling performance issue,Event EVT-2024-03-CW-CONSTR recap: category=Cooling constraints. Please review STS-U1-CWP-2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00083,email,Planned outage scope,Event EVT-DRAFT-20241106-24 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00084,email,Controls issue review,Event EVT-2024-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00085,email,Turbine vibration investigation,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00086,email,Fuel moisture concerns,Event EVT-DRAFT-20240106-12 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00087,email,Planned outage scope,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00088,email,Turbine vibration investigation,Event EVT-2024-03-CW-CONSTR recap: category=Cooling constraints. Please review STS-U1-CWP-2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00089,email,Fuel moisture concerns,Event EVT-DRAFT-20230513-05 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00090,email,Turbine vibration investigation,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00091,email,Fuel moisture concerns,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00092,email,Turbine vibration investigation,Event EVT-DRAFT-20240408-14 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00093,email,Planned outage scope,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00094,email,Cooling performance issue,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00095,email,Turbine vibration investigation,Event EVT-DRAFT-20230524-06 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00096,email,Draft instability follow-up,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00097,email,Cooling performance issue,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00098,email,Planned outage scope,Event EVT-DRAFT-20230524-06 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00099,email,Planned outage scope,Event EVT-DRAFT-20230927-07 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00100,email,Controls issue review,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00101,email,Cooling performance issue,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00102,email,Turbine vibration investigation,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00103,email,Controls issue review,Event EVT-DRAFT-20240408-14 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00104,email,Planned outage scope,Event EVT-DRAFT-20230524-06 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00105,email,Turbine vibration investigation,Event EVT-2023-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00106,email,Draft instability follow-up,Event EVT-2024-09-PM2 recap: category=Planned Maintenance. Please review STS-U1-CTF-BANK1. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00107,email,Controls issue review,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00108,email,Planned outage scope,Event EVT-2023-05-TUBELEAK recap: category=Boiler-side. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00109,email,Planned outage scope,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00110,email,Cooling performance issue,Event EVT-DRAFT-20230927-07 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00111,email,Cooling performance issue,Event EVT-DRAFT-20240830-22 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00112,email,Controls issue review,Event EVT-DRAFT-20240531-17 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00113,email,Planned outage scope,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00114,email,Fuel moisture concerns,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00115,email,Draft instability follow-up,Event EVT-DRAFT-20240612-18 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00116,email,Controls issue review,Event EVT-DRAFT-20240512-16 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00117,email,Fuel moisture concerns,Event EVT-2023-05-TUBELEAK recap: category=Boiler-side. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00118,email,Turbine vibration investigation,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00119,email,Draft instability follow-up,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00120,email,Planned outage scope,Event EVT-DRAFT-20230403-04 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00121,email,Cooling performance issue,Event EVT-2024-03-CW-CONSTR recap: category=Cooling constraints. Please review STS-U1-CWP-2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00122,email,Planned outage scope,Event EVT-2023-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00123,email,Draft instability follow-up,Event EVT-2023-03-MILLTRIP recap: category=Boiler-side. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00124,email,Planned outage scope,Event EVT-2024-06-AUXDRIFT recap: category=Cooling constraints. Please review STS-U1-CTF-BANK1. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00125,email,Fuel moisture concerns,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00126,email,Draft instability follow-up,Event EVT-DRAFT-20240701-19 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00127,email,Fuel moisture concerns,Event EVT-DRAFT-20240612-18 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00128,email,Turbine vibration investigation,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00129,email,Fuel moisture concerns,Event EVT-DRAFT-20230513-05 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00130,email,Turbine vibration investigation,Event EVT-DRAFT-20241106-24 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00131,email,Planned outage scope,Event EVT-DRAFT-20240612-18 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00132,email,Planned outage scope,Event EVT-2024-03-CW-CONSTR recap: category=Cooling constraints. Please review STS-U1-CWP-2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00133,email,Turbine vibration investigation,Event EVT-DRAFT-20241130-25 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00134,email,Fuel moisture concerns,Event EVT-DRAFT-20240830-22 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00135,email,Turbine vibration investigation,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00136,email,Fuel moisture concerns,Event EVT-DRAFT-20240612-18 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00137,email,Draft instability follow-up,Event EVT-DRAFT-20241106-24 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00138,email,Draft instability follow-up,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00139,email,Cooling performance issue,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00140,email,Fuel moisture concerns,Event EVT-DRAFT-20230305-02 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00141,email,Planned outage scope,Event EVT-DRAFT-20231108-09 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00142,email,Fuel moisture concerns,Event EVT-2023-03-MILLTRIP recap: category=Boiler-side. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00143,email,Controls issue review,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00144,email,Cooling performance issue,Event EVT-2023-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00145,email,Cooling performance issue,Event EVT-DRAFT-20230513-05 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00146,email,Planned outage scope,Event EVT-DRAFT-20241130-25 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00147,email,Fuel moisture concerns,Event EVT-DRAFT-20231104-08 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00148,email,Controls issue review,Event EVT-DRAFT-20230305-02 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00149,email,Draft instability follow-up,Event EVT-DRAFT-20231104-08 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00150,email,Fuel moisture concerns,Event EVT-DRAFT-20240724-21 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00151,email,Fuel moisture concerns,Event EVT-DRAFT-20240112-13 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00152,email,Fuel moisture concerns,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00153,email,Turbine vibration investigation,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00154,email,Fuel moisture concerns,Event EVT-DRAFT-20231108-09 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00155,email,Fuel moisture concerns,Event EVT-DRAFT-20240415-15 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00156,email,Draft instability follow-up,Event EVT-DRAFT-20240408-14 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00157,email,Draft instability follow-up,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00158,email,Fuel moisture concerns,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00159,email,Draft instability follow-up,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00160,email,Cooling performance issue,Event EVT-DRAFT-20240902-23 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00161,email,Draft instability follow-up,Event EVT-DRAFT-20230524-06 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00162,email,Fuel moisture concerns,Event EVT-2024-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00163,email,Cooling performance issue,Event EVT-DRAFT-20230403-04 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00164,email,Cooling performance issue,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00165,email,Controls issue review,Event EVT-DRAFT-20230303-01 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00166,email,Fuel moisture concerns,Event EVT-DRAFT-20231123-10 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00167,email,Turbine vibration investigation,Event EVT-DRAFT-20230524-06 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00168,email,Draft instability follow-up,Event EVT-2024-03-CW-CONSTR recap: category=Cooling constraints. Please review STS-U1-CWP-2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00169,email,Fuel moisture concerns,Event EVT-DRAFT-20230309-03 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00170,email,Cooling performance issue,Event EVT-DRAFT-20240512-16 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00171,email,Controls issue review,Event EVT-2024-02-TB-VIB recap: category=Turbine-side. Please review STS-U1-TB-BRG2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00172,email,Draft instability follow-up,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00173,email,Controls issue review,Event EVT-DRAFT-20231104-08 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00174,email,Planned outage scope,Event EVT-2023-09-PM1 recap: category=Planned Maintenance. Please review STS-U1-SH-OUT. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00175,email,Planned outage scope,Event EVT-2023-03-MILLTRIP recap: category=Boiler-side. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00176,email,Turbine vibration investigation,Event EVT-DRAFT-20230524-06 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00177,email,Fuel moisture concerns,Event EVT-2023-03-MILLTRIP recap: category=Boiler-side. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00178,email,Controls issue review,Event EVT-2024-03-CW-CONSTR recap: category=Cooling constraints. Please review STS-U1-CWP-2. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00179,email,Planned outage scope,Event EVT-DRAFT-20240720-20 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+EMAIL::EML-00180,email,Cooling performance issue,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
+MEDIA::MED-0001,media,video,Trend capture for incident review.
+MEDIA::MED-0002,media,video,Trend capture for incident review.
+MEDIA::MED-0003,media,photo,Trend capture for incident review.
+MEDIA::MED-0004,media,photo,Trend capture for incident review.
+MEDIA::MED-0005,media,photo,Trend capture for incident review.
+MEDIA::MED-0006,media,photo,Trend capture for incident review.
+MEDIA::MED-0007,media,photo,Field inspection captured.
+MEDIA::MED-0008,media,photo,Field inspection captured.
+MEDIA::MED-0009,media,photo,Maintenance finding documented.
+MEDIA::MED-0010,media,photo,Trend capture for incident review.
+MEDIA::MED-0011,media,video,Trend capture for incident review.
+MEDIA::MED-0012,media,photo,Field inspection captured.
+MEDIA::MED-0013,media,photo,Trend capture for incident review.
+MEDIA::MED-0014,media,photo,Trend capture for incident review.
+MEDIA::MED-0015,media,photo,Field inspection captured.
+MEDIA::MED-0016,media,photo,Trend capture for incident review.
+MEDIA::MED-0017,media,photo,Field inspection captured.
+MEDIA::MED-0018,media,video,Field inspection captured.
+MEDIA::MED-0019,media,photo,Maintenance finding documented.
+MEDIA::MED-0020,media,photo,Trend capture for incident review.
+MEDIA::MED-0021,media,photo,Trend capture for incident review.
+MEDIA::MED-0022,media,video,Field inspection captured.
+MEDIA::MED-0023,media,photo,Maintenance finding documented.
+MEDIA::MED-0024,media,photo,Maintenance finding documented.
+MEDIA::MED-0025,media,photo,Field inspection captured.
+MEDIA::MED-0026,media,photo,Maintenance finding documented.
+MEDIA::MED-0027,media,photo,Maintenance finding documented.
+MEDIA::MED-0028,media,photo,Field inspection captured.
+MEDIA::MED-0029,media,photo,Maintenance finding documented.
+MEDIA::MED-0030,media,video,Maintenance finding documented.
+MEDIA::MED-0031,media,photo,Trend capture for incident review.
+MEDIA::MED-0032,media,photo,Trend capture for incident review.
+MEDIA::MED-0033,media,photo,Trend capture for incident review.
+MEDIA::MED-0034,media,photo,Field inspection captured.
+MEDIA::MED-0035,media,photo,Maintenance finding documented.
+MEDIA::MED-0036,media,photo,Trend capture for incident review.
+MEDIA::MED-0037,media,video,Trend capture for incident review.
+MEDIA::MED-0038,media,photo,Field inspection captured.
+MEDIA::MED-0039,media,photo,Maintenance finding documented.
+MEDIA::MED-0040,media,video,Field inspection captured.
+MEDIA::MED-0041,media,photo,Field inspection captured.
+MEDIA::MED-0042,media,photo,Field inspection captured.
+MEDIA::MED-0043,media,photo,Trend capture for incident review.
+MEDIA::MED-0044,media,video,Maintenance finding documented.
+MEDIA::MED-0045,media,video,Maintenance finding documented.
+MEDIA::MED-0046,media,photo,Maintenance finding documented.
+MEDIA::MED-0047,media,photo,Trend capture for incident review.
+MEDIA::MED-0048,media,photo,Field inspection captured.
+MEDIA::MED-0049,media,video,Field inspection captured.
+MEDIA::MED-0050,media,photo,Trend capture for incident review.
+MEDIA::MED-0051,media,photo,Field inspection captured.
+MEDIA::MED-0052,media,photo,Maintenance finding documented.
+MEDIA::MED-0053,media,photo,Trend capture for incident review.
+MEDIA::MED-0054,media,video,Trend capture for incident review.
+MEDIA::MED-0055,media,photo,Trend capture for incident review.
+MEDIA::MED-0056,media,photo,Field inspection captured.
+MEDIA::MED-0057,media,photo,Maintenance finding documented.
+MEDIA::MED-0058,media,photo,Field inspection captured.
+MEDIA::MED-0059,media,photo,Field inspection captured.
+MEDIA::MED-0060,media,photo,Maintenance finding documented.

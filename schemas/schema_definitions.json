@@ -1,0 +1,694 @@
+{
+  "asset_hierarchy.csv": {
+    "description": "Canonical asset hierarchy with aliases and criticality (Plant\u2192Unit\u2192System\u2192Subsystem\u2192Component).",
+    "columns": {
+      "asset_id": {
+        "dtype": "object",
+        "description": "Unique canonical asset identifier."
+      },
+      "parent_asset_id": {
+        "dtype": "object",
+        "description": "Parent asset_id (empty for top)."
+      },
+      "level": {
+        "dtype": "object",
+        "description": "Hierarchy level (Plant/Unit/System/Subsystem/Component)."
+      },
+      "system": {
+        "dtype": "object",
+        "description": "Top-level system label (Boiler/Turbine/etc)."
+      },
+      "canonical_name": {
+        "dtype": "object",
+        "description": "Canonical asset name."
+      },
+      "aliases_json": {
+        "dtype": "object",
+        "description": "JSON array of messy aliases."
+      },
+      "criticality_score": {
+        "dtype": "float64",
+        "description": "0\u20131 criticality score (fictional)."
+      }
+    }
+  },
+  "sensor_registry.csv": {
+    "description": "Sensor/tag registry linked to assets with units, frequency, aliases, and descriptions.",
+    "columns": {
+      "tag_id": {
+        "dtype": "object",
+        "description": "Unique sensor/tag identifier."
+      },
+      "asset_id": {
+        "dtype": "object",
+        "description": "Unique canonical asset identifier."
+      },
+      "tag_name": {
+        "dtype": "object",
+        "description": "Canonical tag name."
+      },
+      "units": {
+        "dtype": "object",
+        "description": "Engineering units."
+      },
+      "sampling_frequency": {
+        "dtype": "object",
+        "description": "Sampling rate (e.g., 5min)."
+      },
+      "aliases_json": {
+        "dtype": "object",
+        "description": "JSON array of messy aliases."
+      },
+      "description": {
+        "dtype": "object",
+        "description": "Short tag description."
+      }
+    }
+  },
+  "events_outages_derates.csv": {
+    "description": "Event ledger of forced/planned/partial derates with MW unavailable and root cause.",
+    "columns": {
+      "event_id": {
+        "dtype": "object",
+        "description": "Unique event identifier."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "start_time": {
+        "dtype": "object",
+        "description": "Event start time (UTC)."
+      },
+      "end_time": {
+        "dtype": "object",
+        "description": "Event end time (UTC)."
+      },
+      "type": {
+        "dtype": "object",
+        "description": "Forced / Planned / Partial Derate."
+      },
+      "mw_unavailable": {
+        "dtype": "float64",
+        "description": "MW unavailable during event window."
+      },
+      "root_cause_category": {
+        "dtype": "object",
+        "description": "Root cause category for analytics."
+      },
+      "root_cause_detail": {
+        "dtype": "object",
+        "description": "Narrative detail."
+      },
+      "linked_asset_id": {
+        "dtype": "object",
+        "description": "Linked asset id."
+      }
+    }
+  },
+  "work_orders.csv": {
+    "description": "Messy CMMS work orders with ground-truth standard_asset_id_truth for fuzzy mapping evaluation.",
+    "columns": {
+      "wo_id": {
+        "dtype": "object",
+        "description": "Work order id."
+      },
+      "asset_description_raw": {
+        "dtype": "object",
+        "description": "Messy asset description (for fuzzy mapping)."
+      },
+      "long_text": {
+        "dtype": "object",
+        "description": "Free-text work order details."
+      },
+      "maintenance_type": {
+        "dtype": "object",
+        "description": "Corrective/Preventive."
+      },
+      "cost_usd": {
+        "dtype": "float64",
+        "description": "Work order cost (USD)."
+      },
+      "labor_hours": {
+        "dtype": "float64",
+        "description": "Work order labor hours."
+      },
+      "linked_event_id": {
+        "dtype": "object",
+        "description": "Linked event id (if any)."
+      },
+      "standard_asset_id_truth": {
+        "dtype": "object",
+        "description": "Ground-truth asset mapping."
+      }
+    }
+  },
+  "shift_logs.csv": {
+    "description": "Free-text operator shift logs with linked events and ground-truth asset mapping.",
+    "columns": {
+      "log_id": {
+        "dtype": "object",
+        "description": "Shift log id."
+      },
+      "shift_start": {
+        "dtype": "object",
+        "description": "Shift start timestamp (UTC)."
+      },
+      "shift_end": {
+        "dtype": "object",
+        "description": "Shift end timestamp (UTC)."
+      },
+      "operator_role": {
+        "dtype": "object",
+        "description": "Operator role."
+      },
+      "free_text": {
+        "dtype": "object",
+        "description": "Free-text operator log."
+      },
+      "linked_event_id": {
+        "dtype": "object",
+        "description": "Linked event id (if any)."
+      },
+      "standard_asset_id_truth": {
+        "dtype": "object",
+        "description": "Ground-truth asset mapping."
+      }
+    }
+  },
+  "emails.csv": {
+    "description": "Fictional emails with linked events and ground-truth event mapping.",
+    "columns": {
+      "email_id": {
+        "dtype": "object",
+        "description": "Email id."
+      },
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "from_role": {
+        "dtype": "object",
+        "description": "Sender role."
+      },
+      "to_role": {
+        "dtype": "object",
+        "description": "Receiver role."
+      },
+      "subject": {
+        "dtype": "object",
+        "description": "Email subject."
+      },
+      "body": {
+        "dtype": "object",
+        "description": "Email body."
+      },
+      "linked_event_id": {
+        "dtype": "object",
+        "description": "Linked event id (if any)."
+      },
+      "standard_event_id_truth": {
+        "dtype": "object",
+        "description": "Ground-truth event mapping."
+      }
+    }
+  },
+  "media_metadata.csv": {
+    "description": "Placeholder photo/video metadata linked to events and assets (no real media included).",
+    "columns": {
+      "media_id": {
+        "dtype": "object",
+        "description": "Media id."
+      },
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "media_type": {
+        "dtype": "object",
+        "description": "photo/video."
+      },
+      "caption": {
+        "dtype": "object",
+        "description": "Caption."
+      },
+      "linked_event_id": {
+        "dtype": "object",
+        "description": "Linked event id (if any)."
+      },
+      "linked_asset_id": {
+        "dtype": "object",
+        "description": "Linked asset id."
+      },
+      "file_path_placeholder": {
+        "dtype": "object",
+        "description": "Placeholder path."
+      }
+    }
+  },
+  "alarms.csv": {
+    "description": "Alarm messages linked to tags with ground-truth tag mapping.",
+    "columns": {
+      "alarm_id": {
+        "dtype": "object",
+        "description": "Alarm id."
+      },
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "tag_id": {
+        "dtype": "object",
+        "description": "Unique sensor/tag identifier."
+      },
+      "severity": {
+        "dtype": "object",
+        "description": "Alarm severity."
+      },
+      "message": {
+        "dtype": "object",
+        "description": "Alarm message."
+      },
+      "linked_event_id": {
+        "dtype": "object",
+        "description": "Linked event id (if any)."
+      },
+      "standard_tag_id_truth": {
+        "dtype": "object",
+        "description": "Ground-truth tag mapping."
+      }
+    }
+  },
+  "ontology_nodes.csv": {
+    "description": "Graph nodes (assets, sensors, events, and text artifacts).",
+    "columns": {
+      "node_id": {
+        "dtype": "object",
+        "description": "Graph node id."
+      },
+      "node_type": {
+        "dtype": "object",
+        "description": "Node type."
+      },
+      "canonical_name": {
+        "dtype": "object",
+        "description": "Canonical asset name."
+      },
+      "description": {
+        "dtype": "object",
+        "description": "Short tag description."
+      }
+    }
+  },
+  "ontology_edges.csv": {
+    "description": "Graph edges connecting nodes with evidence references.",
+    "columns": {
+      "src_node_id": {
+        "dtype": "object",
+        "description": "Edge source id."
+      },
+      "edge_type": {
+        "dtype": "object",
+        "description": "Relationship type."
+      },
+      "dst_node_id": {
+        "dtype": "object",
+        "description": "Edge target id."
+      },
+      "evidence_ref": {
+        "dtype": "object",
+        "description": "File that provides evidence for edge."
+      }
+    }
+  },
+  "dispatch_timeseries_5min.csv.gz": {
+    "description": "5-minute dispatch vs actual: available MW, target MW, net MW, deltas, deviation type, and root cause.",
+    "columns": {
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "available_mw": {
+        "dtype": "float64",
+        "description": "Available capacity (MW)."
+      },
+      "dispatch_target_mw": {
+        "dtype": "float64",
+        "description": "Dispatch target (MW)."
+      },
+      "net_generation_mw": {
+        "dtype": "float64",
+        "description": "Net generation (MW)."
+      },
+      "delta_mw": {
+        "dtype": "float64",
+        "description": "Target \u2212 Net (MW)."
+      },
+      "delta_mwh": {
+        "dtype": "float64",
+        "description": "delta_mw converted to MWh for 5-min interval."
+      },
+      "deviation_type": {
+        "dtype": "object",
+        "description": "Technical Derate or 5-min Miss (else blank)."
+      },
+      "root_cause_category": {
+        "dtype": "object",
+        "description": "Root cause category for analytics."
+      },
+      "active_event_id": {
+        "dtype": "float64",
+        "description": "Event id active at timestamp (if any)."
+      }
+    }
+  },
+  "scada_unit1_5min.csv.gz": {
+    "description": "5-minute evidence tags to support narratives (draft, fans, dampers, O2, mills, vibration, condenser, aux, net MW).",
+    "columns": {
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "FurnaceDraftPressure_Pa": {
+        "dtype": "float64",
+        "description": "Furnace draft pressure (Pa)."
+      },
+      "IDFanSpeed_pct": {
+        "dtype": "float64",
+        "description": "ID fan speed (%)."
+      },
+      "DamperPosition_pct": {
+        "dtype": "float64",
+        "description": "Damper position (%)."
+      },
+      "O2_pct": {
+        "dtype": "float64",
+        "description": "Flue gas O2 (%)."
+      },
+      "MillCurrent_A": {
+        "dtype": "float64",
+        "description": "Mill motor current (A)."
+      },
+      "TurbineVibration_mm_s": {
+        "dtype": "float64",
+        "description": "Turbine vibration (mm/s)."
+      },
+      "CondenserTemp_C": {
+        "dtype": "float64",
+        "description": "Condenser temperature (C)."
+      },
+      "CondenserVacuum_kPa": {
+        "dtype": "float64",
+        "description": "Condenser vacuum proxy (kPa abs)."
+      },
+      "AuxLoad_MW": {
+        "dtype": "float64",
+        "description": "Auxiliary load (MW)."
+      },
+      "NetGeneration_MW": {
+        "dtype": "float64",
+        "description": "Net generation (MW)."
+      },
+      "draft_intensity_proxy": {
+        "dtype": "float64",
+        "description": "Internal proxy for draft instability intensity (0\u20131)."
+      }
+    }
+  },
+  "heat_rate_hourly.csv": {
+    "description": "Hourly NSHR vs reference + aux load, fuel heat input, ramp rate, restart flags, and fuel cost impact.",
+    "columns": {
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "net_station_heat_rate": {
+        "dtype": "float64",
+        "description": "Net station heat rate (Btu/kWh)."
+      },
+      "ppa_reference_heat_rate": {
+        "dtype": "float64",
+        "description": "Reference heat rate curve (Btu/kWh)."
+      },
+      "aux_load_mw": {
+        "dtype": "float64",
+        "description": "Hourly average aux load (MW)."
+      },
+      "fuel_heat_input_mmbtu": {
+        "dtype": "float64",
+        "description": "Fuel heat input (MMBtu) proxy."
+      },
+      "ramp_rate_mw_per_min": {
+        "dtype": "float64",
+        "description": "Hourly ramp rate (MW/min)."
+      },
+      "restart_flag": {
+        "dtype": "int64",
+        "description": "1 if within 48h after forced outage end."
+      },
+      "heat_rate_deviation_percent": {
+        "dtype": "float64",
+        "description": "(NSHR\u2212Ref)/Ref (%)"
+      },
+      "fuel_cost_impact_usd": {
+        "dtype": "float64",
+        "description": "Incremental fuel cost impact (USD) vs reference."
+      }
+    }
+  },
+  "energy_settlement_5min.csv.gz": {
+    "description": "5-minute price and energy revenue actual/potential/loss.",
+    "columns": {
+      "timestamp": {
+        "dtype": "object",
+        "description": "Timestamp (UTC)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "price_usd_mwh": {
+        "dtype": "float64",
+        "description": "Price (USD/MWh)."
+      },
+      "energy_revenue_actual": {
+        "dtype": "float64",
+        "description": "Actual energy revenue (USD) for interval."
+      },
+      "energy_revenue_potential": {
+        "dtype": "float64",
+        "description": "Potential energy revenue (USD) for interval."
+      },
+      "energy_revenue_loss": {
+        "dtype": "float64",
+        "description": "Potential \u2212 Actual (USD)."
+      }
+    }
+  },
+  "capacity_revenue_daily.csv": {
+    "description": "Daily availability factor and capacity payments actual/potential with availability penalty.",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "description": "Calendar date (YYYY-MM-DD)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "availability_factor": {
+        "dtype": "float64",
+        "description": "Avg available MW / rated."
+      },
+      "capacity_payment_actual": {
+        "dtype": "float64",
+        "description": "Actual capacity payment (USD)."
+      },
+      "capacity_payment_potential": {
+        "dtype": "float64",
+        "description": "Daily capacity payment potential (USD)."
+      },
+      "availability_penalty": {
+        "dtype": "float64",
+        "description": "Availability penalty (USD)."
+      }
+    }
+  },
+  "penalties_daily.csv": {
+    "description": "Daily DSM-like penalties from controllable 5-minute misses.",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "description": "Calendar date (YYYY-MM-DD)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "miss_mwh": {
+        "dtype": "float64",
+        "description": "Total missed MWh attributable to 5-min misses."
+      },
+      "dsm_penalties_usd": {
+        "dtype": "float64",
+        "description": "DSM-like penalties (USD)."
+      }
+    }
+  },
+  "fuel_cost_daily.csv": {
+    "description": "Daily coal cost actual vs reference and non-recovered overburn cost (partial pass-through).",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "description": "Calendar date (YYYY-MM-DD)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "coal_cost_actual": {
+        "dtype": "float64",
+        "description": "Actual coal cost (USD)."
+      },
+      "coal_cost_reference": {
+        "dtype": "float64",
+        "description": "Reference coal cost (USD)."
+      },
+      "fuel_overburn_cost": {
+        "dtype": "float64",
+        "description": "Non-recovered overburn cost (USD)."
+      }
+    }
+  },
+  "daily_revenue_reconciliation.csv": {
+    "description": "Daily reconciliation: Actual/Max/Loss/RCR and component breakdown.",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "description": "Calendar date (YYYY-MM-DD)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "actual_revenue_usd": {
+        "dtype": "float64",
+        "description": "Actual revenue = EnergyActual + CapacityActual \u2212 Penalties \u2212 Overburn."
+      },
+      "max_potential_revenue_usd": {
+        "dtype": "float64",
+        "description": "Max potential revenue = EnergyPotential + CapacityPotential."
+      },
+      "revenue_loss_usd": {
+        "dtype": "float64",
+        "description": "Max potential \u2212 Actual."
+      },
+      "revenue_capture_ratio": {
+        "dtype": "float64",
+        "description": "Actual / Max potential (\u22641)."
+      },
+      "energy_rev_actual": {
+        "dtype": "float64",
+        "description": "Daily energy revenue actual (USD)."
+      },
+      "energy_rev_potential": {
+        "dtype": "float64",
+        "description": "Daily energy revenue potential (USD)."
+      },
+      "capacity_payment_actual": {
+        "dtype": "float64",
+        "description": "Actual capacity payment (USD)."
+      },
+      "capacity_payment_potential": {
+        "dtype": "float64",
+        "description": "Daily capacity payment potential (USD)."
+      },
+      "penalties_total_usd": {
+        "dtype": "float64",
+        "description": "Daily total penalties (USD)."
+      },
+      "fuel_overburn_cost": {
+        "dtype": "float64",
+        "description": "Non-recovered overburn cost (USD)."
+      }
+    }
+  },
+  "revenue_summary_monthly.csv": {
+    "description": "Monthly rollup of Actual/Max revenue, RCR, and total loss.",
+    "columns": {
+      "month": {
+        "dtype": "object",
+        "description": "YYYY-MM"
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "actual_total_revenue": {
+        "dtype": "float64",
+        "description": "Monthly actual revenue (USD)."
+      },
+      "max_potential_revenue": {
+        "dtype": "float64",
+        "description": "Monthly max potential revenue (USD)."
+      },
+      "revenue_capture_ratio": {
+        "dtype": "float64",
+        "description": "Actual / Max potential (\u22641)."
+      },
+      "total_revenue_loss": {
+        "dtype": "float64",
+        "description": "Monthly total loss (USD)."
+      }
+    }
+  },
+  "lost_revenue_attribution_daily.csv": {
+    "description": "Daily loss attribution by loss category and equipment; sums exactly to daily total loss.",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "description": "Calendar date (YYYY-MM-DD)."
+      },
+      "unit_id": {
+        "dtype": "object",
+        "description": "Unit identifier (STS-U1)."
+      },
+      "loss_category": {
+        "dtype": "object",
+        "description": "Energy / Capacity / Efficiency / Penalty."
+      },
+      "system": {
+        "dtype": "object",
+        "description": "Top-level system label (Boiler/Turbine/etc)."
+      },
+      "subsystem": {
+        "dtype": "object",
+        "description": "Subsystem attribution label."
+      },
+      "component": {
+        "dtype": "object",
+        "description": "Component attribution label."
+      },
+      "loss_usd": {
+        "dtype": "float64",
+        "description": "Attributed loss (USD)."
+      },
+      "linked_event_id": {
+        "dtype": "object",
+        "description": "Linked event id (if any)."
+      }
+    }
+  }
+}

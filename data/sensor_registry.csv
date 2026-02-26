@@ -1,0 +1,11 @@
+tag_id,asset_id,tag_name,units,sampling_frequency,aliases_json,description
+TAG-U1-FurnaceDraftPressure_Pa,STS-U1-BOI-FURNACE,FurnaceDraftPressure_Pa,Pa,5min,"[""Furnace Draft"",""FDraft_Pa"",""Furn Draft Press""]",Furnace draft pressure (negative pull).
+TAG-U1-IDFanSpeed_pct,STS-U1-IDF-A,IDFanSpeed_pct,%,5min,"[""ID Fan A Speed"",""Induced Draft Fan"",""IDF-A""]",ID fan A speed (%).
+TAG-U1-DamperPosition_pct,STS-U1-DAMPER-FG,DamperPosition_pct,%,5min,"[""FG Damper Position"",""Damper Pos"",""Damper%""]",Flue gas damper position.
+TAG-U1-O2_pct,STS-U1-BOI-FURNACE,O2_pct,%,5min,"[""O2"",""Stack O2"",""Excess O2""]",Flue gas O₂ for combustion trim.
+TAG-U1-MillCurrent_A,STS-U1-MILL-1,MillCurrent_A,A,5min,"[""Mill amps"",""Mill 1 amps"",""Pulverizer current""]",Representative mill motor current.
+TAG-U1-TurbineVibration_mm_s,STS-U1-TB-BRG2,TurbineVibration_mm_s,mm/s,5min,"[""TB Vib"",""BRG2 VIB"",""Turb vib hi""]",Turbine bearing #2 vibration.
+TAG-U1-CondenserTemp_C,STS-U1-CND,CondenserTemp_C,C,5min,"[""Condenser Temp"",""Hotwell Temp""]",Condenser temperature proxy.
+TAG-U1-AuxLoad_MW,STS-U1,AuxLoad_MW,MW,5min,"[""Aux MW"",""Station Service MW"",""House Load""]",Auxiliary load estimate.
+TAG-U1-NetGeneration_MW,STS-U1,NetGeneration_MW,MW,5min,"[""Net MW"",""Net export"",""Unit Load""]",Net generation (export).
+TAG-U1-CondenserVacuum_kPa,STS-U1-CND,CondenserVacuum_kPa,kPa(abs),5min,"[""Condenser Vacuum"",""CondVac""]",Condenser pressure proxy.

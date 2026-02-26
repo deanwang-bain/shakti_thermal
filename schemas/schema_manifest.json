@@ -1,0 +1,190 @@
+{
+  "asset_hierarchy.csv": [
+    "asset_id",
+    "parent_asset_id",
+    "level",
+    "system",
+    "canonical_name",
+    "aliases_json",
+    "criticality_score"
+  ],
+  "sensor_registry.csv": [
+    "tag_id",
+    "asset_id",
+    "tag_name",
+    "units",
+    "sampling_frequency",
+    "aliases_json",
+    "description"
+  ],
+  "events_outages_derates.csv": [
+    "event_id",
+    "unit_id",
+    "start_time",
+    "end_time",
+    "type",
+    "mw_unavailable",
+    "root_cause_category",
+    "root_cause_detail",
+    "linked_asset_id"
+  ],
+  "work_orders.csv": [
+    "wo_id",
+    "asset_description_raw",
+    "long_text",
+    "maintenance_type",
+    "cost_usd",
+    "labor_hours",
+    "linked_event_id",
+    "standard_asset_id_truth"
+  ],
+  "shift_logs.csv": [
+    "log_id",
+    "shift_start",
+    "shift_end",
+    "operator_role",
+    "free_text",
+    "linked_event_id",
+    "standard_asset_id_truth"
+  ],
+  "emails.csv": [
+    "email_id",
+    "timestamp",
+    "from_role",
+    "to_role",
+    "subject",
+    "body",
+    "linked_event_id",
+    "standard_event_id_truth"
+  ],
+  "media_metadata.csv": [
+    "media_id",
+    "timestamp",
+    "media_type",
+    "caption",
+    "linked_event_id",
+    "linked_asset_id",
+    "file_path_placeholder"
+  ],
+  "alarms.csv": [
+    "alarm_id",
+    "timestamp",
+    "tag_id",
+    "severity",
+    "message",
+    "linked_event_id",
+    "standard_tag_id_truth"
+  ],
+  "ontology_nodes.csv": [
+    "node_id",
+    "node_type",
+    "canonical_name",
+    "description"
+  ],
+  "ontology_edges.csv": [
+    "src_node_id",
+    "edge_type",
+    "dst_node_id",
+    "evidence_ref"
+  ],
+  "dispatch_timeseries_5min.csv.gz": [
+    "timestamp",
+    "unit_id",
+    "available_mw",
+    "dispatch_target_mw",
+    "net_generation_mw",
+    "delta_mw",
+    "delta_mwh",
+    "deviation_type",
+    "root_cause_category",
+    "active_event_id"
+  ],
+  "scada_unit1_5min.csv.gz": [
+    "timestamp",
+    "unit_id",
+    "FurnaceDraftPressure_Pa",
+    "IDFanSpeed_pct",
+    "DamperPosition_pct",
+    "O2_pct",
+    "MillCurrent_A",
+    "TurbineVibration_mm_s",
+    "CondenserTemp_C",
+    "CondenserVacuum_kPa",
+    "AuxLoad_MW",
+    "NetGeneration_MW",
+    "draft_intensity_proxy"
+  ],
+  "heat_rate_hourly.csv": [
+    "timestamp",
+    "unit_id",
+    "net_station_heat_rate",
+    "ppa_reference_heat_rate",
+    "aux_load_mw",
+    "fuel_heat_input_mmbtu",
+    "ramp_rate_mw_per_min",
+    "restart_flag",
+    "heat_rate_deviation_percent",
+    "fuel_cost_impact_usd"
+  ],
+  "energy_settlement_5min.csv.gz": [
+    "timestamp",
+    "unit_id",
+    "price_usd_mwh",
+    "energy_revenue_actual",
+    "energy_revenue_potential",
+    "energy_revenue_loss"
+  ],
+  "capacity_revenue_daily.csv": [
+    "date",
+    "unit_id",
+    "availability_factor",
+    "capacity_payment_actual",
+    "capacity_payment_potential",
+    "availability_penalty"
+  ],
+  "penalties_daily.csv": [
+    "date",
+    "unit_id",
+    "miss_mwh",
+    "dsm_penalties_usd"
+  ],
+  "fuel_cost_daily.csv": [
+    "date",
+    "unit_id",
+    "coal_cost_actual",
+    "coal_cost_reference",
+    "fuel_overburn_cost"
+  ],
+  "daily_revenue_reconciliation.csv": [
+    "date",
+    "unit_id",
+    "actual_revenue_usd",
+    "max_potential_revenue_usd",
+    "revenue_loss_usd",
+    "revenue_capture_ratio",
+    "energy_rev_actual",
+    "energy_rev_potential",
+    "capacity_payment_actual",
+    "capacity_payment_potential",
+    "penalties_total_usd",
+    "fuel_overburn_cost"
+  ],
+  "revenue_summary_monthly.csv": [
+    "month",
+    "unit_id",
+    "actual_total_revenue",
+    "max_potential_revenue",
+    "revenue_capture_ratio",
+    "total_revenue_loss"
+  ],
+  "lost_revenue_attribution_daily.csv": [
+    "date",
+    "unit_id",
+    "loss_category",
+    "system",
+    "subsystem",
+    "component",
+    "loss_usd",
+    "linked_event_id"
+  ]
+}

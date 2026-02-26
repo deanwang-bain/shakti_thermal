@@ -1,0 +1,16 @@
+event_id,unit_id,start_time,end_time,type,mw_unavailable,root_cause_category,root_cause_detail,linked_asset_id
+EVT-2023-02-TB-VIB,STS-U1,2023-02-14T02:00:00Z,2023-02-14T08:30:00Z,Forced,660.0,Turbine-side,Turbine vibration alarm; BRG2 high overall.,STS-U1-TB-BRG2
+EVT-DRAFT-20230303-01,STS-U1,2023-03-03T06:47:00Z,2023-03-03T08:52:00Z,Partial Derate,97.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-DRAFT-20230305-02,STS-U1,2023-03-05T11:08:00Z,2023-03-05T12:15:00Z,Partial Derate,103.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-DRAFT-20230309-03,STS-U1,2023-03-09T06:12:00Z,2023-03-09T09:25:00Z,Partial Derate,114.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-2023-03-MILLTRIP,STS-U1,2023-03-09T18:20:00Z,2023-03-09T22:15:00Z,Forced,660.0,Boiler-side,Mill trip (Mill 3); flame instability.,STS-U1-MILL-3
+EVT-DRAFT-20230403-04,STS-U1,2023-04-03T17:13:00Z,2023-04-03T20:27:00Z,Partial Derate,89.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-2023-05-TUBELEAK,STS-U1,2023-05-12T03:15:00Z,2023-05-12T19:00:00Z,Forced,660.0,Boiler-side,Boiler tube leak; draft swing; protective trip.,STS-U1-SH-OUT
+EVT-DRAFT-20230513-05,STS-U1,2023-05-13T17:52:00Z,2023-05-13T20:05:00Z,Partial Derate,86.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-DRAFT-20230524-06,STS-U1,2023-05-24T16:58:00Z,2023-05-24T19:04:00Z,Partial Derate,66.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-2023-07-WETCOAL,STS-U1,2023-07-15T00:00:00Z,2023-09-15T00:00:00Z,Partial Derate,45.0,Fuel quality,Monsoon wet-coal reduced stable firing margin; sustained cap.,STS-U1-MILL-3
+EVT-2023-09-PM1,STS-U1,2023-09-05T00:00:00Z,2023-09-12T00:00:00Z,Planned,660.0,Planned Maintenance,"Annual shutdown: SH inspection, APH wash, ID fan alignment.",STS-U1-SH-OUT
+EVT-DRAFT-20230927-07,STS-U1,2023-09-27T10:43:00Z,2023-09-27T14:06:00Z,Partial Derate,75.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-DRAFT-20231104-08,STS-U1,2023-11-04T10:38:00Z,2023-11-04T12:01:00Z,Partial Derate,114.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-DRAFT-20231108-09,STS-U1,2023-11-08T10:49:00Z,2023-11-08T12:48:00Z,Partial Derate,78.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A
+EVT-DRAFT-20231123-10,STS-U1,2023-11-23T12:05:00Z,2023-11-23T15:05:00Z,Partial Derate,135.0,Boiler-side,Unstable furnace draft; ID fan hunting; damper saturation; temporary cap.,STS-U1-IDF-A

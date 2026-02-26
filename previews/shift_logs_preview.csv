@@ -1,0 +1,16 @@
+log_id,shift_start,shift_end,operator_role,free_text,linked_event_id,standard_asset_id_truth
+LOG-00001,2023-10-26T12:00:00Z,2023-10-27T00:00:00Z,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.,EVT-DRAFT-20240112-13,STS-U1-IDF-A
+LOG-00002,2023-01-29T12:00:00Z,2023-01-30T00:00:00Z,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.,EVT-DRAFT-20241219-26,STS-U1-IDF-A
+LOG-00003,2023-12-21T12:00:00Z,2023-12-22T00:00:00Z,Shift Supervisor,BRG2 vibration trending high; kept ramp conservative; requested spectrum.,,STS-U1-TB-BRG2
+LOG-00004,2024-05-05T00:00:00Z,2024-05-05T12:00:00Z,Control Room Operator,Draft loop sluggish; applied manual bias; staged ramps.,EVT-DRAFT-20240612-18,STS-U1-IDF-A
+LOG-00005,2023-05-19T00:00:00Z,2023-05-19T12:00:00Z,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.,EVT-DRAFT-20230403-04,STS-U1-IDF-A
+LOG-00006,2023-07-02T00:00:00Z,2023-07-02T12:00:00Z,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.,,STS-U1-BOI-FURNACE
+LOG-00007,2023-08-08T12:00:00Z,2023-08-09T00:00:00Z,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.,EVT-DRAFT-20230403-04,STS-U1-IDF-A
+LOG-00008,2023-06-21T12:00:00Z,2023-06-22T00:00:00Z,Shift Supervisor,Cooling constraint suspected; CW pump noise noted; held load.,,STS-U1-CND
+LOG-00009,2023-12-03T00:00:00Z,2023-12-03T12:00:00Z,Control Room Operator,BRG2 crossed alert briefly; checked lube oil; stabilized.,,STS-U1-TB-BRG2
+LOG-00010,2023-12-28T12:00:00Z,2023-12-29T00:00:00Z,Shift Supervisor,Draft loop sluggish; applied manual bias; staged ramps.,EVT-DRAFT-20230524-06,STS-U1-IDF-A
+LOG-00011,2023-01-10T12:00:00Z,2023-01-11T00:00:00Z,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.,EVT-DRAFT-20240720-20,STS-U1-IDF-A
+LOG-00012,2024-01-21T12:00:00Z,2024-01-22T00:00:00Z,Control Room Operator,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.,,STS-U1-IDF-A
+LOG-00013,2023-08-17T12:00:00Z,2023-08-18T00:00:00Z,Control Room Operator,Draft variance increased; O2 trim unstable; watched ID fan response.,EVT-DRAFT-20240415-15,STS-U1-IDF-A
+LOG-00014,2024-01-31T00:00:00Z,2024-01-31T12:00:00Z,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.,,STS-U1-MILL-3
+LOG-00015,2024-08-05T00:00:00Z,2024-08-05T12:00:00Z,Shift Supervisor,Mill trip reset; restarted after checks; ramped cautiously.,EVT-2023-09-PM1,STS-U1-SH-OUT

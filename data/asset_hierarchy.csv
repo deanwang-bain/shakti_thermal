@@ -1,0 +1,54 @@
+asset_id,parent_asset_id,level,system,canonical_name,aliases_json,criticality_score
+STS-PLANT,,Plant,Plant,Shakti Thermal Station,"[""STS"",""Shakti Station"",""Shakti Thermal""]",0.95
+STS-U1,STS-PLANT,Unit,Unit,Unit 1 (660 MW),"[""U1"",""Unit-1"",""STS Unit One"",""Block-1""]",0.92
+STS-U2,STS-PLANT,Unit,Unit,Unit 2 (660 MW),"[""U2"",""Unit-2"",""STS Unit Two"",""Block-2""]",0.74
+STS-U1-BOILER,STS-U1,System,Boiler,Boiler System,"[""Boiler"",""Steam Generator""]",0.93
+STS-U1-TURBINE,STS-U1,System,Turbine,Turbine System,"[""ST"",""Steam Turbine"",""Turbine Train""]",0.91
+STS-U1-GENERATOR,STS-U1,System,Generator,Generator System,"[""GEN"",""Main Generator""]",0.89
+STS-U1-COOLING,STS-U1,System,Cooling,Cooling System,"[""Condenser/Cooling"",""C&W""]",0.88
+STS-U1-ELECTRICAL,STS-U1,System,Electrical,Electrical System,"[""Switchyard"",""GSU"",""Electrical Systems""]",0.8
+STS-U1-CONTROLS,STS-U1,System,Controls,Controls System,"[""DCS"",""Controls & I&C"",""Instrumentation""]",0.78
+STS-U1-BOI-FURNACE,STS-U1-BOILER,Subsystem,Boiler,Furnace,"[""Furnace"",""Combustion Chamber""]",0.91
+STS-U1-BOI-IDFANS,STS-U1-BOILER,Subsystem,Boiler,ID Fans,"[""ID Fans"",""Induced Draft Fan"",""IDF""]",0.9
+STS-U1-BOI-FDPAFANS,STS-U1-BOILER,Subsystem,Boiler,FD/PA Fans,"[""FD Fan"",""PA Fan"",""Forced Draft"",""Primary Air""]",0.86
+STS-U1-BOI-DAMPERS,STS-U1-BOILER,Subsystem,Boiler,Dampers,"[""Dampers"",""Gas Damper"",""Air Damper""]",0.88
+STS-U1-BOI-MILLS,STS-U1-BOILER,Subsystem,Boiler,Mills,"[""Coal Mills"",""Pulverizers"",""PF Mills""]",0.92
+STS-U1-BOI-APH,STS-U1-BOILER,Subsystem,Boiler,Air Preheater,"[""APH"",""Air Preheater"",""AirPreheater""]",0.84
+STS-U1-BOI-SH,STS-U1-BOILER,Subsystem,Boiler,Superheater,"[""SH"",""Super Heater""]",0.89
+STS-U1-BOI-ECO,STS-U1-BOILER,Subsystem,Boiler,Economizer,"[""ECO"",""Economiser"",""Econ""]",0.85
+STS-U1-TUR-HP,STS-U1-TURBINE,Subsystem,Turbine,HP Section,"[""HP Turbine"",""High Pressure""]",0.88
+STS-U1-TUR-IP,STS-U1-TURBINE,Subsystem,Turbine,IP Section,"[""IP Turbine"",""Intermediate Pressure""]",0.84
+STS-U1-TUR-LP,STS-U1-TURBINE,Subsystem,Turbine,LP Section,"[""LP Turbine"",""Low Pressure""]",0.82
+STS-U1-TUR-BRG,STS-U1-TURBINE,Subsystem,Turbine,Bearings,"[""Bearings"",""Journal Bearings""]",0.9
+STS-U1-TUR-CV,STS-U1-TURBINE,Subsystem,Turbine,Control Valves,"[""Control Valves"",""Steam Valves"",""CV""]",0.87
+STS-U1-GEN-ROTOR,STS-U1-GENERATOR,Subsystem,Generator,Rotor,"[""Rotor"",""Field""]",0.85
+STS-U1-GEN-STATOR,STS-U1-GENERATOR,Subsystem,Generator,Stator,"[""Stator"",""Armature""]",0.83
+STS-U1-GEN-H2,STS-U1-GENERATOR,Subsystem,Generator,Hydrogen System,"[""H2 System"",""Hydrogen Cooling""]",0.8
+STS-U1-COL-CT,STS-U1-COOLING,Subsystem,Cooling,Cooling Tower,"[""Cooling Tower"",""CT""]",0.86
+STS-U1-COL-CND,STS-U1-COOLING,Subsystem,Cooling,Condenser,"[""Condenser"",""Vacuum System""]",0.9
+STS-U1-COL-CWP,STS-U1-COOLING,Subsystem,Cooling,CW Pumps,"[""CW Pumps"",""Circulating Water Pumps"",""Condenser pump""]",0.88
+STS-U1-ELC-XFMR,STS-U1-ELECTRICAL,Subsystem,Electrical,Transformer,"[""Transformer"",""GSU"",""Main XFMR""]",0.84
+STS-U1-ELC-SWYD,STS-U1-ELECTRICAL,Subsystem,Electrical,Switchyard,"[""Switchyard"",""Switch Yard"",""Yard""]",0.78
+STS-U1-CTL-DCS,STS-U1-CONTROLS,Subsystem,Controls,Unit DCS,"[""DCS"",""Unit Controls""]",0.8
+STS-U1-CTL-INST,STS-U1-CONTROLS,Subsystem,Controls,Instrumentation,"[""Instrumentation"",""I&C"",""Sensors""]",0.78
+STS-U1-IDF-A,STS-U1-BOI-IDFANS,Component,Boiler,ID Fan A,"[""ID Fan A"",""Induced Draft Fan"",""IDF-A"",""Draft fan #1"",""ID fan (A)""]",0.9
+STS-U1-IDF-B,STS-U1-BOI-IDFANS,Component,Boiler,ID Fan B,"[""ID Fan B"",""IDF-B"",""Draft fan #2""]",0.86
+STS-U1-DAMPER-FG,STS-U1-BOI-DAMPERS,Component,Boiler,Flue Gas Damper,"[""FG Damper"",""Flue gas damper"",""Gas damper""]",0.87
+STS-U1-APH-1,STS-U1-BOI-APH,Component,Boiler,Air Preheater Rotor,"[""APH"",""Air Preheater"",""AIR preheater""]",0.8
+STS-U1-SH-OUT,STS-U1-BOI-SH,Component,Boiler,Superheater Outlet,"[""SH Outlet"",""Superheater outlet""]",0.82
+STS-U1-ECO-IN,STS-U1-BOI-ECO,Component,Boiler,Economizer Inlet,"[""ECO inlet"",""Economizer inlet""]",0.76
+STS-U1-MILL-1,STS-U1-BOI-MILLS,Component,Boiler,Coal Mill 1,"[""Mill 1"",""Pulverizer 1"",""M1"",""PF mill 1""]",0.82
+STS-U1-MILL-2,STS-U1-BOI-MILLS,Component,Boiler,Coal Mill 2,"[""Mill 2"",""Pulverizer 2"",""M2"",""PF mill 2""]",0.82
+STS-U1-MILL-3,STS-U1-BOI-MILLS,Component,Boiler,Coal Mill 3,"[""Mill 3"",""Pulverizer 3"",""M3"",""PF mill 3""]",0.9
+STS-U1-MILL-4,STS-U1-BOI-MILLS,Component,Boiler,Coal Mill 4,"[""Mill 4"",""Pulverizer 4"",""M4"",""PF mill 4""]",0.9
+STS-U1-MILL-5,STS-U1-BOI-MILLS,Component,Boiler,Coal Mill 5,"[""Mill 5"",""Pulverizer 5"",""M5"",""PF mill 5""]",0.82
+STS-U1-MILL-6,STS-U1-BOI-MILLS,Component,Boiler,Coal Mill 6,"[""Mill 6"",""Pulverizer 6"",""M6"",""PF mill 6""]",0.82
+STS-U1-TB-BRG2,STS-U1-TUR-BRG,Component,Turbine,Turbine Bearing #2,"[""TB brg2"",""Bearing 2"",""BRG2"",""Turb vib hi""]",0.9
+STS-U1-TB-CV-HP,STS-U1-TUR-CV,Component,Turbine,HP Control Valves,"[""HP CV"",""HP control valve"",""HPCV""]",0.88
+STS-U1-CND,STS-U1-COL-CND,Component,Cooling,Surface Condenser,"[""Condenser"",""CND"",""Condenser shell""]",0.9
+STS-U1-CTF-BANK1,STS-U1-COL-CT,Component,Cooling,Cooling Tower Fans Bank 1,"[""CT Fans"",""Cooling tower fans"",""CTF bank 1""]",0.86
+STS-U1-CWP-1,STS-U1-COL-CWP,Component,Cooling,CW Pump 1,"[""CW Pump"",""Condenser pump"",""CWP-1"",""CWpump A""]",0.86
+STS-U1-CWP-2,STS-U1-COL-CWP,Component,Cooling,CW Pump 2,"[""CW Pump"",""Condenser pump"",""CWP-2"",""CWpump B""]",0.84
+STS-U1-XFMR-GSU,STS-U1-ELC-XFMR,Component,Electrical,GSU Transformer,"[""GSU Transformer"",""Main transformer""]",0.82
+STS-U1-SWYD-1,STS-U1-ELC-SWYD,Component,Electrical,Switchyard Bay 1,"[""Switchyard bay 1"",""Bay-1""]",0.76
+STS-U1-DCS,STS-U1-CTL-DCS,Component,Controls,Unit DCS Controller,"[""DCS"",""Unit control"",""Controller""]",0.78

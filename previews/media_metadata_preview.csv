@@ -1,0 +1,16 @@
+media_id,timestamp,media_type,caption,linked_event_id,linked_asset_id,file_path_placeholder
+MED-0001,2024-03-17T12:52:00Z,video,Trend capture for incident review.,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2,/media/MED-0001.mp4
+MED-0002,2023-11-23T14:25:00Z,video,Trend capture for incident review.,EVT-DRAFT-20231123-10,STS-U1-IDF-A,/media/MED-0002.mp4
+MED-0003,2023-03-03T07:24:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20230303-01,STS-U1-IDF-A,/media/MED-0003.jpg
+MED-0004,2024-01-06T14:41:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240106-12,STS-U1-IDF-A,/media/MED-0004.jpg
+MED-0005,2024-01-06T13:55:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240106-12,STS-U1-IDF-A,/media/MED-0005.jpg
+MED-0006,2024-07-15T00:08:00Z,photo,Trend capture for incident review.,EVT-2024-07-WETCOAL,STS-U1-MILL-3,/media/MED-0006.jpg
+MED-0007,2023-04-03T19:31:00Z,photo,Field inspection captured.,EVT-DRAFT-20230403-04,STS-U1-IDF-A,/media/MED-0007.jpg
+MED-0008,2023-07-15T02:50:00Z,photo,Field inspection captured.,EVT-2023-07-WETCOAL,STS-U1-MILL-3,/media/MED-0008.jpg
+MED-0009,2023-07-15T01:03:00Z,photo,Maintenance finding documented.,EVT-2023-07-WETCOAL,STS-U1-MILL-3,/media/MED-0009.jpg
+MED-0010,2024-03-17T10:02:00Z,photo,Trend capture for incident review.,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2,/media/MED-0010.jpg
+MED-0011,2023-05-24T19:01:00Z,video,Trend capture for incident review.,EVT-DRAFT-20230524-06,STS-U1-IDF-A,/media/MED-0011.mp4
+MED-0012,2024-03-17T11:29:00Z,photo,Field inspection captured.,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2,/media/MED-0012.jpg
+MED-0013,2024-05-12T10:13:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240512-16,STS-U1-IDF-A,/media/MED-0013.jpg
+MED-0014,2023-12-30T12:14:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20231230-11,STS-U1-IDF-A,/media/MED-0014.jpg
+MED-0015,2023-12-30T10:29:00Z,photo,Field inspection captured.,EVT-DRAFT-20231230-11,STS-U1-IDF-A,/media/MED-0015.jpg

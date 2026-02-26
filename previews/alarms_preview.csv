@@ -1,0 +1,16 @@
+alarm_id,timestamp,tag_id,severity,message,linked_event_id,standard_tag_id_truth
+ALM-202304100540-00148,2023-04-10 05:40:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202305070955-00524,2023-05-07 09:55:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202305130615-00591,2023-05-13 06:15:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202306031135-00872,2023-06-03 11:35:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202306202210-01117,2023-06-20 22:10:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202306231525-01166,2023-06-23 15:25:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202404010255-01345,2024-04-01 02:55:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202404130620-01496,2024-04-13 06:20:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202404152200-01529,2024-04-15 22:00:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202405141110-01897,2024-05-14 11:10:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202405211010-01983,2024-05-21 10:10:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202405311915-02117,2024-05-31 19:15:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,,TAG-U1-CondenserTemp_C
+ALM-202406041320-02171,2024-06-04 13:20:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,EVT-2024-06-AUXDRIFT,TAG-U1-CondenserTemp_C
+ALM-202406122115-02294,2024-06-12 21:15:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,EVT-2024-06-AUXDRIFT,TAG-U1-CondenserTemp_C
+ALM-202406221040-02420,2024-06-22 10:40:00+00:00,TAG-U1-CondenserTemp_C,MED,Condenser temp elevated; vacuum risk. Review CW pumps/CT fans.,EVT-2024-06-AUXDRIFT,TAG-U1-CondenserTemp_C

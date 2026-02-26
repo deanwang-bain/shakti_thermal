@@ -1,0 +1,16 @@
+asset_id,parent_asset_id,level,system,canonical_name,aliases_json,criticality_score
+STS-PLANT,,Plant,Plant,Shakti Thermal Station,"[""STS"",""Shakti Station"",""Shakti Thermal""]",0.95
+STS-U1,STS-PLANT,Unit,Unit,Unit 1 (660 MW),"[""U1"",""Unit-1"",""STS Unit One"",""Block-1""]",0.92
+STS-U2,STS-PLANT,Unit,Unit,Unit 2 (660 MW),"[""U2"",""Unit-2"",""STS Unit Two"",""Block-2""]",0.74
+STS-U1-BOILER,STS-U1,System,Boiler,Boiler System,"[""Boiler"",""Steam Generator""]",0.93
+STS-U1-TURBINE,STS-U1,System,Turbine,Turbine System,"[""ST"",""Steam Turbine"",""Turbine Train""]",0.91
+STS-U1-GENERATOR,STS-U1,System,Generator,Generator System,"[""GEN"",""Main Generator""]",0.89
+STS-U1-COOLING,STS-U1,System,Cooling,Cooling System,"[""Condenser/Cooling"",""C&W""]",0.88
+STS-U1-ELECTRICAL,STS-U1,System,Electrical,Electrical System,"[""Switchyard"",""GSU"",""Electrical Systems""]",0.8
+STS-U1-CONTROLS,STS-U1,System,Controls,Controls System,"[""DCS"",""Controls & I&C"",""Instrumentation""]",0.78
+STS-U1-BOI-FURNACE,STS-U1-BOILER,Subsystem,Boiler,Furnace,"[""Furnace"",""Combustion Chamber""]",0.91
+STS-U1-BOI-IDFANS,STS-U1-BOILER,Subsystem,Boiler,ID Fans,"[""ID Fans"",""Induced Draft Fan"",""IDF""]",0.9
+STS-U1-BOI-FDPAFANS,STS-U1-BOILER,Subsystem,Boiler,FD/PA Fans,"[""FD Fan"",""PA Fan"",""Forced Draft"",""Primary Air""]",0.86
+STS-U1-BOI-DAMPERS,STS-U1-BOILER,Subsystem,Boiler,Dampers,"[""Dampers"",""Gas Damper"",""Air Damper""]",0.88
+STS-U1-BOI-MILLS,STS-U1-BOILER,Subsystem,Boiler,Mills,"[""Coal Mills"",""Pulverizers"",""PF Mills""]",0.92
+STS-U1-BOI-APH,STS-U1-BOILER,Subsystem,Boiler,Air Preheater,"[""APH"",""Air Preheater"",""AirPreheater""]",0.84
