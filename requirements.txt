@@ -6,6 +6,3 @@ rapidfuzz==3.9.6
 pyvis==0.3.2
 scikit-learn==1.5.1
 openai==1.40.6
-sentence-transformers==2.7.0
-faiss-cpu==1.8.0.post1
-streamlit-plotly-events==0.0.6
