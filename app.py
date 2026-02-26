@@ -369,12 +369,27 @@ def render_tab_generation(
             tolerance=pd.Timedelta("10min"),
         )
 
-    signals = [
-        c
-        for c in ["IDFanSpeed_pct", "draft_fan_speed", "DamperPosition_pct", "FurnaceDraftPressure_kPa", "FurnaceDraftPressure_Pa"]
-        if c in merged.columns
+    # Get available numeric signals (exclude timestamp, unit_id, net_generation_mw)
+    available_signals = [
+        c for c in merged.columns 
+        if c not in ["timestamp", "unit_id", "net_generation_mw"] 
+        and pd.api.types.is_numeric_dtype(merged[c])
     ]
-    st.plotly_chart(historian_overlay_chart(merged, signals), use_container_width=True)
+    
+    # Default signals for demo (ID Fan and Draft pressure for unstable draft story)
+    default_signals = [s for s in ["IDFanSpeed_pct", "DamperPosition_pct", "FurnaceDraftPressure_Pa"] if s in available_signals]
+    
+    selected_signals = st.multiselect(
+        "Select signals to overlay",
+        options=available_signals,
+        default=default_signals,
+        help="Choose SCADA tags to overlay on the generation chart. Common demo signals: IDFanSpeed_pct, DamperPosition_pct, FurnaceDraftPressure_Pa"
+    )
+    
+    if selected_signals:
+        st.plotly_chart(historian_overlay_chart(merged, selected_signals), use_container_width=True)
+    else:
+        st.info("Select one or more signals above to display the historian overlay chart.")
     if show_annotations:
         st.success(correlation_explanation(corr_df))
 
