@@ -209,7 +209,24 @@ def heat_rate_sync_chart(heat_df: pd.DataFrame) -> go.Figure:
     if heat_df.empty or "timestamp" not in heat_df.columns:
         return fig
 
-    df = heat_df.sort_values("timestamp")
+    df = heat_df.sort_values("timestamp").copy()
+    
+    # Clean PPA reference: set to NaN during offline hours for realistic visualization
+    # During outages/offline periods, heat rate reference is not applicable
+    if "ppa_reference_heat_rate" in df.columns:
+        # Identify offline hours: low fuel input or low generation
+        fuel_col = "fuel_heat_input_mmbtu" if "fuel_heat_input_mmbtu" in df.columns else None
+        gen_col = "net_mw_est" if "net_mw_est" in df.columns else None
+        
+        offline_mask = pd.Series(False, index=df.index)
+        if fuel_col and fuel_col in df.columns:
+            offline_mask |= (pd.to_numeric(df[fuel_col], errors="coerce") < 100)  # < 100 MMBtu/hr ~ offline
+        if gen_col and gen_col in df.columns:
+            offline_mask |= (pd.to_numeric(df[gen_col], errors="coerce") < 50)  # < 50 MW ~ offline
+        
+        # Set reference to NaN during offline hours
+        df.loc[offline_mask, "ppa_reference_heat_rate"] = float("nan")
+    
     fig.add_trace(
         go.Scatter(
             x=df["timestamp"],
@@ -228,6 +245,7 @@ def heat_rate_sync_chart(heat_df: pd.DataFrame) -> go.Figure:
                 mode="lines",
                 name="PPA Reference Heat Rate",
                 line=dict(color="#6B7280", width=2, dash="dash"),
+                connectgaps=False,  # Don't connect across NaN gaps
             ),
             secondary_y=False,
         )
