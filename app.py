@@ -345,14 +345,7 @@ def render_tab_generation(
         st.info("Dispatch time series unavailable.")
         return
 
-    # Use sidebar date range instead of separate slider
-    corr_df = cached_correlations(historian, dispatch, unit, start_dt, end_dt, resolution)
-    if corr_df.empty:
-        st.info("Insufficient aligned historian signals in selected window.")
-        return
-
-    st.dataframe(corr_df, use_container_width=True, hide_index=True)
-
+    # Prepare merged historian data
     merged = historian.copy()
     if "timestamp" in merged.columns:
         merged["timestamp"] = pd.to_datetime(merged["timestamp"], errors="coerce", utc=True)
@@ -376,20 +369,44 @@ def render_tab_generation(
         and pd.api.types.is_numeric_dtype(merged[c])
     ]
     
+    if not available_signals:
+        st.info("No historian signals available in selected window.")
+        return
+    
     # Default signals for demo (ID Fan and Draft pressure for unstable draft story)
     default_signals = [s for s in ["IDFanSpeed_pct", "DamperPosition_pct", "FurnaceDraftPressure_Pa"] if s in available_signals]
+    if not default_signals:
+        default_signals = available_signals[:3]  # Fallback to first 3 if defaults not found
     
     selected_signals = st.multiselect(
-        "Select signals to overlay",
+        "Select signals to analyze",
         options=available_signals,
         default=default_signals,
-        help="Choose SCADA tags to overlay on the generation chart. Common demo signals: IDFanSpeed_pct, DamperPosition_pct, FurnaceDraftPressure_Pa"
+        help="Choose SCADA tags to show in correlation table and overlay chart. Common demo signals: IDFanSpeed_pct, DamperPosition_pct, FurnaceDraftPressure_Pa"
     )
     
-    if selected_signals:
-        st.plotly_chart(historian_overlay_chart(merged, selected_signals), use_container_width=True)
-    else:
-        st.info("Select one or more signals above to display the historian overlay chart.")
+    if not selected_signals:
+        st.info("Select one or more signals above to display correlation analysis and overlay chart.")
+        return
+
+    # Compute correlations for selected signals
+    corr_rows = []
+    for col in selected_signals:
+        if col in merged.columns:
+            x = pd.to_numeric(merged[col], errors="coerce")
+            y = pd.to_numeric(merged["net_generation_mw"], errors="coerce")
+            corr = x.corr(y)
+            corr_rows.append({"signal": col, "correlation_to_net_generation": corr})
+    
+    corr_df = pd.DataFrame(corr_rows).sort_values("correlation_to_net_generation", key=lambda s: s.abs(), ascending=False)
+    
+    if corr_df.empty:
+        st.info("Unable to compute correlations for selected signals.")
+        return
+    
+    st.dataframe(corr_df, use_container_width=True, hide_index=True)
+    
+    st.plotly_chart(historian_overlay_chart(merged, selected_signals), use_container_width=True)
     if show_annotations:
         st.success(correlation_explanation(corr_df))
 
