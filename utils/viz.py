@@ -376,3 +376,232 @@ def loss_treemap(attribution_df: pd.DataFrame) -> go.Figure:
     )
     fig.update_layout(height=430, margin=dict(l=10, r=10, t=35, b=10))
     return fig
+
+
+def revenue_absolute_chart(
+    revenue_df: pd.DataFrame,
+    granularity: str = "monthly",
+    show_annotations: bool = True,
+) -> go.Figure:
+    """Absolute revenue chart: actual vs target with loss as shaded area."""
+    fig = go.Figure()
+    if revenue_df.empty:
+        return fig
+
+    df = revenue_df.copy()
+    time_col = "month" if granularity == "monthly" else "date"
+    
+    if time_col in df.columns:
+        df[time_col] = pd.to_datetime(df[time_col], errors="coerce", utc=True)
+        df = df.sort_values(time_col)
+    
+    # Determine target column name
+    target_col = "max_potential_revenue" if "max_potential_revenue" in df.columns else "revenue_target"
+    actual_col = "actual_total_revenue"
+    
+    if target_col not in df.columns or actual_col not in df.columns:
+        return fig
+    
+    # Add target revenue line
+    fig.add_trace(
+        go.Scatter(
+            x=df[time_col],
+            y=df[target_col],
+            mode="lines",
+            name="Target Revenue (Max Potential)",
+            line=dict(color="#6B7280", width=2, dash="dash"),
+        )
+    )
+    
+    # Add actual revenue line
+    fig.add_trace(
+        go.Scatter(
+            x=df[time_col],
+            y=df[actual_col],
+            mode="lines+markers",
+            name="Actual Revenue",
+            line=dict(color="#2563EB", width=2),
+        )
+    )
+    
+    # Add shaded area for revenue loss
+    fig.add_trace(
+        go.Scatter(
+            x=df[time_col],
+            y=df[target_col],
+            mode="lines",
+            line=dict(width=0),
+            showlegend=False,
+            hoverinfo="skip",
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=df[time_col],
+            y=df[actual_col],
+            mode="lines",
+            line=dict(width=0),
+            fill="tonexty",
+            fillcolor="rgba(203, 32, 38, 0.18)",
+            name="Revenue Loss",
+            hovertemplate="Revenue Loss<extra></extra>",
+        )
+    )
+    
+    if show_annotations:
+        interventions = [
+            {"date": "2024-06-15", "label": "Draft Control Tuning"},
+            {"date": "2024-10-01", "label": "Condenser Cleaning"},
+        ]
+        for item in interventions:
+            x_dt = pd.Timestamp(item["date"]).to_pydatetime()
+            fig.add_shape(
+                type="line",
+                x0=x_dt,
+                x1=x_dt,
+                y0=0,
+                y1=1,
+                xref="x",
+                yref="paper",
+                line=dict(color="#2563EB", dash="dot", width=1.5),
+            )
+            fig.add_annotation(
+                x=x_dt,
+                y=1.02,
+                xref="x",
+                yref="paper",
+                text=item["label"],
+                showarrow=False,
+                font=dict(color="#2563EB", size=11),
+            )
+    
+    fig.update_layout(
+        height=320,
+        yaxis_title="Revenue (USD)",
+        xaxis_title="Month" if granularity == "monthly" else "Date",
+        margin=dict(l=20, r=20, t=35, b=20),
+    )
+    return fig
+
+
+def heat_rate_trend_chart(
+    heat_rate_df: pd.DataFrame,
+    granularity: str = "daily",
+    highlight_anomalies: bool = True,
+) -> go.Figure:
+    """Heat rate trend chart with anomaly highlighting."""
+    fig = go.Figure()
+    if heat_rate_df.empty:
+        return fig
+    
+    df = heat_rate_df.copy()
+    time_col = "month" if granularity == "monthly" else "date"
+    
+    if time_col in df.columns:
+        df[time_col] = pd.to_datetime(df[time_col], errors="coerce", utc=True)
+        df = df.sort_values(time_col)
+    
+    # Add actual heat rate
+    fig.add_trace(
+        go.Scatter(
+            x=df[time_col],
+            y=df.get("net_station_heat_rate"),
+            mode="lines+markers",
+            name="Net Station Heat Rate",
+            line=dict(color="#CB2026", width=2),
+            marker=dict(size=4),
+        )
+    )
+    
+    # Add PPA reference
+    if "ppa_reference_heat_rate" in df.columns:
+        fig.add_trace(
+            go.Scatter(
+                x=df[time_col],
+                y=df.get("ppa_reference_heat_rate"),
+                mode="lines",
+                name="PPA Reference",
+                line=dict(color="#6B7280", width=2, dash="dash"),
+            )
+        )
+    
+    # Highlight anomalies
+    if highlight_anomalies and granularity == "daily":
+        if "anomaly_flag" in df.columns:
+            anomalies = df[df["anomaly_flag"] == True]
+            if not anomalies.empty:
+                fig.add_trace(
+                    go.Scatter(
+                        x=anomalies[time_col],
+                        y=anomalies["net_station_heat_rate"],
+                        mode="markers",
+                        name="Anomaly (Z-score)",
+                        marker=dict(color="#F59E0B", size=10, symbol="diamond"),
+                    )
+                )
+        
+        if "sudden_change_flag" in df.columns:
+            sudden = df[df["sudden_change_flag"] == True]
+            if not sudden.empty:
+                fig.add_trace(
+                    go.Scatter(
+                        x=sudden[time_col],
+                        y=sudden["net_station_heat_rate"],
+                        mode="markers",
+                        name="Sudden Change",
+                        marker=dict(color="#DC2626", size=10, symbol="x"),
+                    )
+                )
+    
+    fig.update_layout(
+        height=360,
+        yaxis_title="Heat Rate (Btu/kWh)",
+        xaxis_title="Month" if granularity == "monthly" else "Date",
+        margin=dict(l=20, r=20, t=25, b=20),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+    )
+    return fig
+
+
+def heat_rate_anomaly_table(heat_rate_daily_df: pd.DataFrame, top_n: int = 10) -> pd.DataFrame:
+    """Return top N heat rate anomalies sorted by deviation."""
+    if heat_rate_daily_df.empty:
+        return pd.DataFrame()
+    
+    df = heat_rate_daily_df.copy()
+    
+    # Filter to only anomalies or sudden changes
+    anomaly_mask = pd.Series(False, index=df.index)
+    if "anomaly_flag" in df.columns:
+        anomaly_mask |= (df["anomaly_flag"] == True)
+    if "sudden_change_flag" in df.columns:
+        anomaly_mask |= (df["sudden_change_flag"] == True)
+    
+    anomalies = df[anomaly_mask].copy()
+    
+    if anomalies.empty:
+        return pd.DataFrame()
+    
+    # Sort by absolute deviation
+    if "heat_rate_deviation_percent" in anomalies.columns:
+        anomalies["abs_deviation"] = pd.to_numeric(
+            anomalies["heat_rate_deviation_percent"], errors="coerce"
+        ).abs()
+        anomalies = anomalies.sort_values("abs_deviation", ascending=False)
+    
+    # Select relevant columns
+    cols = ["date", "net_station_heat_rate", "ppa_reference_heat_rate", 
+            "heat_rate_deviation_percent", "fuel_cost_impact_usd", "restart_count"]
+    cols = [c for c in cols if c in anomalies.columns]
+    
+    result = anomalies[cols].head(top_n)
+    
+    # Format for display
+    if "date" in result.columns:
+        result["date"] = pd.to_datetime(result["date"], errors="coerce").dt.date
+    if "heat_rate_deviation_percent" in result.columns:
+        result["heat_rate_deviation_percent"] = result["heat_rate_deviation_percent"].round(2)
+    if "fuel_cost_impact_usd" in result.columns:
+        result["fuel_cost_impact_usd"] = result["fuel_cost_impact_usd"].round(0)
+    
+    return result.reset_index(drop=True)

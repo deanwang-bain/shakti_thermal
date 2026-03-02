@@ -52,3 +52,55 @@ STS-U1-CWP-2,STS-U1-COL-CWP,Component,Cooling,CW Pump 2,"[""CW Pump"",""Condense
 STS-U1-XFMR-GSU,STS-U1-ELC-XFMR,Component,Electrical,GSU Transformer,"[""GSU Transformer"",""Main transformer""]",0.82
 STS-U1-SWYD-1,STS-U1-ELC-SWYD,Component,Electrical,Switchyard Bay 1,"[""Switchyard bay 1"",""Bay-1""]",0.76
 STS-U1-DCS,STS-U1-CTL-DCS,Component,Controls,Unit DCS Controller,"[""DCS"",""Unit control"",""Controller""]",0.78
+STS-U1-FUELASH,STS-U1,System,Fuel & Ash,Fuel & Ash Handling System,"[""Fuel handling"", ""Coal handling"", ""Ash handling"", ""CHP/AHP""]",0.75
+STS-U1-FEEDWATER,STS-U1,System,Feedwater,Condensate & Feedwater System,"[""Feedwater system"", ""Condensate system"", ""BFP/CEP""]",0.82
+STS-U1-EMISSIONS,STS-U1,System,Emissions,Emissions Control System,"[""FGD"", ""SCR"", ""ESP"", ""Baghouse""]",0.7
+STS-U1-STEAMCYCLE,STS-U1,System,Steam Cycle,Steam Piping & Cycle System,"[""Main steam"", ""Reheat"", ""Extraction steam""]",0.78
+STS-U1-WATERTREAT,STS-U1,System,Water Treatment,Water & Chemistry Treatment System,"[""DM plant"", ""Water treatment"", ""Chemistry""]",0.68
+STS-U1-AUX,STS-U1,System,Auxiliaries,Auxiliary Systems,"[""Aux systems"", ""BOP"", ""Balance of plant""]",0.65
+STS-U1-FUEL-UNLOAD,STS-U1-FUELASH,Subsystem,Fuel & Ash,Coal Receiving & Unloading,"[""Coal yard"", ""Unloading"", ""Rail/Truck""]",0.55
+STS-U1-FUEL-CRUSH,STS-U1-FUELASH,Subsystem,Fuel & Ash,Coal Crushers,"[""Crusher house"", ""Crushers""]",0.6
+STS-U1-FUEL-CONV,STS-U1-FUELASH,Subsystem,Fuel & Ash,Conveyor System,"[""Conveyors"", ""Belt conveyor""]",0.58
+STS-U1-FUEL-BUNKER,STS-U1-FUELASH,Subsystem,Fuel & Ash,Coal Bunkers & Feeders,"[""Coal bunker"", ""Feeder""]",0.62
+STS-U1-ASH-FLY,STS-U1-FUELASH,Subsystem,Fuel & Ash,Fly Ash Handling,"[""ESP hoppers"", ""Fly ash""]",0.57
+STS-U1-ASH-BOT,STS-U1-FUELASH,Subsystem,Fuel & Ash,Bottom Ash Handling,"[""Bottom ash"", ""BAH""]",0.55
+STS-U1-CRUSH-1,STS-U1-FUEL-CRUSH,Component,Fuel & Ash,Crusher 1,"[""Crusher-1"", ""CR-1""]",0.4
+STS-U1-CONV-A,STS-U1-FUEL-CONV,Component,Fuel & Ash,Conveyor A,"[""Conveyor A"", ""Belt A""]",0.38
+STS-U1-FEEDER-3,STS-U1-FUEL-BUNKER,Component,Fuel & Ash,Coal Feeder 3,"[""Feeder 3"", ""Coal feeder #3""]",0.45
+STS-U1-ASH-PUMP-1,STS-U1-ASH-FLY,Component,Fuel & Ash,Fly Ash Pump 1,"[""Fly ash pump 1""]",0.35
+STS-U1-CONDENSATE,STS-U1-FEEDWATER,Subsystem,Feedwater,Condensate System,"[""Condensate"", ""Hotwell"", ""Condensate pumps""]",0.78
+STS-U1-CEP,STS-U1-CONDENSATE,Subsystem,Feedwater,Condensate Extraction Pumps,"[""CEP"", ""Condensate pump""]",0.8
+STS-U1-LP-FWH,STS-U1-FEEDWATER,Subsystem,Feedwater,Low-Pressure Feedwater Heaters,"[""LP heaters"", ""LP FWH""]",0.72
+STS-U1-DEA,STS-U1-FEEDWATER,Subsystem,Feedwater,Deaerator,"[""DA"", ""Deaerator""]",0.75
+STS-U1-BFP,STS-U1-FEEDWATER,Subsystem,Feedwater,Boiler Feed Pumps,"[""BFP"", ""Feed pumps""]",0.85
+STS-U1-HP-FWH,STS-U1-FEEDWATER,Subsystem,Feedwater,High-Pressure Feedwater Heaters,"[""HP heaters"", ""HP FWH""]",0.74
+STS-U1-FWV,STS-U1-FEEDWATER,Subsystem,Feedwater,Feedwater Control Valves,"[""FWCV"", ""Feed regulating valves""]",0.7
+STS-U1-CEP-1,STS-U1-CEP,Component,Feedwater,Condensate Pump 1,"[""CEP-1"", ""Condensate pump A""]",0.65
+STS-U1-BFP-1,STS-U1-BFP,Component,Feedwater,Boiler Feed Pump 1,"[""BFP-1"", ""Feed pump A""]",0.72
+STS-U1-DEA-LVL,STS-U1-DEA,Component,Feedwater,Deaerator Level Control,"[""DA level"", ""Deaerator control""]",0.55
+STS-U1-FWV-1,STS-U1-FWV,Component,Feedwater,Feedwater Regulating Valve 1,"[""FW valve 1"", ""Feedwater valve""]",0.6
+STS-U1-SCR,STS-U1-EMISSIONS,Subsystem,Emissions,Selective Catalytic Reduction (SCR),"[""SCR"", ""NOx control""]",0.68
+STS-U1-ESP,STS-U1-EMISSIONS,Subsystem,Emissions,Particulate Control (ESP/Baghouse),"[""ESP"", ""Baghouse"", ""Particulate""]",0.66
+STS-U1-FGD,STS-U1-EMISSIONS,Subsystem,Emissions,SO₂ Scrubber (FGD),"[""FGD"", ""Scrubber""]",0.64
+STS-U1-STACK,STS-U1-EMISSIONS,Subsystem,Emissions,Ductwork & Stack,"[""Stack"", ""Ductwork""]",0.58
+STS-U1-SCR-A,STS-U1-SCR,Component,Emissions,SCR Reactor A,"[""SCR A""]",0.45
+STS-U1-ESP-1,STS-U1-ESP,Component,Emissions,ESP Field 1,"[""ESP-1""]",0.44
+STS-U1-FGD-PUMP-1,STS-U1-FGD,Component,Emissions,FGD Slurry Pump 1,"[""FGD pump 1""]",0.42
+STS-U1-STACK-DP,STS-U1-STACK,Component,Emissions,Stack Differential Pressure,"[""Stack DP""]",0.35
+STS-U1-MSTEAM,STS-U1-STEAMCYCLE,Subsystem,Steam Cycle,Main Steam Piping,"[""Main steam"", ""MS line""]",0.74
+STS-U1-HRHT,STS-U1-STEAMCYCLE,Subsystem,Steam Cycle,Hot Reheat Piping,"[""Hot reheat"", ""HRH""]",0.7
+STS-U1-CRHT,STS-U1-STEAMCYCLE,Subsystem,Steam Cycle,Cold Reheat Piping,"[""Cold reheat"", ""CRH""]",0.68
+STS-U1-EXTR,STS-U1-STEAMCYCLE,Subsystem,Steam Cycle,Extraction Steam Lines,"[""Extraction steam"", ""Bleed steam""]",0.66
+STS-U1-MSTEAM-VALVE,STS-U1-MSTEAM,Component,Steam Cycle,Main Steam Stop Valve,"[""MSSV"", ""Main steam stop""]",0.62
+STS-U1-HRH-VALVE,STS-U1-HRHT,Component,Steam Cycle,Hot Reheat Isolation Valve,"[""HRH valve""]",0.55
+STS-U1-DMPLANT,STS-U1-WATERTREAT,Subsystem,Water Treatment,DM Water / Makeup System,"[""DM plant"", ""Makeup water""]",0.6
+STS-U1-COND-POL,STS-U1-WATERTREAT,Subsystem,Water Treatment,Condensate Polisher,"[""Polisher"", ""Demineralizer""]",0.58
+STS-U1-CHEM,STS-U1-WATERTREAT,Subsystem,Water Treatment,Chemistry Dosing,"[""Phosphate"", ""Ammonia dosing""]",0.55
+STS-U1-WWTP,STS-U1-WATERTREAT,Subsystem,Water Treatment,Wastewater Treatment,"[""WWTP"", ""Effluent""]",0.5
+STS-U1-DM-PUMP-1,STS-U1-DMPLANT,Component,Water Treatment,Makeup Water Pump 1,"[""Makeup pump 1""]",0.4
+STS-U1-POL-1,STS-U1-COND-POL,Component,Water Treatment,Condensate Polisher Train 1,"[""Polisher 1""]",0.42
+STS-U1-INSTAIR,STS-U1-AUX,Subsystem,Auxiliaries,Instrument Air System,"[""Instrument air"", ""IA""]",0.52
+STS-U1-FIRE,STS-U1-AUX,Subsystem,Auxiliaries,Fire Protection System,"[""Fire system"", ""Firewater""]",0.55
+STS-U1-HVAC,STS-U1-AUX,Subsystem,Auxiliaries,HVAC & Ventilation,"[""HVAC"", ""Ventilation""]",0.45
+STS-U1-IA-COMP-1,STS-U1-INSTAIR,Component,Auxiliaries,Instrument Air Compressor 1,"[""IA comp 1""]",0.38
+STS-U1-FIRE-PUMP-1,STS-U1-FIRE,Component,Auxiliaries,Firewater Pump 1,"[""Fire pump 1""]",0.4

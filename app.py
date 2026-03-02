@@ -16,6 +16,8 @@ from utils.chat import (
     build_mock_response,
     build_retrieval_index,
     call_openai_rag,
+    generate_evidence_summary,
+    generate_llm_insight,
 )
 from utils.data import (
     DataCatalog,
@@ -40,11 +42,14 @@ from utils.style import apply_bain_style, render_header, render_kpi_strip
 from utils.viz import (
     dispatch_gap_attribution_chart,
     generation_main_chart,
+    heat_rate_anomaly_table,
     heat_rate_sync_chart,
+    heat_rate_trend_chart,
     historian_overlay_chart,
     loss_treemap,
     lost_revenue_driver_chart,
     rcr_over_time_chart,
+    revenue_absolute_chart,
 )
 
 
@@ -314,9 +319,9 @@ def render_tab_generation(
 
     ctrl = st.columns([1, 1])
     with ctrl[0]:
-        show_outages = st.toggle("Show outages", value=True)
+        show_outages = st.toggle("Show outages", value=True, key="gen_outages")
     with ctrl[1]:
-        show_annotations = st.toggle("Show annotations", value=True)
+        show_annotations = st.toggle("Show annotations", value=True, key="gen_annotations")
 
     dispatch_plot = downsample_for_plotting(dispatch, resolution=resolution)
     
@@ -327,6 +332,39 @@ def render_tab_generation(
         generation_main_chart(dispatch_plot, events, show_outages=show_outages, show_misses=show_misses),
         use_container_width=True,
     )
+
+    # LLM Insight Callout
+    st.markdown("#### 💡 AI-Generated Insight")
+    with st.expander("View Generation Performance Analysis", expanded=False):
+        # Compute KPIs for LLM
+        dispatch_miss_mwh = float(pd.to_numeric(dispatch.get("delta_mwh", 0), errors="coerce").clip(lower=0).sum()) if not dispatch.empty else 0.0
+        
+        attr = filtered.get("attribution", pd.DataFrame())
+        top_driver = "Unknown"
+        if not attr.empty and "loss_category" in attr.columns:
+            cat_loss = attr.groupby("loss_category")["loss_usd"].sum().sort_values(ascending=False)
+            if not cat_loss.empty:
+                top_driver = str(cat_loss.index[0])
+        
+        kpis = {
+            "dispatch_miss_mwh": dispatch_miss_mwh,
+            "rcr": 0.0,  # Not primary focus for generation insight
+            "top_loss_driver": top_driver,
+            "heat_rate_dev_pct": 0.0,
+            "event_count": len(events) if not events.empty else 0,
+        }
+        
+        # Get mode from session state if exists
+        mode = "mock"
+        if "chat_mode" in st.session_state:
+            mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+        
+        insight = generate_llm_insight(
+            data_context=f"Dispatch performance and generation gaps over selected period at {resolution} resolution",
+            kpis=kpis,
+            mode=mode,
+        )
+        st.markdown(insight)
 
     st.markdown("#### Dispatch Gap Attribution by Root Cause")
     st.plotly_chart(
@@ -382,7 +420,8 @@ def render_tab_generation(
         "Select signals to analyze",
         options=available_signals,
         default=default_signals,
-        help="Choose SCADA tags to show in correlation table and overlay chart. Common demo signals: IDFanSpeed_pct, DamperPosition_pct, FurnaceDraftPressure_Pa"
+        help="Choose SCADA tags to show in correlation table and overlay chart. Common demo signals: IDFanSpeed_pct, DamperPosition_pct, FurnaceDraftPressure_Pa",
+        key="gen_signals"
     )
     
     if not selected_signals:
@@ -417,6 +456,7 @@ def render_tab_revenue(
     glossary: dict[str, str],
 ) -> None:
     monthly = filtered.get("monthly_summary", pd.DataFrame())
+    daily = filtered.get("daily_summary", pd.DataFrame())
     energy = filtered.get("energy_settlement", pd.DataFrame())
     capacity = filtered.get("capacity", pd.DataFrame())
     attr = filtered.get("attribution", pd.DataFrame())
@@ -424,17 +464,40 @@ def render_tab_revenue(
     fuel = filtered.get("fuel_cost", pd.DataFrame())
     events = filtered.get("events", pd.DataFrame())
     work_orders = filtered.get("work_orders", pd.DataFrame())
+    media = filtered.get("media", pd.DataFrame())
 
+    # Normalize time columns
     if "month" in monthly.columns:
         monthly["month"] = pd.to_datetime(monthly["month"], errors="coerce", utc=True)
+    if "date" in daily.columns:
+        daily["date"] = pd.to_datetime(daily["date"], errors="coerce", utc=True)
 
-    if not monthly.empty and "month" in monthly.columns:
-        current_month = monthly.sort_values("month").tail(1)
+    # Granularity toggle
+    st.markdown("#### Revenue Performance Controls")
+    ctrl_cols = st.columns([1, 1, 2])
+    with ctrl_cols[0]:
+        granularity = st.radio("Granularity", ["Monthly", "Daily"], horizontal=True, key="rev_granularity")
+    with ctrl_cols[1]:
+        view_mode = st.radio("View Mode", ["% (RCR)", "Absolute ($)"], horizontal=True, key="rev_view_mode")
+    with ctrl_cols[2]:
+        show_ann = st.toggle("Show intervention annotations", value=True, key="rev_annotations")
+    
+    # Select appropriate dataset based on granularity
+    revenue_df = monthly if granularity == "Monthly" else daily
+    gran_str = "monthly" if granularity == "Monthly" else "daily"
+    
+    # Compute KPIs
+    if not revenue_df.empty:
+        time_col = "month" if granularity == "Monthly" else "date"
+        if time_col in revenue_df.columns:
+            current_period = revenue_df.sort_values(time_col).tail(1)
+        else:
+            current_period = revenue_df
     else:
-        current_month = monthly
+        current_period = revenue_df
 
-    kpi_current = compute_revenue_kpis(current_month, energy, capacity, penalties, fuel)
-    kpi_window = compute_revenue_kpis(monthly, energy, capacity, penalties, fuel)
+    kpi_current = compute_revenue_kpis(current_period, energy, capacity, penalties, fuel)
+    kpi_window = compute_revenue_kpis(revenue_df, energy, capacity, penalties, fuel)
     render_kpi_strip(
         [
             ("Revenue Capture Ratio", f"{kpi_current.revenue_capture_ratio:.2%}"),
@@ -446,56 +509,211 @@ def render_tab_revenue(
 
     left, right = st.columns([1.1, 1.0])
     with left:
-        show_ann = st.toggle("Show intervention annotations", value=True)
-        st.plotly_chart(rcr_over_time_chart(monthly, show_annotations=show_ann), use_container_width=True)
+        if view_mode == "% (RCR)":
+            st.plotly_chart(rcr_over_time_chart(revenue_df, show_annotations=show_ann), use_container_width=True)
+        else:
+            st.plotly_chart(revenue_absolute_chart(revenue_df, granularity=gran_str, show_annotations=show_ann), use_container_width=True)
 
     with right:
-        st.plotly_chart(lost_revenue_driver_chart(attr), use_container_width=True)
+        # Only show Capacity, Energy, Penalty (no Efficiency)
+        attr_filtered = attr.copy()
+        if not attr_filtered.empty and "loss_category" in attr_filtered.columns:
+            # Filter to only these categories
+            valid_categories = ["Capacity", "Energy", "Penalty"]
+            attr_filtered = attr_filtered[attr_filtered["loss_category"].isin(valid_categories)]
+        st.plotly_chart(lost_revenue_driver_chart(attr_filtered), use_container_width=True)
+
+    # LLM Insight Callout
+    st.markdown("#### 💡 AI-Generated Insight")
+    with st.expander("View Revenue Optimization Recommendations", expanded=False):
+        # Compute KPIs for LLM
+        dispatch = filtered.get("dispatch", pd.DataFrame())
+        dispatch = standardize_dispatch_columns(dispatch)
+        
+        dispatch_miss_mwh = float(pd.to_numeric(dispatch.get("delta_mwh", 0), errors="coerce").clip(lower=0).sum()) if not dispatch.empty else 0.0
+        rcr = float(pd.to_numeric(revenue_df.get("revenue_capture_ratio", 0), errors="coerce").mean()) if not revenue_df.empty else float("nan")
+        
+        top_driver = "Unknown"
+        if not attr_filtered.empty and "loss_category" in attr_filtered.columns:
+            cat_loss = attr_filtered.groupby("loss_category")["loss_usd"].sum().sort_values(ascending=False)
+            if not cat_loss.empty:
+                top_driver = str(cat_loss.index[0])
+        
+        kpis = {
+            "dispatch_miss_mwh": dispatch_miss_mwh,
+            "rcr": rcr,
+            "top_loss_driver": top_driver,
+            "heat_rate_dev_pct": 0.0,  # Not relevant for revenue insight
+            "event_count": len(events) if not events.empty else 0,
+        }
+        
+        # Get mode from session state if exists (for consistency with chatbot)
+        mode = "mock"
+        if "chat_mode" in st.session_state:
+            mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+        
+        insight = generate_llm_insight(
+            data_context=f"Revenue trends over selected {granularity.lower()} period",
+            kpis=kpis,
+            mode=mode,
+        )
+        st.markdown(insight)
 
     st.markdown("#### Lost Revenue Drilldown")
-    cat_col, sys_col, sub_col = st.columns(3)
-    category = cat_col.selectbox("Category", ["All"] + sorted(attr.get("loss_category", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr.empty else ["All"])
+    
+    # REMOVE Category filter, keep only System/Subsystem/Component
+    sys_col, sub_col, comp_col = st.columns(3)
 
-    attr_filtered = attr.copy()
-    if category != "All" and "loss_category" in attr_filtered.columns:
-        attr_filtered = attr_filtered[attr_filtered["loss_category"].astype(str) == category]
+    attr_drilldown = attr_filtered.copy()
+    
+    systems = ["All"] + sorted(attr_drilldown.get("system", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr_drilldown.empty else ["All"]
+    system = sys_col.selectbox("System", systems, key="rev_system")
+    if system != "All" and "system" in attr_drilldown.columns:
+        attr_drilldown = attr_drilldown[attr_drilldown["system"].astype(str) == system]
 
-    systems = ["All"] + sorted(attr_filtered.get("system", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr_filtered.empty else ["All"]
-    system = sys_col.selectbox("System", systems)
-    if system != "All" and "system" in attr_filtered.columns:
-        attr_filtered = attr_filtered[attr_filtered["system"].astype(str) == system]
+    subsystems = ["All"] + sorted(attr_drilldown.get("subsystem", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr_drilldown.empty else ["All"]
+    subsystem = sub_col.selectbox("Subsystem", subsystems, key="rev_subsystem")
+    if subsystem != "All" and "subsystem" in attr_drilldown.columns:
+        attr_drilldown = attr_drilldown[attr_drilldown["subsystem"].astype(str) == subsystem]
+    
+    components = ["All"] + sorted(attr_drilldown.get("component", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr_drilldown.empty else ["All"]
+    component = comp_col.selectbox("Component", components, key="rev_component")
+    if component != "All" and "component" in attr_drilldown.columns:
+        attr_drilldown = attr_drilldown[attr_drilldown["component"].astype(str) == component]
 
-    subsystems = ["All"] + sorted(attr_filtered.get("subsystem", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr_filtered.empty else ["All"]
-    subsystem = sub_col.selectbox("Subsystem", subsystems)
-    if subsystem != "All" and "subsystem" in attr_filtered.columns:
-        attr_filtered = attr_filtered[attr_filtered["subsystem"].astype(str) == subsystem]
+    st.plotly_chart(loss_treemap(attr_drilldown), use_container_width=True)
 
-    st.plotly_chart(loss_treemap(attr_filtered), use_container_width=True)
-
-    components = sorted(attr_filtered.get("component", pd.Series(dtype=str)).dropna().unique().tolist()) if not attr_filtered.empty else []
-    selected_component = st.selectbox("Selected component (mirrors click fallback)", [""] + components)
-
-    top_n = st.slider("Top N components", min_value=5, max_value=30, value=10)
-    top_components_df = top_loss_components(attr_filtered, top_n=top_n)
+    # Top N components table
+    top_n = st.slider("Top N components", min_value=5, max_value=30, value=10, key="rev_top_n")
+    top_components_df = top_loss_components(attr_drilldown, top_n=top_n)
     st.dataframe(top_components_df, use_container_width=True)
     _download_csv(top_components_df, "Export attribution table CSV", "attribution_top_components.csv")
-    _download_csv(monthly, "Export monthly summary CSV", "monthly_summary_filtered.csv")
+
+    # Evidence Panel - Enhanced with Voice, Images, Events
+    selected_component = st.selectbox(
+        "Selected component for evidence drilldown", 
+        [""] + [c for c in components if c != "All"],
+        key="rev_selected_component"
+    )
 
     if selected_component:
-        st.markdown("#### Component Detail")
-        detail = attr_filtered[attr_filtered.get("component", "").astype(str) == selected_component]
+        st.markdown("---")
+        st.markdown("#### 🔍 Evidence Panel: Detailed Analysis")
+        
+        detail = attr_drilldown[attr_drilldown.get("component", "").astype(str) == selected_component]
         linked_event_ids = detail.get("linked_event_id", pd.Series(dtype=str)).dropna().astype(str).unique().tolist()
-
+        
+        # Get linked asset ID for component
+        linked_asset_ids = []
+        if not detail.empty and "component" in detail.columns:
+            # Try to find asset_id from asset hierarchy
+            asset_df = catalog.tables.get("asset_hierarchy", pd.DataFrame())
+            if not asset_df.empty and "canonical_name" in asset_df.columns:
+                matches = asset_df[asset_df["canonical_name"].astype(str).str.contains(selected_component, case=False, na=False)]
+                if not matches.empty:
+                    linked_asset_ids = matches["asset_id"].dropna().astype(str).unique().tolist()
+        
+        # Related Events
         related_events = events[events.get("event_id", "").astype(str).isin(linked_event_ids)] if not events.empty and "event_id" in events.columns else pd.DataFrame()
+        
+        # Also include events linked by asset_id (broader match)
+        if linked_asset_ids and not events.empty and "linked_asset_id" in events.columns:
+            asset_events = events[events.get("linked_asset_id", "").astype(str).isin(linked_asset_ids)]
+            related_events = pd.concat([related_events, asset_events]).drop_duplicates()
+        
+        # Related Work Orders
         related_wos = work_orders[work_orders.get("linked_event_id", "").astype(str).isin(linked_event_ids)] if not work_orders.empty and "linked_event_id" in work_orders.columns else pd.DataFrame()
-
-        st.write("Related events")
-        st.dataframe(related_events.head(20), use_container_width=True)
-        st.write("Linked work orders")
-        st.dataframe(related_wos.head(20), use_container_width=True)
+        
+        # Also match work orders by asset_id
+        if linked_asset_ids and not work_orders.empty and "standard_asset_id_truth" in work_orders.columns:
+            asset_wos = work_orders[work_orders.get("standard_asset_id_truth", "").astype(str).isin(linked_asset_ids)]
+            related_wos = pd.concat([related_wos, asset_wos]).drop_duplicates()
+        
+        # Related Media - Images and Voice
+        related_media = pd.DataFrame()
+        if not media.empty:
+            # Match by linked_event_id
+            if "linked_event_id" in media.columns:
+                media_by_event = media[media.get("linked_event_id", "").astype(str).isin(linked_event_ids)]
+                related_media = pd.concat([related_media, media_by_event])
+            
+            # Match by linked_asset_id
+            if linked_asset_ids and "linked_asset_id" in media.columns:
+                media_by_asset = media[media.get("linked_asset_id", "").astype(str).isin(linked_asset_ids)]
+                related_media = pd.concat([related_media, media_by_asset])
+            
+            related_media = related_media.drop_duplicates()
+        
+        # Split media by type
+        images = related_media[related_media.get("media_type", "") == "image"] if not related_media.empty else pd.DataFrame()
+        voice = related_media[related_media.get("media_type", "") == "audio"] if not related_media.empty else pd.DataFrame()
+        
+        # Display evidence in tabs
+        ev_tabs = st.tabs(["Events", "Work Orders", "Images", "Voice Recordings", "LLM Summary"])
+        
+        with ev_tabs[0]:
+            st.write(f"**Related Events** ({len(related_events)})")
+            if related_events.empty:
+                st.caption("(No events affecting this component in selected date range)")
+            else:
+                # Show key columns
+                cols_to_show = ["event_id", "type", "description", "start_time", "duration_hours", "severity"]
+                cols_to_show = [c for c in cols_to_show if c in related_events.columns]
+                st.dataframe(related_events[cols_to_show].head(20), use_container_width=True)
+        
+        with ev_tabs[1]:
+            st.write(f"**Linked Work Orders** ({len(related_wos)})")
+            if related_wos.empty:
+                st.caption("(No work orders linked to this component)")
+            else:
+                cols_to_show = ["work_order_id", "title", "status", "priority", "created_at", "completed_at"]
+                cols_to_show = [c for c in cols_to_show if c in related_wos.columns]
+                st.dataframe(related_wos[cols_to_show].head(20), use_container_width=True)
+        
+        with ev_tabs[2]:
+            st.write(f"**Images** ({len(images)})")
+            if images.empty:
+                st.caption("(No images available for this component)")
+            else:
+                for idx, row in images.head(10).iterrows():
+                    st.markdown(f"**{row.get('media_id', 'N/A')}**: {row.get('caption', 'No caption')}")
+                    st.caption(f"📁 {row.get('file_path_placeholder', 'N/A')} | 🕒 {row.get('timestamp', 'N/A')}")
+                    if pd.notna(row.get("content_text")) and str(row.get("content_text")).strip():
+                        st.text(f"Content: {row.get('content_text')}")
+                    st.markdown("---")
+        
+        with ev_tabs[3]:
+            st.write(f"**Voice Recordings** ({len(voice)})")
+            if voice.empty:
+                st.caption("(No voice recordings available for this component)")
+            else:
+                for idx, row in voice.head(10).iterrows():
+                    st.markdown(f"**{row.get('media_id', 'N/A')}**: {row.get('caption', 'No caption')}")
+                    st.caption(f"📁 {row.get('file_path_placeholder', 'N/A')} | 🕒 {row.get('timestamp', 'N/A')}")
+                    if pd.notna(row.get("transcript_text")) and str(row.get("transcript_text")).strip():
+                        st.info(f"**Transcript**: {row.get('transcript_text')}")
+                    st.markdown("---")
+        
+        with ev_tabs[4]:
+            st.write("**LLM-Generated Evidence Summary**")
+            
+            # Get mode from session state
+            mode = "mock"
+            if "chat_mode" in st.session_state:
+                mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+            
+            summary = generate_evidence_summary(
+                events_df=related_events,
+                work_orders_df=related_wos,
+                media_df=related_media,
+                mode=mode,
+            )
+            st.markdown(summary)
+        
         total_loss = pd.to_numeric(detail.get("loss_usd", 0), errors="coerce").sum()
-        st.info(
-            f"{selected_component} contributes ${total_loss:,.0f} in the selected context; reducing repeat event exposure should improve capture ratio."
+        st.success(
+            f"**{selected_component}** contributes **${total_loss:,.0f}** in revenue loss over the selected period. "
+            f"Reducing repeat event exposure should improve capture ratio."
         )
 
 
@@ -661,6 +879,189 @@ def render_tab_chatbot(
         st.rerun()
 
 
+def render_tab_heat_rate(
+    catalog: DataCatalog,
+    filtered: dict[str, pd.DataFrame],
+    start_dt: pd.Timestamp,
+    end_dt: pd.Timestamp,
+) -> None:
+    """New Heat Rate analysis tab with daily/monthly views and anomaly detection."""
+    heat_daily = filtered.get("heat_rate_daily", pd.DataFrame())
+    heat_monthly = filtered.get("heat_rate_monthly", pd.DataFrame())
+    events = filtered.get("events", pd.DataFrame())
+    
+    st.markdown("#### Heat Rate Analysis")
+    
+    # Granularity toggle
+    ctrl_cols = st.columns([1, 1, 2])
+    with ctrl_cols[0]:
+        granularity = st.radio("Granularity", ["Daily", "Monthly"], horizontal=True, key="hr_granularity")
+    with ctrl_cols[1]:
+        highlight_anomalies = st.toggle("Highlight Anomalies", value=True, key="hr_anomalies")
+    
+    # Select appropriate dataset
+    heat_df = heat_daily if granularity == "Daily" else heat_monthly
+    gran_str = "daily" if granularity == "Daily" else "monthly"
+    
+    if heat_df.empty:
+        st.warning(f"Heat rate {gran_str} data unavailable.")
+        return
+    
+    # Normalize time columns
+    time_col = "date" if granularity == "Daily" else "month"
+    if time_col in heat_df.columns:
+        heat_df[time_col] = pd.to_datetime(heat_df[time_col], errors="coerce", utc=True)
+    
+    # Compute summary KPIs
+    avg_hr = heat_df.get("net_station_heat_rate", pd.Series(dtype=float)).mean()
+    avg_ref = heat_df.get("ppa_reference_heat_rate", pd.Series(dtype=float)).mean()
+    avg_dev = heat_df.get("heat_rate_deviation_percent", pd.Series(dtype=float)).mean()
+    total_fuel_impact = heat_df.get("fuel_cost_impact_usd", pd.Series(dtype=float)).sum()
+    
+    kpi_cols = st.columns(4)
+    kpi_cols[0].metric("Avg NSHR", f"{avg_hr:.0f} Btu/kWh" if pd.notna(avg_hr) else "N/A")
+    kpi_cols[1].metric("Avg PPA Ref", f"{avg_ref:.0f} Btu/kWh" if pd.notna(avg_ref) else "N/A")
+    kpi_cols[2].metric("Avg Deviation", f"{avg_dev:.2f}%" if pd.notna(avg_dev) else "N/A")
+    kpi_cols[3].metric("Total Fuel Impact", fmt_usd(total_fuel_impact))
+    
+    # Trend chart
+    st.plotly_chart(
+        heat_rate_trend_chart(heat_df, granularity=gran_str, highlight_anomalies=highlight_anomalies),
+        use_container_width=True,
+    )
+    
+    # LLM Insight Callout
+    st.markdown("#### 💡 AI-Generated Heat Rate Insight")
+    with st.expander("View Heat Rate Optimization Analysis", expanded=False):
+        # Compute KPIs for LLM
+        attr = filtered.get("attribution", pd.DataFrame())
+        dispatch = filtered.get("dispatch", pd.DataFrame())
+        dispatch = standardize_dispatch_columns(dispatch)
+        
+        dispatch_miss_mwh = float(pd.to_numeric(dispatch.get("delta_mwh", 0), errors="coerce").clip(lower=0).sum()) if not dispatch.empty else 0.0
+        
+        kpis = {
+            "dispatch_miss_mwh": dispatch_miss_mwh,
+            "rcr": 0.0,
+            "top_loss_driver": "Heat Rate",
+            "heat_rate_dev_pct": avg_dev if pd.notna(avg_dev) else 0.0,
+            "event_count": len(events) if not events.empty else 0,
+        }
+        
+        # Get mode from session state if exists
+        mode = "mock"
+        if "chat_mode" in st.session_state:
+            mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+        
+        insight = generate_llm_insight(
+            data_context=f"Heat rate trends and efficiency analysis over selected {granularity.lower()} period",
+            kpis=kpis,
+            mode=mode,
+        )
+        st.markdown(insight)
+    
+    # Top anomalies table (only for daily view)
+    if granularity == "Daily" and not heat_daily.empty:
+        st.markdown("#### Top Heat Rate Anomalies")
+        
+        top_n = st.slider("Top N anomalies", min_value=5, max_value=30, value=10, key="hr_top_n")
+        anomaly_table = heat_rate_anomaly_table(heat_daily, top_n=top_n)
+        
+        if anomaly_table.empty:
+            st.info("No anomalies detected in selected period.")
+        else:
+            st.dataframe(anomaly_table, use_container_width=True, hide_index=True)
+            _download_csv(anomaly_table, "Export anomalies CSV", "heat_rate_anomalies.csv")
+            
+            # Event correlation
+            st.markdown("#### Event Correlation Analysis")
+            st.caption("Events occurring within ±24 hours of heat rate anomalies")
+            
+            if not events.empty and "start_time" in events.columns and not anomaly_table.empty and "date" in anomaly_table.columns:
+                # Normalize event timestamps
+                events_corr = events.copy()
+                events_corr["start_time"] = pd.to_datetime(events_corr["start_time"], errors="coerce", utc=True)
+                
+                # Find events near anomaly dates
+                correlated_events = []
+                for _, anomaly_row in anomaly_table.iterrows():
+                    anomaly_date = pd.to_datetime(anomaly_row["date"])
+                    if pd.isna(anomaly_date):
+                        continue
+                    
+                    # Ensure timezone consistency (localize to UTC if naive)
+                    if anomaly_date.tzinfo is None:
+                        anomaly_date = anomaly_date.tz_localize("UTC")
+                    
+                    # Find events within ±24 hours
+                    window_start = anomaly_date - pd.Timedelta(hours=24)
+                    window_end = anomaly_date + pd.Timedelta(hours=24)
+                    
+                    nearby = events_corr[
+                        (events_corr["start_time"] >= window_start) & 
+                        (events_corr["start_time"] <= window_end)
+                    ]
+                    
+                    for _, event_row in nearby.iterrows():
+                        correlated_events.append({
+                            "anomaly_date": anomaly_date.date(),
+                            "event_id": event_row.get("event_id", "N/A"),
+                            "event_type": event_row.get("type", "N/A"),
+                            "event_time": event_row.get("start_time"),
+                            "description": event_row.get("description", "N/A")[:80],
+                            "linked_asset": event_row.get("linked_asset_id", "N/A"),
+                        })
+                
+                if correlated_events:
+                    corr_df = pd.DataFrame(correlated_events)
+                    st.dataframe(corr_df.head(20), use_container_width=True, hide_index=True)
+                    
+                    # Try to map events to system/subsystem using asset hierarchy
+                    st.markdown("##### System/Subsystem Breakdown")
+                    asset_df = catalog.tables.get("asset_hierarchy", pd.DataFrame())
+                    
+                    if not asset_df.empty and "asset_id" in asset_df.columns:
+                        # Determine which columns are available
+                        merge_cols = ["asset_id"]
+                        display_cols = []
+                        
+                        if "system" in asset_df.columns:
+                            merge_cols.append("system")
+                            display_cols.append("system")
+                        if "subsystem" in asset_df.columns:
+                            merge_cols.append("subsystem")
+                            display_cols.append("subsystem")
+                        
+                        if display_cols:
+                            # Merge to get system/subsystem info
+                            merged = corr_df.merge(
+                                asset_df[merge_cols],
+                                left_on="linked_asset",
+                                right_on="asset_id",
+                                how="left"
+                            )
+                            
+                            # Show breakdown by available hierarchy
+                            primary_col = display_cols[0]  # Use first available (system or subsystem)
+                            if primary_col in merged.columns:
+                                col_counts = merged[primary_col].value_counts()
+                                if not col_counts.empty:
+                                    st.bar_chart(col_counts)
+                                    st.caption(f"Most affected {primary_col}: {col_counts.index[0]}")
+                                else:
+                                    st.info("No hierarchy mapping available for correlated events.")
+                            else:
+                                st.info("No hierarchy mapping available for correlated events.")
+                        else:
+                            st.info("Asset hierarchy does not contain system/subsystem columns.")
+                    else:
+                        st.info("Asset hierarchy unavailable for event mapping.")
+                else:
+                    st.info("No events found within ±24 hours of detected anomalies.")
+            else:
+                st.info("Event correlation unavailable (missing event timestamps or anomaly data).")
+
+
 def main() -> None:
     st.set_page_config(page_title="Shakti Thermal Station — Full Potential Demo", layout="wide")
     apply_bain_style()
@@ -677,8 +1078,9 @@ def main() -> None:
 
     tabs = st.tabs([
         "Data Mapping & Ontology",
-        "Generation View",
         "Revenue View",
+        "Generation View",
+        "Heat Rate Analysis",
         "GenAI Chatbot",
     ])
 
@@ -686,12 +1088,15 @@ def main() -> None:
         render_tab_mapping(catalog, filtered, start_dt, end_dt)
 
     with tabs[1]:
-        render_tab_generation(catalog, filtered, unit, start_dt, end_dt, resolution, glossary)
-
-    with tabs[2]:
         render_tab_revenue(catalog, filtered, glossary)
 
+    with tabs[2]:
+        render_tab_generation(catalog, filtered, unit, start_dt, end_dt, resolution, glossary)
+
     with tabs[3]:
+        render_tab_heat_rate(catalog, filtered, start_dt, end_dt)
+
+    with tabs[4]:
         render_tab_chatbot(filtered, root / "docs", glossary)
 
 

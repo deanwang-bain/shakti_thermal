@@ -65,7 +65,10 @@ FILE_CANDIDATES: dict[str, tuple[list[str], bool]] = {
         ["heat_rate_timeseries.parquet", "heat_rate_timeseries.csv", "heat_rate_hourly.csv"],
         True,
     ),
+    "heat_rate_daily": (["heat_rate_daily.csv"], False),
+    "heat_rate_monthly": (["heat_rate_monthly.csv"], False),
     "monthly_summary": (["revenue_summary_monthly.csv"], True),
+    "daily_summary": (["revenue_summary_daily.csv"], False),
     "energy_settlement": (
         ["revenue_5min.csv", "energy_settlement_5min.csv.gz", "energy_settlement_5min.csv"],
         True,

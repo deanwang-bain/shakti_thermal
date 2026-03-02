@@ -1,61 +1,86 @@
-media_id,timestamp,media_type,caption,linked_event_id,linked_asset_id,file_path_placeholder
-MED-0001,2024-03-17T12:52:00Z,video,Trend capture for incident review.,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2,/media/MED-0001.mp4
-MED-0002,2023-11-23T14:25:00Z,video,Trend capture for incident review.,EVT-DRAFT-20231123-10,STS-U1-IDF-A,/media/MED-0002.mp4
-MED-0003,2023-03-03T07:24:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20230303-01,STS-U1-IDF-A,/media/MED-0003.jpg
-MED-0004,2024-01-06T14:41:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240106-12,STS-U1-IDF-A,/media/MED-0004.jpg
-MED-0005,2024-01-06T13:55:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240106-12,STS-U1-IDF-A,/media/MED-0005.jpg
-MED-0006,2024-07-15T00:08:00Z,photo,Trend capture for incident review.,EVT-2024-07-WETCOAL,STS-U1-MILL-3,/media/MED-0006.jpg
-MED-0007,2023-04-03T19:31:00Z,photo,Field inspection captured.,EVT-DRAFT-20230403-04,STS-U1-IDF-A,/media/MED-0007.jpg
-MED-0008,2023-07-15T02:50:00Z,photo,Field inspection captured.,EVT-2023-07-WETCOAL,STS-U1-MILL-3,/media/MED-0008.jpg
-MED-0009,2023-07-15T01:03:00Z,photo,Maintenance finding documented.,EVT-2023-07-WETCOAL,STS-U1-MILL-3,/media/MED-0009.jpg
-MED-0010,2024-03-17T10:02:00Z,photo,Trend capture for incident review.,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2,/media/MED-0010.jpg
-MED-0011,2023-05-24T19:01:00Z,video,Trend capture for incident review.,EVT-DRAFT-20230524-06,STS-U1-IDF-A,/media/MED-0011.mp4
-MED-0012,2024-03-17T11:29:00Z,photo,Field inspection captured.,EVT-2024-03-CW-CONSTR,STS-U1-CWP-2,/media/MED-0012.jpg
-MED-0013,2024-05-12T10:13:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240512-16,STS-U1-IDF-A,/media/MED-0013.jpg
-MED-0014,2023-12-30T12:14:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20231230-11,STS-U1-IDF-A,/media/MED-0014.jpg
-MED-0015,2023-12-30T10:29:00Z,photo,Field inspection captured.,EVT-DRAFT-20231230-11,STS-U1-IDF-A,/media/MED-0015.jpg
-MED-0016,2024-11-30T12:59:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20241130-25,STS-U1-IDF-A,/media/MED-0016.jpg
-MED-0017,2024-09-05T00:56:00Z,photo,Field inspection captured.,EVT-2024-09-PM2,STS-U1-CTF-BANK1,/media/MED-0017.jpg
-MED-0018,2024-05-31T08:30:00Z,video,Field inspection captured.,EVT-DRAFT-20240531-17,STS-U1-IDF-A,/media/MED-0018.mp4
-MED-0019,2024-01-12T08:58:00Z,photo,Maintenance finding documented.,EVT-DRAFT-20240112-13,STS-U1-IDF-A,/media/MED-0019.jpg
-MED-0020,2023-03-05T13:47:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20230305-02,STS-U1-IDF-A,/media/MED-0020.jpg
-MED-0021,2023-02-14T03:52:00Z,photo,Trend capture for incident review.,EVT-2023-02-TB-VIB,STS-U1-TB-BRG2,/media/MED-0021.jpg
-MED-0022,2024-09-05T02:43:00Z,video,Field inspection captured.,EVT-2024-09-PM2,STS-U1-CTF-BANK1,/media/MED-0022.mp4
-MED-0023,2023-11-08T11:15:00Z,photo,Maintenance finding documented.,EVT-DRAFT-20231108-09,STS-U1-IDF-A,/media/MED-0023.jpg
-MED-0024,2024-02-23T10:33:00Z,photo,Maintenance finding documented.,EVT-2024-02-TB-VIB,STS-U1-TB-BRG2,/media/MED-0024.jpg
-MED-0025,2023-09-27T12:48:00Z,photo,Field inspection captured.,EVT-DRAFT-20230927-07,STS-U1-IDF-A,/media/MED-0025.jpg
-MED-0026,2023-07-15T00:09:00Z,photo,Maintenance finding documented.,EVT-2023-07-WETCOAL,STS-U1-MILL-3,/media/MED-0026.jpg
-MED-0027,2024-04-15T12:12:00Z,photo,Maintenance finding documented.,EVT-DRAFT-20240415-15,STS-U1-IDF-A,/media/MED-0027.jpg
-MED-0028,2023-09-27T11:17:00Z,photo,Field inspection captured.,EVT-DRAFT-20230927-07,STS-U1-IDF-A,/media/MED-0028.jpg
-MED-0029,2024-01-12T11:22:00Z,photo,Maintenance finding documented.,EVT-DRAFT-20240112-13,STS-U1-IDF-A,/media/MED-0029.jpg
-MED-0030,2023-04-03T19:57:00Z,video,Maintenance finding documented.,EVT-DRAFT-20230403-04,STS-U1-IDF-A,/media/MED-0030.mp4
-MED-0031,2023-05-12T04:46:00Z,photo,Trend capture for incident review.,EVT-2023-05-TUBELEAK,STS-U1-SH-OUT,/media/MED-0031.jpg
-MED-0032,2023-03-09T18:39:00Z,photo,Trend capture for incident review.,EVT-2023-03-MILLTRIP,STS-U1-MILL-3,/media/MED-0032.jpg
-MED-0033,2024-11-06T11:50:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20241106-24,STS-U1-IDF-A,/media/MED-0033.jpg
-MED-0034,2024-11-30T13:16:00Z,photo,Field inspection captured.,EVT-DRAFT-20241130-25,STS-U1-IDF-A,/media/MED-0034.jpg
-MED-0035,2023-03-05T11:27:00Z,photo,Maintenance finding documented.,EVT-DRAFT-20230305-02,STS-U1-IDF-A,/media/MED-0035.jpg
-MED-0036,2024-04-08T10:36:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240408-14,STS-U1-IDF-A,/media/MED-0036.jpg
-MED-0037,2024-06-01T01:47:00Z,video,Trend capture for incident review.,EVT-2024-06-AUXDRIFT,STS-U1-CTF-BANK1,/media/MED-0037.mp4
-MED-0038,2024-04-08T12:01:00Z,photo,Field inspection captured.,EVT-DRAFT-20240408-14,STS-U1-IDF-A,/media/MED-0038.jpg
-MED-0039,2023-03-09T20:19:00Z,photo,Maintenance finding documented.,EVT-2023-03-MILLTRIP,STS-U1-MILL-3,/media/MED-0039.jpg
-MED-0040,2024-01-06T13:47:00Z,video,Field inspection captured.,EVT-DRAFT-20240106-12,STS-U1-IDF-A,/media/MED-0040.mp4
-MED-0041,2023-03-05T12:33:00Z,photo,Field inspection captured.,EVT-DRAFT-20230305-02,STS-U1-IDF-A,/media/MED-0041.jpg
-MED-0042,2023-11-08T12:45:00Z,photo,Field inspection captured.,EVT-DRAFT-20231108-09,STS-U1-IDF-A,/media/MED-0042.jpg
-MED-0043,2024-09-02T07:01:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240902-23,STS-U1-IDF-A,/media/MED-0043.jpg
-MED-0044,2024-09-02T08:48:00Z,video,Maintenance finding documented.,EVT-DRAFT-20240902-23,STS-U1-IDF-A,/media/MED-0044.mp4
-MED-0045,2024-12-19T06:43:00Z,video,Maintenance finding documented.,EVT-DRAFT-20241219-26,STS-U1-IDF-A,/media/MED-0045.mp4
-MED-0046,2024-06-01T02:54:00Z,photo,Maintenance finding documented.,EVT-2024-06-AUXDRIFT,STS-U1-CTF-BANK1,/media/MED-0046.jpg
-MED-0047,2023-03-09T07:01:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20230309-03,STS-U1-IDF-A,/media/MED-0047.jpg
-MED-0048,2023-11-08T11:12:00Z,photo,Field inspection captured.,EVT-DRAFT-20231108-09,STS-U1-IDF-A,/media/MED-0048.jpg
-MED-0049,2024-07-24T17:59:00Z,video,Field inspection captured.,EVT-DRAFT-20240724-21,STS-U1-IDF-A,/media/MED-0049.mp4
-MED-0050,2024-11-30T12:22:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20241130-25,STS-U1-IDF-A,/media/MED-0050.jpg
-MED-0051,2023-11-23T13:04:00Z,photo,Field inspection captured.,EVT-DRAFT-20231123-10,STS-U1-IDF-A,/media/MED-0051.jpg
-MED-0052,2023-07-15T02:51:00Z,photo,Maintenance finding documented.,EVT-2023-07-WETCOAL,STS-U1-MILL-3,/media/MED-0052.jpg
-MED-0053,2024-07-01T17:46:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20240701-19,STS-U1-IDF-A,/media/MED-0053.jpg
-MED-0054,2024-05-31T08:57:00Z,video,Trend capture for incident review.,EVT-DRAFT-20240531-17,STS-U1-IDF-A,/media/MED-0054.mp4
-MED-0055,2023-12-30T10:44:00Z,photo,Trend capture for incident review.,EVT-DRAFT-20231230-11,STS-U1-IDF-A,/media/MED-0055.jpg
-MED-0056,2023-09-05T02:14:00Z,photo,Field inspection captured.,EVT-2023-09-PM1,STS-U1-SH-OUT,/media/MED-0056.jpg
-MED-0057,2023-03-09T21:01:00Z,photo,Maintenance finding documented.,EVT-2023-03-MILLTRIP,STS-U1-MILL-3,/media/MED-0057.jpg
-MED-0058,2023-03-09T20:09:00Z,photo,Field inspection captured.,EVT-2023-03-MILLTRIP,STS-U1-MILL-3,/media/MED-0058.jpg
-MED-0059,2024-07-24T15:21:00Z,photo,Field inspection captured.,EVT-DRAFT-20240724-21,STS-U1-IDF-A,/media/MED-0059.jpg
-MED-0060,2023-09-27T10:58:00Z,photo,Maintenance finding documented.,EVT-DRAFT-20230927-07,STS-U1-IDF-A,/media/MED-0060.jpg
+caption,content_text,file_path_placeholder,linked_asset_id,linked_event_id,media_id,media_type,timestamp,transcript_text
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0001.mp4,STS-U1-CWP-2,EVT-2024-03-CW-CONSTR,MED-0001,video,2024-03-17T12:52:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0002.mp4,STS-U1-IDF-A,EVT-DRAFT-20231123-10,MED-0002,video,2023-11-23T14:25:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0003.jpg,STS-U1-IDF-A,EVT-DRAFT-20230303-01,MED-0003,image,2023-03-03T07:24:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0004.jpg,STS-U1-IDF-A,EVT-DRAFT-20240106-12,MED-0004,image,2024-01-06T14:41:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0005.jpg,STS-U1-IDF-A,EVT-DRAFT-20240106-12,MED-0005,image,2024-01-06T13:55:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0006.jpg,STS-U1-MILL-3,EVT-2024-07-WETCOAL,MED-0006,image,2024-07-15T00:08:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0007.jpg,STS-U1-IDF-A,EVT-DRAFT-20230403-04,MED-0007,image,2023-04-03T19:31:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0008.jpg,STS-U1-MILL-3,EVT-2023-07-WETCOAL,MED-0008,image,2023-07-15T02:50:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0009.jpg,STS-U1-MILL-3,EVT-2023-07-WETCOAL,MED-0009,image,2023-07-15T01:03:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0010.jpg,STS-U1-CWP-2,EVT-2024-03-CW-CONSTR,MED-0010,image,2024-03-17T10:02:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0011.mp4,STS-U1-IDF-A,EVT-DRAFT-20230524-06,MED-0011,video,2023-05-24T19:01:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0012.jpg,STS-U1-CWP-2,EVT-2024-03-CW-CONSTR,MED-0012,image,2024-03-17T11:29:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0013.jpg,STS-U1-IDF-A,EVT-DRAFT-20240512-16,MED-0013,image,2024-05-12T10:13:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0014.jpg,STS-U1-IDF-A,EVT-DRAFT-20231230-11,MED-0014,image,2023-12-30T12:14:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0015.jpg,STS-U1-IDF-A,EVT-DRAFT-20231230-11,MED-0015,image,2023-12-30T10:29:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0016.jpg,STS-U1-IDF-A,EVT-DRAFT-20241130-25,MED-0016,image,2024-11-30T12:59:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0017.jpg,STS-U1-CTF-BANK1,EVT-2024-09-PM2,MED-0017,image,2024-09-05T00:56:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0018.mp4,STS-U1-IDF-A,EVT-DRAFT-20240531-17,MED-0018,video,2024-05-31T08:30:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0019.jpg,STS-U1-IDF-A,EVT-DRAFT-20240112-13,MED-0019,image,2024-01-12T08:58:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0020.jpg,STS-U1-IDF-A,EVT-DRAFT-20230305-02,MED-0020,image,2023-03-05T13:47:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0021.jpg,STS-U1-TB-BRG2,EVT-2023-02-TB-VIB,MED-0021,image,2023-02-14T03:52:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0022.mp4,STS-U1-CTF-BANK1,EVT-2024-09-PM2,MED-0022,video,2024-09-05T02:43:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0023.jpg,STS-U1-IDF-A,EVT-DRAFT-20231108-09,MED-0023,image,2023-11-08T11:15:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0024.jpg,STS-U1-TB-BRG2,EVT-2024-02-TB-VIB,MED-0024,image,2024-02-23T10:33:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0025.jpg,STS-U1-IDF-A,EVT-DRAFT-20230927-07,MED-0025,image,2023-09-27T12:48:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0026.jpg,STS-U1-MILL-3,EVT-2023-07-WETCOAL,MED-0026,image,2023-07-15T00:09:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0027.jpg,STS-U1-IDF-A,EVT-DRAFT-20240415-15,MED-0027,image,2024-04-15T12:12:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0028.jpg,STS-U1-IDF-A,EVT-DRAFT-20230927-07,MED-0028,image,2023-09-27T11:17:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0029.jpg,STS-U1-IDF-A,EVT-DRAFT-20240112-13,MED-0029,image,2024-01-12T11:22:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0030.mp4,STS-U1-IDF-A,EVT-DRAFT-20230403-04,MED-0030,video,2023-04-03T19:57:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0031.jpg,STS-U1-SH-OUT,EVT-2023-05-TUBELEAK,MED-0031,image,2023-05-12T04:46:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0032.jpg,STS-U1-MILL-3,EVT-2023-03-MILLTRIP,MED-0032,image,2023-03-09T18:39:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0033.jpg,STS-U1-IDF-A,EVT-DRAFT-20241106-24,MED-0033,image,2024-11-06T11:50:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0034.jpg,STS-U1-IDF-A,EVT-DRAFT-20241130-25,MED-0034,image,2024-11-30T13:16:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0035.jpg,STS-U1-IDF-A,EVT-DRAFT-20230305-02,MED-0035,image,2023-03-05T11:27:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0036.jpg,STS-U1-IDF-A,EVT-DRAFT-20240408-14,MED-0036,image,2024-04-08T10:36:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0037.mp4,STS-U1-CTF-BANK1,EVT-2024-06-AUXDRIFT,MED-0037,video,2024-06-01T01:47:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0038.jpg,STS-U1-IDF-A,EVT-DRAFT-20240408-14,MED-0038,image,2024-04-08T12:01:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0039.jpg,STS-U1-MILL-3,EVT-2023-03-MILLTRIP,MED-0039,image,2023-03-09T20:19:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0040.mp4,STS-U1-IDF-A,EVT-DRAFT-20240106-12,MED-0040,video,2024-01-06T13:47:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0041.jpg,STS-U1-IDF-A,EVT-DRAFT-20230305-02,MED-0041,image,2023-03-05T12:33:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0042.jpg,STS-U1-IDF-A,EVT-DRAFT-20231108-09,MED-0042,image,2023-11-08T12:45:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0043.jpg,STS-U1-IDF-A,EVT-DRAFT-20240902-23,MED-0043,image,2024-09-02T07:01:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0044.mp4,STS-U1-IDF-A,EVT-DRAFT-20240902-23,MED-0044,video,2024-09-02T08:48:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0045.mp4,STS-U1-IDF-A,EVT-DRAFT-20241219-26,MED-0045,video,2024-12-19T06:43:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0046.jpg,STS-U1-CTF-BANK1,EVT-2024-06-AUXDRIFT,MED-0046,image,2024-06-01T02:54:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0047.jpg,STS-U1-IDF-A,EVT-DRAFT-20230309-03,MED-0047,image,2023-03-09T07:01:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0048.jpg,STS-U1-IDF-A,EVT-DRAFT-20231108-09,MED-0048,image,2023-11-08T11:12:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0049.mp4,STS-U1-IDF-A,EVT-DRAFT-20240724-21,MED-0049,video,2024-07-24T17:59:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0050.jpg,STS-U1-IDF-A,EVT-DRAFT-20241130-25,MED-0050,image,2024-11-30T12:22:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0051.jpg,STS-U1-IDF-A,EVT-DRAFT-20231123-10,MED-0051,image,2023-11-23T13:04:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0052.jpg,STS-U1-MILL-3,EVT-2023-07-WETCOAL,MED-0052,image,2023-07-15T02:51:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0053.jpg,STS-U1-IDF-A,EVT-DRAFT-20240701-19,MED-0053,image,2024-07-01T17:46:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0054.mp4,STS-U1-IDF-A,EVT-DRAFT-20240531-17,MED-0054,video,2024-05-31T08:57:00Z,
+Trend capture for incident review.,Trend capture for incident review.,/media/MED-0055.jpg,STS-U1-IDF-A,EVT-DRAFT-20231230-11,MED-0055,image,2023-12-30T10:44:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0056.jpg,STS-U1-SH-OUT,EVT-2023-09-PM1,MED-0056,image,2023-09-05T02:14:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0057.jpg,STS-U1-MILL-3,EVT-2023-03-MILLTRIP,MED-0057,image,2023-03-09T21:01:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0058.jpg,STS-U1-MILL-3,EVT-2023-03-MILLTRIP,MED-0058,image,2023-03-09T20:09:00Z,
+Field inspection captured.,Field inspection captured.,/media/MED-0059.jpg,STS-U1-IDF-A,EVT-DRAFT-20240724-21,MED-0059,image,2024-07-24T15:21:00Z,
+Maintenance finding documented.,Maintenance finding documented.,/media/MED-0060.jpg,STS-U1-IDF-A,EVT-DRAFT-20230927-07,MED-0060,image,2023-09-27T10:58:00Z,
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0061.wav,STS-U1-IDF-A,EVT-DRAFT-20230309-03,MED-0061,audio,2023-03-09T08:32:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0062.wav,STS-U1-IDF-A,EVT-DRAFT-20231230-11,MED-0062,audio,2023-12-30T11:35:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0063.wav,STS-U1-IDF-A,EVT-DRAFT-20230309-03,MED-0063,audio,2023-03-09T08:19:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0064.wav,STS-U1-IDF-A,EVT-DRAFT-20230309-03,MED-0064,audio,2023-03-09T07:49:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0065.wav,STS-U1-IDF-A,EVT-DRAFT-20240701-19,MED-0065,audio,2024-07-01T17:34:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0066.wav,STS-U1-IDF-A,EVT-DRAFT-20240720-20,MED-0066,audio,2024-07-20T12:19:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0067.wav,STS-U1-IDF-A,EVT-DRAFT-20240830-22,MED-0067,audio,2024-08-30T12:37:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0068.wav,STS-U1-IDF-A,EVT-DRAFT-20231108-09,MED-0068,audio,2023-11-08T11:25:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0069.wav,STS-U1-IDF-A,EVT-DRAFT-20240720-20,MED-0069,audio,2024-07-20T12:42:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0070.wav,STS-U1-IDF-A,EVT-DRAFT-20240724-21,MED-0070,audio,2024-07-24T16:51:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0071.wav,STS-U1-IDF-A,EVT-DRAFT-20240106-12,MED-0071,audio,2024-01-06T13:45:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Operator voice: Condenser temperature rising; vacuum degrading. CW Pump 2 sounds rough—possible cavitation. Limited load to protect vacuum.,/media/MED-0072.wav,STS-U1-CWP-2,EVT-2024-03-CW-CONSTR,MED-0072,audio,2024-03-17T12:40:00Z,Operator voice: Condenser temperature rising; vacuum degrading. CW Pump 2 sounds rough—possible cavitation. Limited load to protect vacuum.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0073.wav,STS-U1-IDF-A,EVT-DRAFT-20240830-22,MED-0073,audio,2024-08-30T13:43:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0074.wav,STS-U1-IDF-A,EVT-DRAFT-20240512-16,MED-0074,audio,2024-05-12T07:59:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0075.wav,STS-U1-IDF-A,EVT-DRAFT-20240612-18,MED-0075,audio,2024-06-12T16:39:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0076.wav,STS-U1-IDF-A,EVT-DRAFT-20241130-25,MED-0076,audio,2024-11-30T12:07:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Operator memo: Abnormal trend noted; escalate to maintenance and performance teams for review.,/media/MED-0077.wav,STS-U1-CTF-BANK1,EVT-2024-06-AUXDRIFT,MED-0077,audio,2024-06-01T02:21:00Z,Operator memo: Abnormal trend noted; escalate to maintenance and performance teams for review.
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0078.wav,STS-U1-IDF-A,EVT-DRAFT-20230513-05,MED-0078,audio,2023-05-13T19:00:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0079.wav,STS-U1-IDF-A,EVT-DRAFT-20240112-13,MED-0079,audio,2024-01-12T08:40:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0080.wav,STS-U1-IDF-A,EVT-DRAFT-20230403-04,MED-0080,audio,2023-04-03T19:28:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.
+Operator voice note recorded.,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.,/media/MED-0081.wav,STS-U1-IDF-A,EVT-DRAFT-20241106-24,MED-0081,audio,2024-11-06T12:33:00Z,Voice log: Draft control unstable; O₂ trim drifting high. Suspect DP transmitter noise or sluggish damper actuator. Holding load to prevent excursions.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0082.wav,STS-U1-IDF-A,EVT-DRAFT-20241130-25,MED-0082,audio,2024-11-30T12:01:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Voice note: Observed transient; holding load and monitoring key parameters. Recommend follow-up inspection.,/media/MED-0083.wav,STS-U1-CTF-BANK1,EVT-2024-09-PM2,MED-0083,audio,2024-09-05T01:09:00Z,Voice note: Observed transient; holding load and monitoring key parameters. Recommend follow-up inspection.
+Operator voice note recorded.,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.,/media/MED-0084.wav,STS-U1-IDF-A,EVT-DRAFT-20240106-12,MED-0084,audio,2024-01-06T15:25:00Z,Operator note: Furnace draft is oscillating ±20 Pa; ID fan hunting. Damper near 98–100% open. Reduced ramp rate and stabilized bias.
+Operator voice note recorded.,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.,/media/MED-0085.wav,STS-U1-IDF-A,EVT-DRAFT-20240106-12,MED-0085,audio,2024-01-06T13:28:00Z,Shift call: ID fan speed trending high; damper saturated. Recommend tuning review and inspect impulse lines for draft DP.

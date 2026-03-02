@@ -52,6 +52,58 @@ ASSET::STS-U1-CWP-2,asset,CW Pump 2,System=Cooling Level=Component
 ASSET::STS-U1-XFMR-GSU,asset,GSU Transformer,System=Electrical Level=Component
 ASSET::STS-U1-SWYD-1,asset,Switchyard Bay 1,System=Electrical Level=Component
 ASSET::STS-U1-DCS,asset,Unit DCS Controller,System=Controls Level=Component
+ASSET::STS-U1-FUELASH,asset,Fuel & Ash Handling System,System=Fuel & Ash Level=System
+ASSET::STS-U1-FEEDWATER,asset,Condensate & Feedwater System,System=Feedwater Level=System
+ASSET::STS-U1-EMISSIONS,asset,Emissions Control System,System=Emissions Level=System
+ASSET::STS-U1-STEAMCYCLE,asset,Steam Piping & Cycle System,System=Steam Cycle Level=System
+ASSET::STS-U1-WATERTREAT,asset,Water & Chemistry Treatment System,System=Water Treatment Level=System
+ASSET::STS-U1-AUX,asset,Auxiliary Systems,System=Auxiliaries Level=System
+ASSET::STS-U1-FUEL-UNLOAD,asset,Coal Receiving & Unloading,System=Fuel & Ash Level=Subsystem
+ASSET::STS-U1-FUEL-CRUSH,asset,Coal Crushers,System=Fuel & Ash Level=Subsystem
+ASSET::STS-U1-FUEL-CONV,asset,Conveyor System,System=Fuel & Ash Level=Subsystem
+ASSET::STS-U1-FUEL-BUNKER,asset,Coal Bunkers & Feeders,System=Fuel & Ash Level=Subsystem
+ASSET::STS-U1-ASH-FLY,asset,Fly Ash Handling,System=Fuel & Ash Level=Subsystem
+ASSET::STS-U1-ASH-BOT,asset,Bottom Ash Handling,System=Fuel & Ash Level=Subsystem
+ASSET::STS-U1-CRUSH-1,asset,Crusher 1,System=Fuel & Ash Level=Component
+ASSET::STS-U1-CONV-A,asset,Conveyor A,System=Fuel & Ash Level=Component
+ASSET::STS-U1-FEEDER-3,asset,Coal Feeder 3,System=Fuel & Ash Level=Component
+ASSET::STS-U1-ASH-PUMP-1,asset,Fly Ash Pump 1,System=Fuel & Ash Level=Component
+ASSET::STS-U1-CONDENSATE,asset,Condensate System,System=Feedwater Level=Subsystem
+ASSET::STS-U1-CEP,asset,Condensate Extraction Pumps,System=Feedwater Level=Subsystem
+ASSET::STS-U1-LP-FWH,asset,Low-Pressure Feedwater Heaters,System=Feedwater Level=Subsystem
+ASSET::STS-U1-DEA,asset,Deaerator,System=Feedwater Level=Subsystem
+ASSET::STS-U1-BFP,asset,Boiler Feed Pumps,System=Feedwater Level=Subsystem
+ASSET::STS-U1-HP-FWH,asset,High-Pressure Feedwater Heaters,System=Feedwater Level=Subsystem
+ASSET::STS-U1-FWV,asset,Feedwater Control Valves,System=Feedwater Level=Subsystem
+ASSET::STS-U1-CEP-1,asset,Condensate Pump 1,System=Feedwater Level=Component
+ASSET::STS-U1-BFP-1,asset,Boiler Feed Pump 1,System=Feedwater Level=Component
+ASSET::STS-U1-DEA-LVL,asset,Deaerator Level Control,System=Feedwater Level=Component
+ASSET::STS-U1-FWV-1,asset,Feedwater Regulating Valve 1,System=Feedwater Level=Component
+ASSET::STS-U1-SCR,asset,Selective Catalytic Reduction (SCR),System=Emissions Level=Subsystem
+ASSET::STS-U1-ESP,asset,Particulate Control (ESP/Baghouse),System=Emissions Level=Subsystem
+ASSET::STS-U1-FGD,asset,SO₂ Scrubber (FGD),System=Emissions Level=Subsystem
+ASSET::STS-U1-STACK,asset,Ductwork & Stack,System=Emissions Level=Subsystem
+ASSET::STS-U1-SCR-A,asset,SCR Reactor A,System=Emissions Level=Component
+ASSET::STS-U1-ESP-1,asset,ESP Field 1,System=Emissions Level=Component
+ASSET::STS-U1-FGD-PUMP-1,asset,FGD Slurry Pump 1,System=Emissions Level=Component
+ASSET::STS-U1-STACK-DP,asset,Stack Differential Pressure,System=Emissions Level=Component
+ASSET::STS-U1-MSTEAM,asset,Main Steam Piping,System=Steam Cycle Level=Subsystem
+ASSET::STS-U1-HRHT,asset,Hot Reheat Piping,System=Steam Cycle Level=Subsystem
+ASSET::STS-U1-CRHT,asset,Cold Reheat Piping,System=Steam Cycle Level=Subsystem
+ASSET::STS-U1-EXTR,asset,Extraction Steam Lines,System=Steam Cycle Level=Subsystem
+ASSET::STS-U1-MSTEAM-VALVE,asset,Main Steam Stop Valve,System=Steam Cycle Level=Component
+ASSET::STS-U1-HRH-VALVE,asset,Hot Reheat Isolation Valve,System=Steam Cycle Level=Component
+ASSET::STS-U1-DMPLANT,asset,DM Water / Makeup System,System=Water Treatment Level=Subsystem
+ASSET::STS-U1-COND-POL,asset,Condensate Polisher,System=Water Treatment Level=Subsystem
+ASSET::STS-U1-CHEM,asset,Chemistry Dosing,System=Water Treatment Level=Subsystem
+ASSET::STS-U1-WWTP,asset,Wastewater Treatment,System=Water Treatment Level=Subsystem
+ASSET::STS-U1-DM-PUMP-1,asset,Makeup Water Pump 1,System=Water Treatment Level=Component
+ASSET::STS-U1-POL-1,asset,Condensate Polisher Train 1,System=Water Treatment Level=Component
+ASSET::STS-U1-INSTAIR,asset,Instrument Air System,System=Auxiliaries Level=Subsystem
+ASSET::STS-U1-FIRE,asset,Fire Protection System,System=Auxiliaries Level=Subsystem
+ASSET::STS-U1-HVAC,asset,HVAC & Ventilation,System=Auxiliaries Level=Subsystem
+ASSET::STS-U1-IA-COMP-1,asset,Instrument Air Compressor 1,System=Auxiliaries Level=Component
+ASSET::STS-U1-FIRE-PUMP-1,asset,Firewater Pump 1,System=Auxiliaries Level=Component
 TAG::TAG-U1-FurnaceDraftPressure_Pa,sensor,FurnaceDraftPressure_Pa,Furnace draft pressure (negative pull).
 TAG::TAG-U1-IDFanSpeed_pct,sensor,IDFanSpeed_pct,ID fan A speed (%).
 TAG::TAG-U1-DamperPosition_pct,sensor,DamperPosition_pct,Flue gas damper position.
@@ -578,11 +630,11 @@ LOG::LOG-00257,shift_log,Shift Supervisor,Mill current spikes; coal wet; adjuste
 LOG::LOG-00258,shift_log,Shift Supervisor,Furnace draft oscillating; IDF hunting; damper near full open; reduced load.
 LOG::LOG-00259,shift_log,Shift Supervisor,Condenser temp elevated; vacuum degraded; limited load to protect vacuum.
 LOG::LOG-00260,shift_log,Shift Supervisor,Draft variance increased; O2 trim unstable; watched ID fan response.
-ROLE::Performance Analyst,role,Performance Analyst,Fictional operational role
-ROLE::Shift Supervisor,role,Shift Supervisor,Fictional operational role
 ROLE::Maintenance Planner,role,Maintenance Planner,Fictional operational role
-ROLE::Reliability Engineer,role,Reliability Engineer,Fictional operational role
 ROLE::Control Room Operator,role,Control Room Operator,Fictional operational role
+ROLE::Reliability Engineer,role,Reliability Engineer,Fictional operational role
+ROLE::Shift Supervisor,role,Shift Supervisor,Fictional operational role
+ROLE::Performance Analyst,role,Performance Analyst,Fictional operational role
 EMAIL::EML-00001,email,Cooling performance issue,Event EVT-DRAFT-20241219-26 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
 EMAIL::EML-00002,email,Planned outage scope,Event EVT-2023-07-WETCOAL recap: category=Fuel quality. Please review STS-U1-MILL-3. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
 EMAIL::EML-00003,email,Controls issue review,Event EVT-DRAFT-20230927-07 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
@@ -765,61 +817,86 @@ EMAIL::EML-00179,email,Planned outage scope,Event EVT-DRAFT-20240720-20 recap: c
 EMAIL::EML-00180,email,Cooling performance issue,Event EVT-DRAFT-20231230-11 recap: category=Boiler-side. Please review STS-U1-IDF-A. Naming varies (IDF-A/Draft fan #1/APH/CW Pump).
 MEDIA::MED-0001,media,video,Trend capture for incident review.
 MEDIA::MED-0002,media,video,Trend capture for incident review.
-MEDIA::MED-0003,media,photo,Trend capture for incident review.
-MEDIA::MED-0004,media,photo,Trend capture for incident review.
-MEDIA::MED-0005,media,photo,Trend capture for incident review.
-MEDIA::MED-0006,media,photo,Trend capture for incident review.
-MEDIA::MED-0007,media,photo,Field inspection captured.
-MEDIA::MED-0008,media,photo,Field inspection captured.
-MEDIA::MED-0009,media,photo,Maintenance finding documented.
-MEDIA::MED-0010,media,photo,Trend capture for incident review.
+MEDIA::MED-0003,media,image,Trend capture for incident review.
+MEDIA::MED-0004,media,image,Trend capture for incident review.
+MEDIA::MED-0005,media,image,Trend capture for incident review.
+MEDIA::MED-0006,media,image,Trend capture for incident review.
+MEDIA::MED-0007,media,image,Field inspection captured.
+MEDIA::MED-0008,media,image,Field inspection captured.
+MEDIA::MED-0009,media,image,Maintenance finding documented.
+MEDIA::MED-0010,media,image,Trend capture for incident review.
 MEDIA::MED-0011,media,video,Trend capture for incident review.
-MEDIA::MED-0012,media,photo,Field inspection captured.
-MEDIA::MED-0013,media,photo,Trend capture for incident review.
-MEDIA::MED-0014,media,photo,Trend capture for incident review.
-MEDIA::MED-0015,media,photo,Field inspection captured.
-MEDIA::MED-0016,media,photo,Trend capture for incident review.
-MEDIA::MED-0017,media,photo,Field inspection captured.
+MEDIA::MED-0012,media,image,Field inspection captured.
+MEDIA::MED-0013,media,image,Trend capture for incident review.
+MEDIA::MED-0014,media,image,Trend capture for incident review.
+MEDIA::MED-0015,media,image,Field inspection captured.
+MEDIA::MED-0016,media,image,Trend capture for incident review.
+MEDIA::MED-0017,media,image,Field inspection captured.
 MEDIA::MED-0018,media,video,Field inspection captured.
-MEDIA::MED-0019,media,photo,Maintenance finding documented.
-MEDIA::MED-0020,media,photo,Trend capture for incident review.
-MEDIA::MED-0021,media,photo,Trend capture for incident review.
+MEDIA::MED-0019,media,image,Maintenance finding documented.
+MEDIA::MED-0020,media,image,Trend capture for incident review.
+MEDIA::MED-0021,media,image,Trend capture for incident review.
 MEDIA::MED-0022,media,video,Field inspection captured.
-MEDIA::MED-0023,media,photo,Maintenance finding documented.
-MEDIA::MED-0024,media,photo,Maintenance finding documented.
-MEDIA::MED-0025,media,photo,Field inspection captured.
-MEDIA::MED-0026,media,photo,Maintenance finding documented.
-MEDIA::MED-0027,media,photo,Maintenance finding documented.
-MEDIA::MED-0028,media,photo,Field inspection captured.
-MEDIA::MED-0029,media,photo,Maintenance finding documented.
+MEDIA::MED-0023,media,image,Maintenance finding documented.
+MEDIA::MED-0024,media,image,Maintenance finding documented.
+MEDIA::MED-0025,media,image,Field inspection captured.
+MEDIA::MED-0026,media,image,Maintenance finding documented.
+MEDIA::MED-0027,media,image,Maintenance finding documented.
+MEDIA::MED-0028,media,image,Field inspection captured.
+MEDIA::MED-0029,media,image,Maintenance finding documented.
 MEDIA::MED-0030,media,video,Maintenance finding documented.
-MEDIA::MED-0031,media,photo,Trend capture for incident review.
-MEDIA::MED-0032,media,photo,Trend capture for incident review.
-MEDIA::MED-0033,media,photo,Trend capture for incident review.
-MEDIA::MED-0034,media,photo,Field inspection captured.
-MEDIA::MED-0035,media,photo,Maintenance finding documented.
-MEDIA::MED-0036,media,photo,Trend capture for incident review.
+MEDIA::MED-0031,media,image,Trend capture for incident review.
+MEDIA::MED-0032,media,image,Trend capture for incident review.
+MEDIA::MED-0033,media,image,Trend capture for incident review.
+MEDIA::MED-0034,media,image,Field inspection captured.
+MEDIA::MED-0035,media,image,Maintenance finding documented.
+MEDIA::MED-0036,media,image,Trend capture for incident review.
 MEDIA::MED-0037,media,video,Trend capture for incident review.
-MEDIA::MED-0038,media,photo,Field inspection captured.
-MEDIA::MED-0039,media,photo,Maintenance finding documented.
+MEDIA::MED-0038,media,image,Field inspection captured.
+MEDIA::MED-0039,media,image,Maintenance finding documented.
 MEDIA::MED-0040,media,video,Field inspection captured.
-MEDIA::MED-0041,media,photo,Field inspection captured.
-MEDIA::MED-0042,media,photo,Field inspection captured.
-MEDIA::MED-0043,media,photo,Trend capture for incident review.
+MEDIA::MED-0041,media,image,Field inspection captured.
+MEDIA::MED-0042,media,image,Field inspection captured.
+MEDIA::MED-0043,media,image,Trend capture for incident review.
 MEDIA::MED-0044,media,video,Maintenance finding documented.
 MEDIA::MED-0045,media,video,Maintenance finding documented.
-MEDIA::MED-0046,media,photo,Maintenance finding documented.
-MEDIA::MED-0047,media,photo,Trend capture for incident review.
-MEDIA::MED-0048,media,photo,Field inspection captured.
+MEDIA::MED-0046,media,image,Maintenance finding documented.
+MEDIA::MED-0047,media,image,Trend capture for incident review.
+MEDIA::MED-0048,media,image,Field inspection captured.
 MEDIA::MED-0049,media,video,Field inspection captured.
-MEDIA::MED-0050,media,photo,Trend capture for incident review.
-MEDIA::MED-0051,media,photo,Field inspection captured.
-MEDIA::MED-0052,media,photo,Maintenance finding documented.
-MEDIA::MED-0053,media,photo,Trend capture for incident review.
+MEDIA::MED-0050,media,image,Trend capture for incident review.
+MEDIA::MED-0051,media,image,Field inspection captured.
+MEDIA::MED-0052,media,image,Maintenance finding documented.
+MEDIA::MED-0053,media,image,Trend capture for incident review.
 MEDIA::MED-0054,media,video,Trend capture for incident review.
-MEDIA::MED-0055,media,photo,Trend capture for incident review.
-MEDIA::MED-0056,media,photo,Field inspection captured.
-MEDIA::MED-0057,media,photo,Maintenance finding documented.
-MEDIA::MED-0058,media,photo,Field inspection captured.
-MEDIA::MED-0059,media,photo,Field inspection captured.
-MEDIA::MED-0060,media,photo,Maintenance finding documented.
+MEDIA::MED-0055,media,image,Trend capture for incident review.
+MEDIA::MED-0056,media,image,Field inspection captured.
+MEDIA::MED-0057,media,image,Maintenance finding documented.
+MEDIA::MED-0058,media,image,Field inspection captured.
+MEDIA::MED-0059,media,image,Field inspection captured.
+MEDIA::MED-0060,media,image,Maintenance finding documented.
+MEDIA::MED-0061,media,audio,Operator voice note recorded.
+MEDIA::MED-0062,media,audio,Operator voice note recorded.
+MEDIA::MED-0063,media,audio,Operator voice note recorded.
+MEDIA::MED-0064,media,audio,Operator voice note recorded.
+MEDIA::MED-0065,media,audio,Operator voice note recorded.
+MEDIA::MED-0066,media,audio,Operator voice note recorded.
+MEDIA::MED-0067,media,audio,Operator voice note recorded.
+MEDIA::MED-0068,media,audio,Operator voice note recorded.
+MEDIA::MED-0069,media,audio,Operator voice note recorded.
+MEDIA::MED-0070,media,audio,Operator voice note recorded.
+MEDIA::MED-0071,media,audio,Operator voice note recorded.
+MEDIA::MED-0072,media,audio,Operator voice note recorded.
+MEDIA::MED-0073,media,audio,Operator voice note recorded.
+MEDIA::MED-0074,media,audio,Operator voice note recorded.
+MEDIA::MED-0075,media,audio,Operator voice note recorded.
+MEDIA::MED-0076,media,audio,Operator voice note recorded.
+MEDIA::MED-0077,media,audio,Operator voice note recorded.
+MEDIA::MED-0078,media,audio,Operator voice note recorded.
+MEDIA::MED-0079,media,audio,Operator voice note recorded.
+MEDIA::MED-0080,media,audio,Operator voice note recorded.
+MEDIA::MED-0081,media,audio,Operator voice note recorded.
+MEDIA::MED-0082,media,audio,Operator voice note recorded.
+MEDIA::MED-0083,media,audio,Operator voice note recorded.
+MEDIA::MED-0084,media,audio,Operator voice note recorded.
+MEDIA::MED-0085,media,audio,Operator voice note recorded.
