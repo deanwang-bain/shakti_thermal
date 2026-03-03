@@ -18,6 +18,7 @@ from utils.chat import (
     call_openai_rag,
     generate_evidence_summary,
     generate_llm_insight,
+    generate_maintenance_criticality_insight,
 )
 from utils.data import (
     DataCatalog,
@@ -48,6 +49,7 @@ from utils.viz import (
     historian_overlay_chart,
     loss_treemap,
     lost_revenue_driver_chart,
+    maintenance_criticality_bubble_chart,
     rcr_over_time_chart,
     revenue_absolute_chart,
 )
@@ -171,6 +173,29 @@ def render_sidebar(catalog: DataCatalog, checks: list) -> tuple[str, pd.Timestam
             for w in warnings:
                 st.write(f"- {w.key}: {w.warning}")
 
+    st.sidebar.markdown("---")
+    with st.sidebar.expander("⚙️ GenAI Chatbot Settings", expanded=False):
+        # Chatbot mode selection
+        mode = st.radio("Mode", ["Local NLP", "Real LLM"], key="chat_mode")
+        
+        # Model and API key for real LLM mode
+        if mode == "Real LLM":
+            model = st.text_input("Model", value=os.getenv("OPENAI_MODEL", "gpt-4o"), key="chat_model")
+            api_key_input = st.text_input(
+                "OpenAI API Key", 
+                type="password",
+                value=os.getenv("OPENAI_API_KEY", ""),
+                help="Provide your OpenAI API key or set OPENAI_API_KEY env var",
+                key="chat_api_key"
+            )
+            # Store in session state for chatbot tab
+            st.session_state.chat_model = model
+            st.session_state.chat_api_key = api_key_input
+        else:
+            st.caption("ℹ️ Local NLP mode uses retrieval + smart templates (no API needed)")
+            st.session_state.chat_model = "gpt-4o"
+            st.session_state.chat_api_key = None
+    
     st.sidebar.markdown("---")
     with st.sidebar.expander("Sanity Check Status", expanded=False):
         for check in checks:
@@ -334,7 +359,7 @@ def render_tab_generation(
     )
 
     # LLM Insight Callout
-    st.markdown("#### 💡 AI-Generated Insight")
+    st.markdown("#### 💡 AI Generated Insights")
     with st.expander("View Generation Performance Analysis", expanded=False):
         # Compute KPIs for LLM
         dispatch_miss_mwh = float(pd.to_numeric(dispatch.get("delta_mwh", 0), errors="coerce").clip(lower=0).sum()) if not dispatch.empty else 0.0
@@ -357,7 +382,7 @@ def render_tab_generation(
         # Get mode from session state if exists
         mode = "mock"
         if "chat_mode" in st.session_state:
-            mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+            mode = "mock" if st.session_state.chat_mode == "Local NLP" else "real"
         
         insight = generate_llm_insight(
             data_context=f"Dispatch performance and generation gaps over selected period at {resolution} resolution",
@@ -518,7 +543,7 @@ def render_tab_revenue(
         st.plotly_chart(lost_revenue_driver_chart(attr_filtered), use_container_width=True)
 
     # LLM Insight Callout
-    st.markdown("#### 💡 AI-Generated Insight")
+    st.markdown("#### 💡 AI Generated Insights")
     with st.expander("View Revenue Optimization Recommendations", expanded=False):
         # Compute KPIs for LLM
         dispatch = filtered.get("dispatch", pd.DataFrame())
@@ -544,7 +569,7 @@ def render_tab_revenue(
         # Get mode from session state if exists (for consistency with chatbot)
         mode = "mock"
         if "chat_mode" in st.session_state:
-            mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+            mode = "mock" if st.session_state.chat_mode == "Local NLP" else "real"
         
         insight = generate_llm_insight(
             data_context=f"Revenue trends over selected {granularity.lower()} period",
@@ -694,7 +719,7 @@ def render_tab_revenue(
             # Get mode from session state
             mode = "mock"
             if "chat_mode" in st.session_state:
-                mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+                mode = "mock" if st.session_state.chat_mode == "Local NLP" else "real"
             
             summary = generate_evidence_summary(
                 events_df=related_events,
@@ -725,29 +750,12 @@ def render_tab_chatbot(
     index = build_retrieval_index(docs_dir, snippets)
 
     st.markdown("### 💬 Operations & Revenue Co-Pilot")
+    st.caption("💡 Configure chatbot settings in the sidebar")
     
-    # Settings in expander for cleaner UI
-    with st.expander("⚙️ Settings", expanded=False):
-        mode_cols = st.columns([1, 1, 2])
-        with mode_cols[0]:
-            mode = st.radio("Mode", ["Mock (AI-style)", "Real LLM"], key="chat_mode")
-        
-        api_key_input = None
-        model = "gpt-4o"
-        with mode_cols[1]:
-            if mode == "Real LLM":
-                model = st.text_input("Model", value=os.getenv("OPENAI_MODEL", "gpt-4o"))
-        
-        with mode_cols[2]:
-            if mode == "Real LLM":
-                api_key_input = st.text_input(
-                    "OpenAI API Key", 
-                    type="password",
-                    value=os.getenv("OPENAI_API_KEY", ""),
-                    help="Provide your OpenAI API key or set OPENAI_API_KEY env var"
-                )
-            else:
-                st.caption("ℹ️ Mock mode uses retrieval + smart templates (no API needed)")
+    # Get mode and credentials from session state (set in sidebar)
+    mode = st.session_state.get("chat_mode", "Local NLP")
+    model = st.session_state.get("chat_model", "gpt-4o")
+    api_key_input = st.session_state.get("chat_api_key", None)
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
@@ -796,7 +804,7 @@ def render_tab_chatbot(
     if quick[0].button("📊 Summarize recent performance", use_container_width=True):
         question = "Summarize the last 30 days of plant performance. What are the key trends in dispatch misses and revenue capture?"
         st.session_state.chat_history.append({"role": "user", "content": question})
-        if mode == "Mock (AI-style)":
+        if mode == "Local NLP":
             response = process_question(question)
         else:
             with st.spinner("Thinking..."):
@@ -807,7 +815,7 @@ def render_tab_chatbot(
     if quick[1].button("🎯 How can we improve RCR?", use_container_width=True):
         question = "What are the top 3 actions we should take to improve revenue capture ratio? Prioritize by expected financial impact."
         st.session_state.chat_history.append({"role": "user", "content": question})
-        if mode == "Mock (AI-style)":
+        if mode == "Local NLP":
             response = process_question(question)
         else:
             with st.spinner("Thinking..."):
@@ -818,7 +826,7 @@ def render_tab_chatbot(
     if quick[2].button("🔍 Why is heat rate degraded?", use_container_width=True):
         question = "Explain why our net station heat rate is deviating from the PPA reference. What are the likely root causes and how do we address them?"
         st.session_state.chat_history.append({"role": "user", "content": question})
-        if mode == "Mock (AI-style)":
+        if mode == "Local NLP":
             response = process_question(question)
         else:
             with st.spinner("Thinking..."):
@@ -859,8 +867,8 @@ def render_tab_chatbot(
         
         # Generate response
         with st.chat_message("assistant"):
-            if mode == "Mock (AI-style)":
-                # Fast display for mock responses - no spinner
+            if mode == "Local NLP":
+                # Fast display for local NLP responses - no spinner
                 response = process_question(prompt)
                 st.markdown(response)
             else:
@@ -925,7 +933,7 @@ def render_tab_heat_rate(
     )
     
     # LLM Insight Callout
-    st.markdown("#### 💡 AI-Generated Heat Rate Insight")
+    st.markdown("#### 💡 AI Generated Insights")
     with st.expander("View Heat Rate Optimization Analysis", expanded=False):
         # Compute KPIs for LLM
         attr = filtered.get("attribution", pd.DataFrame())
@@ -945,7 +953,7 @@ def render_tab_heat_rate(
         # Get mode from session state if exists
         mode = "mock"
         if "chat_mode" in st.session_state:
-            mode = "mock" if st.session_state.chat_mode == "Mock (AI-style)" else "real"
+            mode = "mock" if st.session_state.chat_mode == "Local NLP" else "real"
         
         insight = generate_llm_insight(
             data_context=f"Heat rate trends and efficiency analysis over selected {granularity.lower()} period",
@@ -1056,6 +1064,217 @@ def render_tab_heat_rate(
                 st.info("Event correlation unavailable (missing event timestamps or anomaly data).")
 
 
+def render_tab_maintenance_criticality(
+    catalog: DataCatalog,
+    filtered: dict[str, pd.DataFrame],
+    unit: str,
+    glossary: dict[str, str],
+) -> None:
+    """Maintenance Criticality tab with bubble chart and AI insights."""
+    df = filtered.get("maintenance_crit", pd.DataFrame())
+    ai_df = catalog.tables.get("maintenance_crit_ai", pd.DataFrame())  # Use unfiltered for mock insights
+    ev_df = filtered.get("maintenance_event_impacts", pd.DataFrame())
+    work_orders = filtered.get("work_orders", pd.DataFrame())
+    events = filtered.get("events", pd.DataFrame())
+    
+    if df.empty:
+        st.warning("Maintenance criticality data unavailable.")
+        return
+    
+    st.markdown("#### Maintenance Criticality Mapping")
+    
+    # Controls
+    ctrl_cols = st.columns([1, 1, 1, 1])
+    
+    with ctrl_cols[0]:
+        level_options = ["Unit", "System", "Subsystem", "Component"]
+        level = st.selectbox("Hierarchy Level", level_options, index=2, key="maint_level")
+    
+    with ctrl_cols[1]:
+        color_options = ["system", "criticality_quadrant", "level"]
+        # Filter to available columns
+        color_options_avail = [c for c in color_options if c in df.columns]
+        if not color_options_avail:
+            color_options_avail = ["system"]  # fallback
+        color_mode = st.selectbox("Color By", color_options_avail, key="maint_color")
+    
+    with ctrl_cols[2]:
+        min_events = st.slider("Min Event Count", min_value=0, max_value=20, value=0, key="maint_min_events")
+    
+    with ctrl_cols[3]:
+        top_n = st.slider("Top N Assets", min_value=10, max_value=100, value=50, key="maint_top_n")
+    
+    # Filter data
+    df_filtered = df.copy()
+    
+    # Filter by level
+    if "level" in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered["level"].astype(str) == level]
+    
+    # Filter by min events
+    if "event_count" in df_filtered.columns:
+        df_filtered = df_filtered[pd.to_numeric(df_filtered["event_count"], errors="coerce").fillna(0) >= min_events]
+    
+    # Sort by criticality and take top N
+    if "maintenance_criticality_index" in df_filtered.columns:
+        df_filtered = df_filtered.sort_values("maintenance_criticality_index", ascending=False).head(top_n)
+    else:
+        df_filtered = df_filtered.head(top_n)
+    
+    if df_filtered.empty:
+        st.info("No assets match the current filters.")
+        return
+    
+    # Layout: bubble chart and AI insights side by side
+    left, right = st.columns([1.3, 1.0])
+    
+    with left:
+        st.plotly_chart(
+            maintenance_criticality_bubble_chart(df_filtered, color_mode=color_mode),
+            use_container_width=True,
+        )
+        
+        # Legend for bubble sizes
+        st.markdown("""
+        <div style="margin-top: -10px; padding: 8px 12px; background-color: #F9FAFB; border-radius: 6px; font-size: 13px;">
+            <strong>📊 Chart Legend:</strong><br>
+            • <strong>Bubble Size</strong>: Number of maintenance events<br>
+            • <strong>X-axis</strong>: Total maintenance cost (USD)<br>
+            • <strong>Y-axis</strong>: Total revenue impact (USD)<br>
+            • <strong>Quadrant Lines</strong>: Median cost & impact (dotted lines)
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with right:
+        st.markdown("#### 💡 AI Generated Insights")
+        
+        # Asset selector
+        asset_options = [""] + df_filtered["asset_path"].dropna().astype(str).unique().tolist() if "asset_path" in df_filtered.columns else [""]
+        selected_asset_path = st.selectbox(
+            "Select asset for detailed analysis",
+            asset_options,
+            key="maint_selected_asset",
+        )
+        
+        if selected_asset_path:
+            # Get asset row
+            asset_row = df_filtered[df_filtered["asset_path"] == selected_asset_path].iloc[0]
+            asset_id = str(asset_row.get("asset_id", ""))
+            
+            # Generate insight button
+            if st.button("🔍 Generate Insight", key="maint_generate_insight"):
+                with st.spinner("Generating maintenance criticality analysis..."):
+                    # Filter evidence to selected asset
+                    related_events = ev_df[ev_df.get("asset_id", "").astype(str) == asset_id] if not ev_df.empty and "asset_id" in ev_df.columns else pd.DataFrame()
+                    
+                    # Get related work orders by asset_id or linked events
+                    related_wos = pd.DataFrame()
+                    if not work_orders.empty:
+                        if "standard_asset_id_truth" in work_orders.columns:
+                            related_wos = work_orders[work_orders["standard_asset_id_truth"].astype(str) == asset_id]
+                        
+                        # Also try by linked events
+                        if not related_events.empty and "event_id" in related_events.columns:
+                            event_ids = related_events["event_id"].dropna().astype(str).unique().tolist()
+                            if "linked_event_id" in work_orders.columns:
+                                wo_by_event = work_orders[work_orders["linked_event_id"].astype(str).isin(event_ids)]
+                                related_wos = pd.concat([related_wos, wo_by_event]).drop_duplicates()
+                    
+                    # Get mode from session state
+                    mode = "mock"
+                    if "chat_mode" in st.session_state:
+                        mode = "mock" if st.session_state.chat_mode == "Local NLP" else "real"
+                    
+                    insight = generate_maintenance_criticality_insight(
+                        asset_row=asset_row,
+                        event_impacts_df=related_events,
+                        work_orders_df=related_wos,
+                        ai_insights_df=ai_df,
+                        mode=mode,
+                    )
+                    
+                    # Store in session state
+                    st.session_state[f"maint_insight_{asset_id}"] = insight
+            
+            # Display insight if generated
+            insight_key = f"maint_insight_{asset_id}"
+            if insight_key in st.session_state:
+                st.markdown(st.session_state[insight_key])
+            else:
+                st.info("Click '🔍 Generate Insight' to analyze this asset's maintenance criticality.")
+        else:
+            st.info("Select an asset from the list above to view detailed AI analysis.")
+    
+    # Ranked table below
+    st.markdown("#### 📋 Criticality Ranking")
+    
+    # Prepare display columns
+    display_cols = ["asset_path", "revenue_impact_usd", "maintenance_cost_usd", "event_count", 
+                    "maintenance_criticality_index", "top_root_cause_category"]
+    display_cols = [c for c in display_cols if c in df_filtered.columns]
+    
+    if display_cols:
+        table_df = df_filtered[display_cols].copy()
+        
+        # Format numeric columns
+        for col in ["revenue_impact_usd", "maintenance_cost_usd"]:
+            if col in table_df.columns:
+                table_df[col] = table_df[col].apply(lambda x: f"${x:,.0f}" if pd.notna(x) else "-")
+        
+        if "maintenance_criticality_index" in table_df.columns:
+            table_df["maintenance_criticality_index"] = table_df["maintenance_criticality_index"].round(2)
+        
+        st.dataframe(table_df, use_container_width=True, hide_index=True)
+        
+        # Download button
+        _download_csv(df_filtered[display_cols], "Export criticality ranking CSV", "maintenance_criticality_ranking.csv")
+    else:
+        st.info("No data columns available for display.")
+    
+    # Drilldown evidence table
+    if selected_asset_path:
+        st.markdown("---")
+        st.markdown("#### 🔍 Evidence Drilldown")
+        
+        ev_tabs = st.tabs(["Event Impacts", "Work Orders"])
+        
+        with ev_tabs[0]:
+            asset_row = df_filtered[df_filtered["asset_path"] == selected_asset_path].iloc[0]
+            asset_id = str(asset_row.get("asset_id", ""))
+            
+            related_events = ev_df[ev_df.get("asset_id", "").astype(str) == asset_id] if not ev_df.empty and "asset_id" in ev_df.columns else pd.DataFrame()
+            
+            st.write(f"**Event Impacts for {selected_asset_path}** ({len(related_events)})")
+            if related_events.empty:
+                st.caption("No event impact records for this asset.")
+            else:
+                ev_cols = ["event_date", "description", "maintenance_cost_usd", "revenue_impact_usd", "root_cause_category"]
+                ev_cols = [c for c in ev_cols if c in related_events.columns]
+                st.dataframe(related_events[ev_cols].head(10), use_container_width=True, hide_index=True)
+        
+        with ev_tabs[1]:
+            # Get related work orders
+            related_wos = pd.DataFrame()
+            if not work_orders.empty:
+                if "standard_asset_id_truth" in work_orders.columns:
+                    related_wos = work_orders[work_orders["standard_asset_id_truth"].astype(str) == asset_id]
+                
+                # Also try by linked events
+                if not related_events.empty and "event_id" in related_events.columns:
+                    event_ids = related_events["event_id"].dropna().astype(str).unique().tolist()
+                    if "linked_event_id" in work_orders.columns:
+                        wo_by_event = work_orders[work_orders["linked_event_id"].astype(str).isin(event_ids)]
+                        related_wos = pd.concat([related_wos, wo_by_event]).drop_duplicates()
+            
+            st.write(f"**Work Orders** ({len(related_wos)})")
+            if related_wos.empty:
+                st.caption("No work orders linked to this asset.")
+            else:
+                wo_cols = ["work_order_id", "title", "status", "priority", "created_at"]
+                wo_cols = [c for c in wo_cols if c in related_wos.columns]
+                st.dataframe(related_wos[wo_cols].head(10), use_container_width=True, hide_index=True)
+
+
 def main() -> None:
     st.set_page_config(page_title="Shakti Thermal Station — Full Potential Demo", layout="wide")
     apply_bain_style()
@@ -1075,6 +1294,7 @@ def main() -> None:
         "Revenue View",
         "Generation View",
         "Heat Rate Analysis",
+        "Maintenance Criticality",
         "GenAI Chatbot",
     ])
 
@@ -1091,6 +1311,9 @@ def main() -> None:
         render_tab_heat_rate(catalog, filtered, start_dt, end_dt)
 
     with tabs[4]:
+        render_tab_maintenance_criticality(catalog, filtered, unit, glossary)
+
+    with tabs[5]:
         render_tab_chatbot(filtered, root / "docs", glossary)
 
 

@@ -605,3 +605,85 @@ def heat_rate_anomaly_table(heat_rate_daily_df: pd.DataFrame, top_n: int = 10) -
         result["fuel_cost_impact_usd"] = result["fuel_cost_impact_usd"].round(0)
     
     return result.reset_index(drop=True)
+
+
+def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "system") -> go.Figure:
+    """Bubble chart for maintenance criticality mapping.
+    
+    Args:
+        df: DataFrame with columns: maintenance_cost_usd, revenue_impact_usd, event_count, asset_path, etc.
+        color_mode: 'system', 'criticality_quadrant', or 'level'
+    """
+    if df.empty:
+        fig = go.Figure()
+        fig.add_annotation(
+            text="No maintenance criticality data available",
+            xref="paper",
+            yref="paper",
+            x=0.5,
+            y=0.5,
+            showarrow=False,
+        )
+        return fig
+    
+    # Prepare data
+    plot_df = df.copy()
+    
+    # Ensure numeric columns
+    for col in ["maintenance_cost_usd", "revenue_impact_usd", "event_count"]:
+        if col in plot_df.columns:
+            plot_df[col] = pd.to_numeric(plot_df[col], errors="coerce").fillna(0)
+    
+    # Determine color column
+    color_col = color_mode if color_mode in plot_df.columns else "system"
+    
+    # Create hover data
+    hover_cols = ["maintenance_criticality_index", "work_order_count", "top_root_cause_category"]
+    hover_data = {col: True for col in hover_cols if col in plot_df.columns}
+    
+    # Create scatter plot
+    fig = px.scatter(
+        plot_df,
+        x="maintenance_cost_usd",
+        y="revenue_impact_usd",
+        size="event_count",
+        color=color_col,
+        hover_name="asset_path",
+        hover_data=hover_data,
+        size_max=60,
+    )
+    
+    # Add quadrant reference lines using medians
+    if not plot_df.empty and "maintenance_cost_usd" in plot_df.columns and "revenue_impact_usd" in plot_df.columns:
+        x_median = plot_df["maintenance_cost_usd"].median()
+        y_median = plot_df["revenue_impact_usd"].median()
+        
+        # Vertical median line
+        fig.add_vline(
+            x=x_median,
+            line_width=1,
+            line_dash="dot",
+            line_color="#9CA3AF",
+            annotation_text=f"Median Cost: ${x_median:,.0f}",
+            annotation_position="top",
+        )
+        
+        # Horizontal median line
+        fig.add_hline(
+            y=y_median,
+            line_width=1,
+            line_dash="dot",
+            line_color="#9CA3AF",
+            annotation_text=f"Median Impact: ${y_median:,.0f}",
+            annotation_position="right",
+        )
+    
+    fig.update_layout(
+        height=500,
+        xaxis_title="Maintenance Cost (USD)",
+        yaxis_title="Revenue Impact (USD)",
+        margin=dict(l=20, r=20, t=35, b=20),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+    )
+    
+    return fig

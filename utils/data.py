@@ -78,6 +78,9 @@ FILE_CANDIDATES: dict[str, tuple[list[str], bool]] = {
     "penalties": (["penalties_daily.csv"], False),
     "fuel_cost": (["fuel_cost_daily.csv"], False),
     "daily_reconciliation": (["daily_revenue_reconciliation.csv"], False),
+    "maintenance_crit": (["maintenance_criticality_asset_summary.csv"], False),
+    "maintenance_event_impacts": (["maintenance_event_impacts.csv"], False),
+    "maintenance_crit_ai": (["maintenance_criticality_ai_insights.csv"], False),
 }
 
 

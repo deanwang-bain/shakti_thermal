@@ -780,3 +780,171 @@ def generate_evidence_summary(
             return resp.choices[0].message.content or "No summary generated."
         except Exception as exc:
             return f"❌ LLM request failed: {exc}"
+
+
+def generate_maintenance_criticality_insight(
+    asset_row: pd.Series | dict,
+    event_impacts_df: pd.DataFrame,
+    work_orders_df: pd.DataFrame,
+    ai_insights_df: pd.DataFrame,
+    mode: str = "mock",
+    model: str = "gpt-4o",
+    api_key: str | None = None,
+) -> str:
+    """Generate maintenance criticality insight for a selected asset.
+    
+    Args:
+        asset_row: Row from maintenance_criticality_asset_summary with asset metrics
+        event_impacts_df: Related events from maintenance_event_impacts.csv
+        work_orders_df: Related work orders
+        ai_insights_df: Pre-generated AI insights (for mock mode)
+        mode: 'mock' or 'real'
+        model: OpenAI model name
+        api_key: OpenAI API key
+    
+    Returns:
+        Formatted insight text (250-450 words)
+    """
+    # Extract asset info
+    if isinstance(asset_row, dict):
+        asset_path = str(asset_row.get("asset_path", "Unknown"))
+        asset_id = str(asset_row.get("asset_id", ""))
+        maint_cost = float(asset_row.get("maintenance_cost_usd", 0))
+        rev_impact = float(asset_row.get("revenue_impact_usd", 0))
+        event_count = int(asset_row.get("event_count", 0))
+        mci = float(asset_row.get("maintenance_criticality_index", 0))
+        quadrant = str(asset_row.get("criticality_quadrant", "Unknown"))
+        top_cause = str(asset_row.get("top_root_cause_category", "Unknown"))
+    else:
+        asset_path = str(asset_row.get("asset_path", "Unknown"))
+        asset_id = str(asset_row.get("asset_id", ""))
+        maint_cost = float(asset_row.get("maintenance_cost_usd", 0))
+        rev_impact = float(asset_row.get("revenue_impact_usd", 0))
+        event_count = int(asset_row.get("event_count", 0))
+        mci = float(asset_row.get("maintenance_criticality_index", 0))
+        quadrant = str(asset_row.get("criticality_quadrant", "Unknown"))
+        top_cause = str(asset_row.get("top_root_cause_category", "Unknown"))
+    
+    if mode == "mock":
+        # Try to find pre-generated insight from CSV
+        if not ai_insights_df.empty and "asset_id" in ai_insights_df.columns:
+            matches = ai_insights_df[ai_insights_df["asset_id"].astype(str) == asset_id]
+            if not matches.empty and "ai_insight_text" in matches.columns:
+                insight_text = matches.iloc[0]["ai_insight_text"]
+                if pd.notna(insight_text) and str(insight_text).strip():
+                    return str(insight_text)
+        
+        # Fallback: Generate deterministic mock insight
+        return (
+            f"## Maintenance Criticality Analysis: {asset_path}\n\n"
+            f"### Executive Summary\n\n"
+            f"- **Criticality Index**: {mci:.2f} ({quadrant} quadrant)\n"
+            f"- **Total Events**: {event_count} occurrences in analysis period\n"
+            f"- **Maintenance Spend**: ${maint_cost:,.0f}\n"
+            f"- **Revenue Impact**: ${rev_impact:,.0f}\n"
+            f"- **Primary Driver**: {top_cause}\n\n"
+            f"### Drivers of Criticality\n\n"
+            f"**Frequency**: This asset experienced **{event_count} events**, placing it in the "
+            f"{'high-frequency' if event_count > 5 else 'moderate-frequency'} category. "
+            f"The recurring nature suggests a chronic issue rather than random failures.\n\n"
+            f"**Consequence**: Each incident carries significant operational impact, with total revenue losses "
+            f"of **${rev_impact:,.0f}**. This reflects both direct generation curtailment and secondary effects "
+            f"(downstream equipment impacts, startup delays).\n\n"
+            f"**Maintenance Spend**: Cumulative maintenance costs of **${maint_cost:,.0f}** indicate "
+            f"{'reactive spending patterns' if maint_cost > rev_impact * 0.3 else 'controlled intervention costs'}. "
+            f"The cost-to-impact ratio suggests opportunities for optimization.\n\n"
+            f"### Recommended Actions\n\n"
+            f"**Immediate (Current Shift)**:\n"
+            f"- Review recent work order history for repeat failure patterns\n"
+            f"- Verify current operating parameters are within design limits\n"
+            f"- Schedule inspection during next available maintenance window\n\n"
+            f"**Next Shift**:\n"
+            f"- Implement enhanced monitoring on this asset (trend key parameters)\n"
+            f"- Conduct root cause analysis with maintenance and ops teams\n"
+            f"- Identify predictive indicators to enable early intervention\n\n"
+            f"**Next Planned Outage**:\n"
+            f"- Deep inspection and potential component upgrade/replacement\n"
+            f"- Address design or operational constraints contributing to recurrence\n"
+            f"- Consider condition-based maintenance strategy vs. current reactive approach\n\n"
+            f"### Expected Impact\n\n"
+            f"Reducing event recurrence by **30-50%** through proactive interventions could yield:\n"
+            f"- **Revenue protection**: ${rev_impact * 0.4:,.0f} annually\n"
+            f"- **Maintenance savings**: ${maint_cost * 0.25:,.0f} (fewer emergency repairs)\n"
+            f"- **Availability improvement**: 0.2-0.4% increase in unit availability\n\n"
+            f"Prioritize this asset in your reliability improvement roadmap based on its {quadrant.lower()} position."
+        )
+    else:
+        # Real LLM mode
+        key = api_key or os.getenv("OPENAI_API_KEY", "")
+        if not key or not key.strip():
+            return "❌ LLM mode unavailable. Please provide an API key."
+        
+        try:
+            from openai import OpenAI
+        except Exception:
+            return "❌ OpenAI package not installed."
+        
+        client = OpenAI(api_key=key)
+        
+        # Build evidence context
+        evidence_parts = []
+        
+        if not event_impacts_df.empty:
+            evidence_parts.append(
+                f"**Event History**: {len(event_impacts_df)} events analyzed\n"
+                + "\n".join([
+                    f"- {row.get('event_date', 'N/A')}: {row.get('description', 'N/A')} "
+                    f"(Cost: ${row.get('maintenance_cost_usd', 0):,.0f}, Impact: ${row.get('revenue_impact_usd', 0):,.0f})"
+                    for _, row in event_impacts_df.head(5).iterrows()
+                ])
+            )
+        
+        if not work_orders_df.empty:
+            evidence_parts.append(
+                f"**Work Order Pattern**: {len(work_orders_df)} work orders\n"
+                + "\n".join([
+                    f"- {row.get('title', 'N/A')}: {row.get('status', 'N/A')}"
+                    for _, row in work_orders_df.head(5).iterrows()
+                ])
+            )
+        
+        evidence_blob = "\n\n".join(evidence_parts) if evidence_parts else "Limited evidence available."
+        
+        # Build asset summary
+        asset_summary = (
+            f"Asset: {asset_path}\n"
+            f"Criticality Index: {mci:.2f}\n"
+            f"Quadrant: {quadrant}\n"
+            f"Event Count: {event_count}\n"
+            f"Maintenance Cost: ${maint_cost:,.0f}\n"
+            f"Revenue Impact: ${rev_impact:,.0f}\n"
+            f"Top Root Cause: {top_cause}"
+        )
+        
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are an expert reliability engineer analyzing maintenance criticality. "
+                    "Provide a structured analysis (250-450 words) with: Executive Summary (5-7 bullets), "
+                    "Drivers of Criticality (frequency vs consequence vs spend), "
+                    "Recommended Actions (immediate/next shift/next outage), "
+                    "Expected Impact ($ savings if recurrence reduced). "
+                    "Use risk framing (likelihood vs consequence) and explain the asset's quadrant position."
+                ),
+            },
+            {
+                "role": "user",
+                "content": (
+                    f"**Asset Summary:**\n{asset_summary}\n\n"
+                    f"**Evidence:**\n{evidence_blob}\n\n"
+                    f"Provide a maintenance criticality analysis for this asset."
+                ),
+            },
+        ]
+        
+        try:
+            resp = client.chat.completions.create(model=model, messages=messages, temperature=0.3, max_tokens=800)
+            return resp.choices[0].message.content or "No insight generated."
+        except Exception as exc:
+            return f"❌ LLM request failed: {exc}"

@@ -1,0 +1,537 @@
+asset_id,mock_ai_insight,generated_on_utc
+STS-PLANT,"**Maintenance criticality view for Shakti Thermal Station**
+
+- **Revenue impact (event-linked)**: $15,387,814 across **36** events (≈ $427,439/event)
+- **Maintenance cost**: $2,166,467 across **220** work orders (≈ $9,848/WO)
+- **Criticality index**: 98.0/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Review recurrent events and align PM tasks to the highest-consequence failure modes
+",2026-03-03T03:07:07Z
+STS-U1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW)**
+
+- **Revenue impact (event-linked)**: $15,387,814 across **36** events (≈ $427,439/event)
+- **Maintenance cost**: $2,166,467 across **220** work orders (≈ $9,848/WO)
+- **Criticality index**: 96.8/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Review recurrent events and align PM tasks to the highest-consequence failure modes
+",2026-03-03T03:07:07Z
+STS-U2,"**Maintenance criticality view for Shakti Thermal Station > Unit 2 (660 MW)**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BOILER,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System**
+
+- **Revenue impact (event-linked)**: $12,114,569 across **31** events (≈ $390,793/event)
+- **Maintenance cost**: $1,751,240 across **175** work orders (≈ $10,007/WO)
+- **Criticality index**: 92.2/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Prioritize condition monitoring on dominant boiler failure modes (draft, mills, heat transfer)
+- Review recurrent alarms and implement rule-based early warnings
+",2026-03-03T03:07:07Z
+STS-U1-TURBINE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System**
+
+- **Revenue impact (event-linked)**: $406,185 across **2** events (≈ $203,092/event)
+- **Maintenance cost**: $175,496 across **21** work orders (≈ $8,357/WO)
+- **Criticality index**: 55.2/100 → **balanced but watchlisted**
+- **Dominant event theme**: Turbine-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Trend valve position, vibration, and lube oil parameters for early detection
+",2026-03-03T03:07:07Z
+STS-U1-GENERATOR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Generator System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-COOLING,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System**
+
+- **Revenue impact (event-linked)**: $2,867,060 across **3** events (≈ $955,687/event)
+- **Maintenance cost**: $239,731 across **24** work orders (≈ $9,989/WO)
+- **Criticality index**: 61.3/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Cooling constraints
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Use condenser vacuum and CW ΔT as leading indicators; correlate with derates
+",2026-03-03T03:07:07Z
+STS-U1-ELECTRICAL,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Electrical System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CONTROLS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Controls System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BOI-FURNACE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Furnace**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BOI-IDFANS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > ID Fans**
+
+- **Revenue impact (event-linked)**: $462,902 across **26** events (≈ $17,804/event)
+- **Maintenance cost**: $1,313,117 across **127** work orders (≈ $10,340/WO)
+- **Criticality index**: 77.2/100 → **balanced but watchlisted**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect ID fan dampers/actuators and confirm full stroke with position feedback
+- Validate draft DP and O₂ analyzer calibration; check impulse lines for plugging/leaks
+- Tune furnace draft control loop (hunting/oscillation) and review constraint settings
+- Run vibration/thermography checks on ID fan bearings and motor coupling
+",2026-03-03T03:07:07Z
+STS-U1-BOI-FDPAFANS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > FD/PA Fans**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BOI-DAMPERS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Dampers**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BOI-MILLS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills**
+
+- **Revenue impact (event-linked)**: $6,410,113 across **3** events (≈ $2,136,704/event)
+- **Maintenance cost**: $204,895 across **25** work orders (≈ $8,196/WO)
+- **Criticality index**: 64.5/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Fuel quality
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Check coal mill grinding elements, classifier settings, and feeder calibration
+- Review coal moisture/fineness trends; tighten sampling and reject management
+- Verify mill protection logic (current spikes/trips) and lube system health
+- Align combustion settings after mill changeovers to prevent flame instability
+",2026-03-03T03:07:07Z
+STS-U1-BOI-APH,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Air Preheater**
+
+- **Revenue impact (event-linked)**: $0 across **0** events (≈ $0/event)
+- **Maintenance cost**: $158,721 across **18** work orders (≈ $8,818/WO)
+- **Criticality index**: 15.4/100 → **possible over-maintenance / low-return spend**
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Prioritize condition monitoring on dominant boiler failure modes (draft, mills, heat transfer)
+- Review recurrent alarms and implement rule-based early warnings
+",2026-03-03T03:07:07Z
+STS-U1-BOI-SH,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Superheater**
+
+- **Revenue impact (event-linked)**: $5,241,554 across **2** events (≈ $2,620,777/event)
+- **Maintenance cost**: $74,508 across **5** work orders (≈ $14,902/WO)
+- **Criticality index**: 61.0/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect superheater outlet metal temperature spread; confirm attemperator spray performance
+- Review sootblower effectiveness and schedule targeted cleaning
+- Check tube leak detection / acoustic monitoring thresholds
+- Validate main steam temperature control tuning to avoid thermal excursions
+",2026-03-03T03:07:07Z
+STS-U1-BOI-ECO,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Economizer**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-TUR-HP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > HP Section**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-TUR-IP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > IP Section**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-TUR-LP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > LP Section**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-TUR-BRG,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > Bearings**
+
+- **Revenue impact (event-linked)**: $406,185 across **2** events (≈ $203,092/event)
+- **Maintenance cost**: $175,496 across **21** work orders (≈ $8,357/WO)
+- **Criticality index**: 55.0/100 → **balanced but watchlisted**
+- **Dominant event theme**: Turbine-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Perform vibration spectrum analysis and verify probe calibration
+- Check lube oil temperature/cleanliness; review filtration and cooler approach
+- Inspect bearing clearances and alignment during next outage window
+",2026-03-03T03:07:07Z
+STS-U1-TUR-CV,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > Control Valves**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-GEN-ROTOR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Generator System > Rotor**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-GEN-STATOR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Generator System > Stator**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-GEN-H2,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Generator System > Hydrogen System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-COL-CT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > Cooling Tower**
+
+- **Revenue impact (event-linked)**: $2,529,760 across **2** events (≈ $1,264,880/event)
+- **Maintenance cost**: $76,827 across **7** work orders (≈ $10,975/WO)
+- **Criticality index**: 58.2/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Cooling constraints
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect cooling tower fan gearboxes, blade pitch, and vibration
+- Check fill condition and drift eliminators; clean to restore approach temperature
+- Verify basin level control and makeup water quality to prevent scaling
+",2026-03-03T03:07:07Z
+STS-U1-COL-CND,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > Condenser**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-COL-CWP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > CW Pumps**
+
+- **Revenue impact (event-linked)**: $337,300 across **1** events (≈ $337,300/event)
+- **Maintenance cost**: $162,903 across **17** work orders (≈ $9,583/WO)
+- **Criticality index**: 53.1/100 → **balanced but watchlisted**
+- **Dominant event theme**: Cooling constraints
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect CW pump impeller wear and bearing condition; verify pump curves
+- Clean strainers and check differential pressure instrumentation
+- Verify cooling water chemistry and biofouling controls
+",2026-03-03T03:07:07Z
+STS-U1-ELC-XFMR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Electrical System > Transformer**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-ELC-SWYD,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Electrical System > Switchyard**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CTL-DCS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Controls System > Unit DCS**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CTL-INST,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Controls System > Instrumentation**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-IDF-A,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > ID Fans > ID Fan A**
+
+- **Revenue impact (event-linked)**: $462,902 across **26** events (≈ $17,804/event)
+- **Maintenance cost**: $1,313,117 across **127** work orders (≈ $10,340/WO)
+- **Criticality index**: 77.2/100 → **balanced but watchlisted**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect ID fan dampers/actuators and confirm full stroke with position feedback
+- Validate draft DP and O₂ analyzer calibration; check impulse lines for plugging/leaks
+- Tune furnace draft control loop (hunting/oscillation) and review constraint settings
+- Run vibration/thermography checks on ID fan bearings and motor coupling
+",2026-03-03T03:07:07Z
+STS-U1-IDF-B,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > ID Fans > ID Fan B**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-DAMPER-FG,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Dampers > Flue Gas Damper**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-APH-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Air Preheater > Air Preheater Rotor**
+
+- **Revenue impact (event-linked)**: $0 across **0** events (≈ $0/event)
+- **Maintenance cost**: $158,721 across **18** work orders (≈ $8,818/WO)
+- **Criticality index**: 15.1/100 → **possible over-maintenance / low-return spend**
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Prioritize condition monitoring on dominant boiler failure modes (draft, mills, heat transfer)
+- Review recurrent alarms and implement rule-based early warnings
+",2026-03-03T03:07:07Z
+STS-U1-SH-OUT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Superheater > Superheater Outlet**
+
+- **Revenue impact (event-linked)**: $5,241,554 across **2** events (≈ $2,620,777/event)
+- **Maintenance cost**: $74,508 across **5** work orders (≈ $14,902/WO)
+- **Criticality index**: 59.2/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Boiler-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect superheater outlet metal temperature spread; confirm attemperator spray performance
+- Review sootblower effectiveness and schedule targeted cleaning
+- Check tube leak detection / acoustic monitoring thresholds
+- Validate main steam temperature control tuning to avoid thermal excursions
+",2026-03-03T03:07:07Z
+STS-U1-ECO-IN,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Economizer > Economizer Inlet**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MILL-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills > Coal Mill 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MILL-2,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills > Coal Mill 2**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MILL-3,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills > Coal Mill 3**
+
+- **Revenue impact (event-linked)**: $6,410,113 across **3** events (≈ $2,136,704/event)
+- **Maintenance cost**: $204,895 across **25** work orders (≈ $8,196/WO)
+- **Criticality index**: 64.0/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Fuel quality
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Check coal mill grinding elements, classifier settings, and feeder calibration
+- Review coal moisture/fineness trends; tighten sampling and reject management
+- Verify mill protection logic (current spikes/trips) and lube system health
+- Align combustion settings after mill changeovers to prevent flame instability
+",2026-03-03T03:07:07Z
+STS-U1-MILL-4,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills > Coal Mill 4**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MILL-5,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills > Coal Mill 5**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MILL-6,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Boiler System > Mills > Coal Mill 6**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-TB-BRG2,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > Bearings > Turbine Bearing #2**
+
+- **Revenue impact (event-linked)**: $406,185 across **2** events (≈ $203,092/event)
+- **Maintenance cost**: $175,496 across **21** work orders (≈ $8,357/WO)
+- **Criticality index**: 55.0/100 → **balanced but watchlisted**
+- **Dominant event theme**: Turbine-side
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Perform vibration spectrum analysis and verify probe calibration
+- Check lube oil temperature/cleanliness; review filtration and cooler approach
+- Inspect bearing clearances and alignment during next outage window
+",2026-03-03T03:07:07Z
+STS-U1-TB-CV-HP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Turbine System > Control Valves > HP Control Valves**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CND,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > Condenser > Surface Condenser**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CTF-BANK1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > Cooling Tower > Cooling Tower Fans Bank 1**
+
+- **Revenue impact (event-linked)**: $2,529,760 across **2** events (≈ $1,264,880/event)
+- **Maintenance cost**: $76,827 across **7** work orders (≈ $10,975/WO)
+- **Criticality index**: 58.2/100 → **under-maintained risk (high consequence per dollar spent)**
+- **Dominant event theme**: Cooling constraints
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect cooling tower fan gearboxes, blade pitch, and vibration
+- Check fill condition and drift eliminators; clean to restore approach temperature
+- Verify basin level control and makeup water quality to prevent scaling
+",2026-03-03T03:07:07Z
+STS-U1-CWP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > CW Pumps > CW Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CWP-2,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Cooling System > CW Pumps > CW Pump 2**
+
+- **Revenue impact (event-linked)**: $337,300 across **1** events (≈ $337,300/event)
+- **Maintenance cost**: $162,903 across **17** work orders (≈ $9,583/WO)
+- **Criticality index**: 52.2/100 → **balanced but watchlisted**
+- **Dominant event theme**: Cooling constraints
+
+**Why this is critical**
+This ranking uses a risk-style view: frequency (events) as a proxy for likelihood, and revenue-at-risk as a proxy for consequence. Assets with both high consequence and high recurrence rise to the top for reliability work.
+
+**Recommended maintenance focus (next 2–6 weeks)**
+- Inspect CW pump impeller wear and bearing condition; verify pump curves
+- Clean strainers and check differential pressure instrumentation
+- Verify cooling water chemistry and biofouling controls
+",2026-03-03T03:07:07Z
+STS-U1-XFMR-GSU,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Electrical System > Transformer > GSU Transformer**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-SWYD-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Electrical System > Switchyard > Switchyard Bay 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-DCS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Controls System > Unit DCS > Unit DCS Controller**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FUELASH,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FEEDWATER,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-EMISSIONS,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-STEAMCYCLE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-WATERTREAT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-AUX,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Auxiliary Systems**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FUEL-UNLOAD,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Coal Receiving & Unloading**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FUEL-CRUSH,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Coal Crushers**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FUEL-CONV,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Conveyor System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FUEL-BUNKER,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Coal Bunkers & Feeders**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-ASH-FLY,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Fly Ash Handling**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-ASH-BOT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Bottom Ash Handling**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CRUSH-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Coal Crushers > Crusher 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CONV-A,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Conveyor System > Conveyor A**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FEEDER-3,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Coal Bunkers & Feeders > Coal Feeder 3**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-ASH-PUMP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Fuel & Ash Handling System > Fly Ash Handling > Fly Ash Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CONDENSATE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Condensate System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CEP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Condensate System > Condensate Extraction Pumps**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-LP-FWH,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Low-Pressure Feedwater Heaters**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-DEA,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Deaerator**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BFP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Boiler Feed Pumps**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-HP-FWH,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > High-Pressure Feedwater Heaters**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FWV,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Feedwater Control Valves**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CEP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Condensate System > Condensate Extraction Pumps > Condensate Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-BFP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Boiler Feed Pumps > Boiler Feed Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-DEA-LVL,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Deaerator > Deaerator Level Control**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FWV-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Condensate & Feedwater System > Feedwater Control Valves > Feedwater Regulating Valve 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-SCR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > Selective Catalytic Reduction (SCR)**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-ESP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > Particulate Control (ESP/Baghouse)**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FGD,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > SO₂ Scrubber (FGD)**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-STACK,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > Ductwork & Stack**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-SCR-A,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > Selective Catalytic Reduction (SCR) > SCR Reactor A**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-ESP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > Particulate Control (ESP/Baghouse) > ESP Field 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FGD-PUMP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > SO₂ Scrubber (FGD) > FGD Slurry Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-STACK-DP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Emissions Control System > Ductwork & Stack > Stack Differential Pressure**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MSTEAM,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System > Main Steam Piping**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-HRHT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System > Hot Reheat Piping**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CRHT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System > Cold Reheat Piping**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-EXTR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System > Extraction Steam Lines**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-MSTEAM-VALVE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System > Main Steam Piping > Main Steam Stop Valve**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-HRH-VALVE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Steam Piping & Cycle System > Hot Reheat Piping > Hot Reheat Isolation Valve**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-DMPLANT,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System > DM Water / Makeup System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-COND-POL,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System > Condensate Polisher**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-CHEM,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System > Chemistry Dosing**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-WWTP,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System > Wastewater Treatment**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-DM-PUMP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System > DM Water / Makeup System > Makeup Water Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-POL-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Water & Chemistry Treatment System > Condensate Polisher > Condensate Polisher Train 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-INSTAIR,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Auxiliary Systems > Instrument Air System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FIRE,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Auxiliary Systems > Fire Protection System**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-HVAC,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Auxiliary Systems > HVAC & Ventilation**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-IA-COMP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Auxiliary Systems > Instrument Air System > Instrument Air Compressor 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
+STS-U1-FIRE-PUMP-1,"**Maintenance criticality view for Shakti Thermal Station > Unit 1 (660 MW) > Auxiliary Systems > Fire Protection System > Firewater Pump 1**
+
+No recorded events or work orders in the demo period. Treat this node as a baseline; criticality here is driven mainly by inherent design criticality and upstream/downstream dependencies.",2026-03-03T03:07:07Z
