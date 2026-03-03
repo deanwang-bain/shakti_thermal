@@ -372,12 +372,6 @@ def render_tab_generation(
         use_container_width=True,
     )
 
-    st.markdown("#### Heat Rate Sync")
-    heat_for_plot = heat_rate.copy()
-    if resolution == "hourly" and not heat_for_plot.empty and "timestamp" in heat_for_plot.columns:
-        heat_for_plot = heat_for_plot.set_index("timestamp").resample("1H").mean(numeric_only=True).reset_index()
-    st.plotly_chart(heat_rate_sync_chart(heat_for_plot), use_container_width=True)
-
     st.markdown("#### Historian Correlation Panel")
     if dispatch.empty or "timestamp" not in dispatch.columns:
         st.info("Dispatch time series unavailable.")
