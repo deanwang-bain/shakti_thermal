@@ -20,13 +20,13 @@ Every power plant has a contractual revenue ceiling defined by the PPA. The gap 
 6. **GenAI Chatbot** - Conversational insights and recommendations
 
 **Key Visualization Functions:**
-- `revenue_absolute_chart()` - Actual vs potential revenue with gap visualization
-- `lost_revenue_driver_chart()` - Revenue loss waterfall/attribution
-- `loss_treemap()` - Hierarchical loss breakdown
-- `generation_main_chart()` - Dispatch target vs actual generation
+- `revenue_absolute_chart()` - Actual vs potential revenue with shaded loss area
+- `lost_revenue_driver_chart()` - Stacked bar chart by loss category over time
+- `loss_treemap()` - Hierarchical loss breakdown by system/subsystem/component
+- `generation_main_chart()` - Dispatch target vs actual with event/miss markers
 - `dispatch_gap_attribution_chart()` - Root cause attribution by system
-- `historian_overlay_chart()` - Equipment sensor correlation
-- `heat_rate_trend_chart()` - NSHR trend with benchmarks
+- `historian_overlay_chart()` - Equipment sensor correlation overlay
+- `heat_rate_trend_chart()` - NSHR trend with PPA reference and gross heat rate
 - `maintenance_criticality_bubble_chart()` - Asset criticality matrix
 - `rcr_over_time_chart()` - Revenue capture ratio trending
 
@@ -45,13 +45,13 @@ Every power plant has a contractual revenue ceiling defined by the PPA. The gap 
 
 **What to Show:**
 
-**Function:** `revenue_absolute_chart(revenue_df, show_gap=True, show_annotations=True)`
+**Function:** `revenue_absolute_chart(revenue_df, granularity="monthly", show_annotations=True)`
 
 Visual output:
-- Stacked area or dual-line chart showing:
-  - **Actual Revenue** (green/blue line or bottom segment)
-  - **Revenue Gap** (red area or top segment)
-  - **Maximum PPA Revenue** (dashed line representing 100% ceiling)
+- Dual-line chart with shaded area showing:
+  - **Maximum PPA Revenue** (dashed gray line representing 100% ceiling)
+  - **Actual Revenue** (blue line with markers)
+  - **Revenue Loss** (red shaded area between target and actual)
 
 **What to Say:**
 
@@ -88,13 +88,15 @@ Visual output:
 
 **What to Show:**
 
-**Function:** `generation_main_chart(dispatch_df, show_gap_area=True, show_annotations=True)`
+**Function:** `generation_main_chart(dispatch_df, events_df, show_outages=True, show_misses=True)`
 
 Visual output:
-- Dual-line chart with shaded gap area:
-  - **Blue line:** Dispatch target (sum of 5-min MW requests)
-  - **Green line:** Actual net generation
-  - **Red shading:** Dispatch miss (gap between target and actual)
+- Multi-line chart with event markers:
+  - **Gray line:** Available Capacity
+  - **Red line:** Dispatch Target (5-min MW requests)
+  - **Blue line:** Net Generation
+  - **Event markers:** Outage/derate events (if show_outages=True)
+  - **Miss markers:** 5-min dispatch misses (if show_misses=True)
 
 **What to Say:**
 
@@ -187,7 +189,7 @@ Visual output:
 
 ---
 
-### **Tab 6: Maintenance Criticality** (30 sec)
+### **Tab 5: Maintenance Criticality** (30 sec)
 
 ---
 
@@ -280,14 +282,14 @@ Type or select pre-loaded query:
 ### Revenue & Financial Metrics
 
 **Module:** `utils.metrics`
-- `compute_revenue_kpis(rev_df, dispatch_df, heat_df)` → dict of KPIs (revenue capture ratio, availability proxy, etc.)
+- `compute_revenue_kpis(monthly_df, energy_df, capacity_df, penalties_df, fuel_df)` → RevenueKpis object with actual/potential/loss/rcr
 - `top_loss_components(attribution_df, top_n=10)` → Top N revenue loss drivers ranked by impact
 
 **Module:** `utils.viz`
-- `revenue_absolute_chart(revenue_df, show_gap=True, show_annotations=True)` → Actual vs potential revenue over time
-- `rcr_over_time_chart(monthly_df, show_annotations=True)` → Revenue capture ratio trend
-- `lost_revenue_driver_chart(attribution_df)` → Waterfall chart of loss categories
-- `loss_treemap(attribution_df)` → Hierarchical treemap of revenue losses
+- `revenue_absolute_chart(revenue_df, granularity="monthly", show_annotations=True)` → Actual vs potential revenue over time
+- `rcr_over_time_chart(monthly_df, show_annotations=True)` → Revenue capture ratio trend as percentage
+- `lost_revenue_driver_chart(attribution_df)` → Stacked bar chart by loss category over time
+- `loss_treemap(attribution_df)` → Hierarchical treemap of revenue losses by system/subsystem/component
 
 ### Generation & Dispatch
 
@@ -296,14 +298,14 @@ Type or select pre-loaded query:
 - `detect_5min_miss_points(dispatch_df, threshold_mw=5.0)` → Flag dispatch compliance failures
 
 **Module:** `utils.viz`
-- `generation_main_chart(dispatch_df, show_gap_area=True, show_annotations=True)` → Dispatch target vs actual with gap shading
-- `dispatch_gap_attribution_chart(dispatch_df, resolution='daily')` → Stacked bar of missed MWh by root cause system
+- `generation_main_chart(dispatch_df, events_df, show_outages=True, show_misses=True)` → Dispatch target vs actual with event markers
+- `dispatch_gap_attribution_chart(dispatch_df, resolution="daily")` → Stacked bar of missed MWh by root cause system
 
 ### Heat Rate & Efficiency
 
 **Module:** `utils.viz`
-- `heat_rate_trend_chart(heat_df, show_benchmark=True)` → NSHR over time with contractual benchmarks
-- `heat_rate_sync_chart(heat_df)` → Compare heat rate across multiple timeframes
+- `heat_rate_trend_chart(heat_df, granularity="daily", highlight_anomalies=True)` → NSHR over time with PPA reference and gross heat rate
+- `heat_rate_sync_chart(heat_df)` → Compare net vs gross heat rate with auxiliary load breakdown
 - `build_heat_rate_chart(heat_df, chart_type='trend')` → Unified heat rate visualization interface
 - `heat_rate_anomaly_table(heat_rate_daily_df, top_n=10)` → Top N worst heat rate days with context
 
@@ -327,7 +329,7 @@ Type or select pre-loaded query:
 - `build_data_context_snippets(catalog, unit, start_dt, end_dt)` → Generate data context for LLM
 - `build_mock_response(question, context, kpis)` → Template-based chatbot (no API needed)
 - `call_openai_rag(question, context, kpis, model, api_key)` → Real LLM with retrieval augmentation
-- `generate_llm_insight(metric_name, value, trend, context)` → AI commentary on specific metrics
+- `generate_llm_insight(data_context, kpis, mode="mock", model="gpt-4o", api_key=None)` → AI commentary on performance metrics
 - `generate_maintenance_criticality_insight(asset_data, events, kpis)` → Maintenance ROI recommendations
 - `generate_evidence_summary(events_df, wo_df, asset_id)` → Structured evidence report for asset
 
