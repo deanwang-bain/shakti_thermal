@@ -64,11 +64,10 @@ Visual output:
 **Function:** `lost_revenue_driver_chart(attribution_df)` or `loss_treemap(attribution_df)`
 
 Visual output:
-- Waterfall chart or treemap breaking down losses by category:
-  1. **Capacity Payment Losses** - Availability shortfalls
-  2. **Energy Payment Losses** - Dispatch misses  
-  3. **Heat Rate Inefficiency** - NSHR deviations
-  4. **Penalties** - PPA compliance issues
+- Stacked bar chart or treemap breaking down losses by category:
+  1. **Capacity Payment Losses** - Availability shortfalls (forced outages, planned maintenance)
+  2. **Energy Payment Losses** - Dispatch misses (failed to deliver requested MWh)
+  3. **Penalty Losses** - PPA compliance penalties and DSM charges
 
 **What to Say:**
 
