@@ -1,5 +1,7 @@
 # Shakti Thermal Station — Full Potential Demo Path v2
 
+**Last Updated:** March 9, 2026
+
 ## Story: Revenue Realization – From Full Potential Gap to Root Cause Action
 
 **Narrative Arc:**  
@@ -7,294 +9,381 @@ Every power plant has a contractual revenue ceiling defined by the PPA. The gap 
 
 ---
 
-## Demo Flow (8-10 minutes total)
+## Demo Flow (5 minutes - Streamlined Version)
 
-### **Tab 3: Revenue View** — Full Potential Revenue Analysis
+**Available Tabs:**
+1. **Data Mapping & Ontology** - Interactive asset graph with node inspector
+2. **Generation View** - Dispatch compliance and energy loss analysis  
+3. **Revenue View** - Revenue capture ratio and loss attribution
+4. **Heat Rate** - Efficiency monitoring and anomaly detection
+5. **Maintenance Criticality** - AI-driven maintenance prioritization
+6. **GenAI Chatbot** - Conversational insights and recommendations
+
+**Key Visualization Functions:**
+- `revenue_absolute_chart()` - Actual vs potential revenue with gap visualization
+- `lost_revenue_driver_chart()` - Revenue loss waterfall/attribution
+- `loss_treemap()` - Hierarchical loss breakdown
+- `generation_main_chart()` - Dispatch target vs actual generation
+- `dispatch_gap_attribution_chart()` - Root cause attribution by system
+- `historian_overlay_chart()` - Equipment sensor correlation
+- `heat_rate_trend_chart()` - NSHR trend with benchmarks
+- `maintenance_criticality_bubble_chart()` - Asset criticality matrix
+- `rcr_over_time_chart()` - Revenue capture ratio trending
 
 ---
 
-#### **1. Revenue Generated vs Full Potential** (2.5 min)
+### **START: Tab 3 - Revenue View** (1.5 min)
+
+---
+
+#### **1. Revenue Gap Overview**
 
 **Setup:**
 - Unit: `STS-U1`
-- Date range: Last 3-5 years (e.g., 2020-01-01 to 2024-12-31) OR recent 12-24 months
-- View: Monthly resolution for long-term trends
+- Date range: Last 12-24 months (e.g., 2024-01-01 to 2025-12-31)
+- View: Monthly resolution
 
 **What to Show:**
 
-**1a. Actual Revenue vs Maximum PPA Value**
+**Function:** `revenue_absolute_chart(revenue_df, show_gap=True, show_annotations=True)`
 
-Point to a visualization showing:
-- **Two line charts (month by month):**
-  - Line 1: Actual revenue earned (from capacity + energy payments)
-  - Line 2: Maximum possible revenue under PPA (100% performance scenario)
-  - Gap between the two = unrealized revenue potential
-
-OR
-
-- **100% stacked bar chart (monthly):**
-  - Bottom segment: Actual revenue earned
-  - Top segment: Revenue gap (unrealized potential)
-  - Each bar = 100% of maximum PPA revenue for that month
+Visual output:
+- Stacked area or dual-line chart showing:
+  - **Actual Revenue** (green/blue line or bottom segment)
+  - **Revenue Gap** (red area or top segment)
+  - **Maximum PPA Revenue** (dashed line representing 100% ceiling)
 
 **What to Say:**
 
-> "Our PPA defines a revenue ceiling—what we could earn at 100% availability and contractual efficiency. This chart shows where we've been leaving money on the table.
+> "This is our revenue capture story. The gap between actual and potential represents money left on the table—averaging $2-3M annually for this 660 MW unit.
 > 
-> Over the past 3 years, we've averaged [X]% revenue capture. The gap represents lost capacity payments, energy payments we didn't earn, and efficiency penalties. That's roughly $[Y]M in unrealized value."
-
-Point to specific months with large gaps:
-> "Look at Q2 2023—this 15% gap represents a major outage event. And here in late 2024, we're seeing persistent 8-10% shortfalls driven by heat rate degradation, not just availability."
+> Notice Q2 2024 had a 15% gap from a major outage, but the persistent 8-10% shortfall in late 2024 is efficiency and dispatch losses, not just downtime."
 
 ---
 
-**1b. Main Contributors to Revenue Loss**
+**Function:** `lost_revenue_driver_chart(attribution_df)` or `loss_treemap(attribution_df)`
 
-Scroll to the **"Revenue Loss Attribution"** breakdown (treemap or waterfall chart):
-
-Categories:
-1. **Capacity Payment Losses** — From availability shortfalls (outages, derates)
-2. **Energy Payment Losses** — From dispatch gap (failed to deliver requested MWh)
-3. **Heat Rate Inefficiency Losses** — Excess fuel cost due to NSHR deviation
-4. **Penalties & Other Losses** — PPA penalties, ancillary service failures, etc.
+Visual output:
+- Waterfall chart or treemap breaking down losses by category:
+  1. **Capacity Payment Losses** - Availability shortfalls
+  2. **Energy Payment Losses** - Dispatch misses  
+  3. **Heat Rate Inefficiency** - NSHR deviations
+  4. **Penalties** - PPA compliance issues
 
 **What to Say:**
 
-> "We've decomposed the revenue gap into four buckets:
-> - **Capacity losses** ($[X]M): When the plant is offline or derated, we forfeit fixed capacity payments.
-> - **Energy losses** ($[Y]M): When we can't meet dispatch, we don't sell electricity.
-> - **Heat rate inefficiency** ($[Z]M): Even when we're running, if our fuel burn is inefficient, margins compress. This is the 'hidden' cost—the plant is operating, but profitability per MWh drops.
-> - **Penalties** ($[W]k): Direct contractual penalties for non-compliance.
-> 
-> The biggest opportunity is energy payment losses—let's drill into that."
+> "Energy payment losses dominate at $1.8M—that's electricity we were called to deliver but couldn't. Let's drill into why."
 
 ---
 
-### **Tab 2: Generation View** — Energy Payment Deep Dive
+### **Tab 2: Generation View** (1.5 min)
 
 ---
 
-#### **2. Double Click on Energy Payment Losses** (2 min)
+#### **2. Dispatch Compliance Deep Dive**
 
 **Setup:**
-- Unit: `STS-U1`
-- Date range: Last 3-5 years (monthly view) OR focus on last 12 months
-- Resolution: `Monthly` or `Daily` for trend analysis
+- Same unit and date range
+- Resolution: Daily or Hourly for trend visibility
 
 **What to Show:**
 
-**2a. Generated Electricity vs Dispatch Requirements (Line Chart)**
+**Function:** `generation_main_chart(dispatch_df, show_gap_area=True, show_annotations=True)`
 
-Two overlaid lines (month by month):
-- **Blue line:** Total dispatch target MWh (sum of all 5-min dispatch requests for the month)
-- **Green line:** Actual net generation MWh
-- **Gap area (red shading):** Dispatch miss MWh (= lost energy revenue)
-
-**What to Say:**
-
-> "This chart shows our dispatch compliance at monthly granularity. Every gap between target and actual is electricity we didn't sell.
-> 
-> In 2023, we averaged 95% dispatch compliance. That 5% gap cost us $[X]M in energy payments. In 2024, compliance dropped to 92%—that incremental 3 points is $[Y]k/month we're now leaving on the table.
-> 
-> The question is: why are we missing dispatch?"
-
----
-
-**2b. Main Contributors to Generation Losses (by System/Equipment)**
-
-Scroll to the **"Dispatch Gap Attribution by Root Cause"** stacked bar chart:
-
-Shows monthly breakdown of missed MWh by equipment/system category:
-- **Boiler-side issues** (feedwater, burners, draft fans, etc.)
-- **Turbine-side issues** (HP/LP turbine, bearings, seals)
-- **Cooling system constraints** (condenser, cooling tower, CW pumps)
-- **Fuel quality issues** (coal variability, slagging, fouling)
-- **Planned maintenance** (scheduled outages)
-- **Other/Unknown**
+Visual output:
+- Dual-line chart with shaded gap area:
+  - **Blue line:** Dispatch target (sum of 5-min MW requests)
+  - **Green line:** Actual net generation
+  - **Red shading:** Dispatch miss (gap between target and actual)
 
 **What to Say:**
 
-> "We've attributed each dispatch miss to a root cause system. This is where asset-level data—events, work orders, operating historian—gets linked to financial impact.
+> "92% dispatch compliance means we're missing 8% of requested generation—450 MWh monthly, translating to $135k in lost energy revenue.
 > 
-> The dominant driver is **boiler-side issues**: ID fan trips, draft control instability, soot blower failures. Those account for 40% of our dispatch gap. Second is **turbine-side** at 25%, mostly bearing vibrations and seal leaks causing controlled shutdowns.
-> 
-> Let's pick the worst offender and drill into it."
+> The question is: which systems are causing these misses?"
 
 ---
 
-### **Tab 2: Generation View** — Root Cause Deep Dive (Example: Unstable Draft)
+**Function:** `dispatch_gap_attribution_chart(dispatch_df, resolution='daily')`
+
+Visual output:
+- Stacked bar chart showing daily/monthly dispatch gaps by root cause:
+  - Boiler issues (ID fans, draft, feedwater)
+  - Turbine issues (seals, bearings, vibration)
+  - Cooling constraints
+  - Fuel quality
+  - Planned maintenance
+
+**What to Say:**
+
+> "Boiler-side issues—specifically ID fan instability—account for 40% of dispatch gaps. That's our #1 target for intervention.
+> 
+> Let's look at one specific failure mode."
 
 ---
 
-#### **3. For Select Examples: Double Click on Specific Equipment Failure** (2.5 min)
+### **Tab 1: Data Mapping & Ontology** (1 min)
+
+---
+
+#### **3. Equipment Root Cause Analysis**
 
 **Setup:**
-- Focus on **ID Fan A (STS-U1-IDF-A)** — a high-impact asset
-- Date range: Last 6-12 months (to show recurring pattern)
-- Resolution: `5-min` or `Hourly` to see event details
+- Interactive ontology graph showing plant hierarchy
+- Node Inspector panel on right
 
 **What to Show:**
 
-**3a. Total Contribution from the Subsystem/Equipment**
+**Function:** `build_pyvis_html(nodes_df, edges_df, events_df, wo_df)`
 
-Scroll to **"Historian Correlation Panel"** or open **Node Inspector** in Tab 1 (Data Mapping & Ontology):
+Visual output:
+- Interactive network graph with color-coded nodes:
+  - Red: Plant level  
+  - Pink gradient: Unit → System → Subsystem → Component
+  - Blue: Equipment/sensors
+  - Yellow: Events with hover details
 
-Select node: `ASSET::STS-U1-IDF-A` (ID Fan A)
+**Action:** Click on node `STS-U1-IDF-A` (ID Fan A)
 
-Show:
-- **Downtime/Derate Events Table:**
-  - List of outage events linked to this fan
-  - Columns: Event ID, Start Time, Duration, Root Cause Category, MW Impact, $ Impact
-  - Sum total: e.g., "ID Fan A: 15 events, 450 MWh dispatch miss, $135k revenue loss"
+**Function:** `get_node_inspector(selected_node, events_df, wo_df, sensor_df)`
 
-**What to Say:**
-
-> "Let's look at ID Fan A—our #1 dispatch gap driver. Over the last 12 months, this fan has triggered 15 forced derate events, costing us 450 MWh and $135k in lost energy revenue.
-> 
-> These aren't planned outages. These are unplanned trips or performance issues forcing the plant to reduce output mid-dispatch."
-
----
-
-**3b. Root Cause Analysis: Drivers, Events, and Potential Interventions**
-
-Switch to the **main generation chart** with historian overlay:
-
-Toggle **"Show historian correlation"** ON to overlay relevant sensor tags:
-- `TAG::STS-U1-IDF-A-DRAFT-PRES` (Draft pressure)
-- `TAG::STS-U1-IDF-A-VIB` (Vibration)
-- `TAG::STS-U1-IDF-A-DAMPER-POS` (Inlet damper position)
-
-Point to a specific event (e.g., Jan 15, 2025):
-
-**Visual:**
-- Green line (net generation) drops sharply from 345 MW to 280 MW
-- Blue line (dispatch target) remains at 345 MW → **red gap appears**
-- Draft pressure spikes erratically
-- Damper position saturates at 100% (control loop fighting instability)
-- Vibration alarm threshold exceeded
+Node Inspector displays:
+- **Asset Details:** Name, system, criticality score
+- **Linked Events Table:**
+  - Event ID | Timestamp | Type | Duration | Impact (MW/MWh/$)
+  - Example: `EVT-2025-0142` - "Draft instability, manual load reduction" - 65 MW - $19.5k
+- **Work Orders:**
+  - WO-2025-0087: "Inspect IDF-A damper & bearing" (Completed)
+  - Status shows recurrence → incomplete root cause fix
+- **Associated Sensors:**
+  - `TAG::STS-U1-IDF-A-DRAFT-PRES`
+  - `TAG::STS-U1-IDF-A-VIB`
+  - `TAG::STS-U1-IDF-A-DAMPER-POS`
 
 **What to Say:**
 
-> "Here's what happened on January 15th at 10:30 AM. Dispatch called for 345 MW, but we had to derate to 280 MW within 5 minutes.
+> "ID Fan A has triggered 15 forced derate events in 12 months, costing $135k in lost energy revenue.
 > 
-> Look at the draft pressure trace—it's oscillating wildly. The damper is pegged at 100%, meaning the control system is maxed out trying to stabilize furnace draft. Meanwhile, vibration on the fan bearing is spiking into alarm range.
-> 
-> This is **unstable draft syndrome**—a common coal plant failure mode. Root causes can include:
-> - **Damper linkage wear** (mechanical slop causes control instability)
-> - **Fan bearing degradation** (vibration reduces fan efficiency, requiring higher damper openings to maintain draft)
-> - **Ash buildup in ductwork** (increases resistance, reducing controllable range)
-> - **Coal moisture variability** (wet coal generates more flue gas, overwhelming fan capacity with existing damper settings)"
+> The pattern is clear: draft pressure oscillations, damper control saturation, and bearing vibration spikes. Maintenance replaced the actuator linkage, but the problem recurred—we're treating symptoms, not root cause."
 
 ---
 
-Scroll down to **Linked Work Orders and Events** in Node Inspector:
+**Optional:** Toggle to historian overlay
 
-Show:
-- Event: `EVT-2025-0142` — "IDF-A Draft Control Instability, Manual Load Reduction"
-- Root Cause Category: "Boiler-side / Draft Fan"
-- Linked Work Order: `WO-2025-0087` — "Inspect IDF-A damper actuator and bearing, replace if needed"
-- Status: Completed (but event recurred 2 weeks later → indicates incomplete fix)
+**Function:** `historian_overlay_chart(merged_df, signals=['draft_pres', 'vibration', 'damper_pos'])`
+
+Visual output:
+- Multi-axis time series showing event correlation:
+  - Generation drops from 345 MW → 280 MW
+  - Draft pressure oscillates wildly
+  - Damper position saturates at 100%
+  - Vibration exceeds alarm threshold
 
 **What to Say:**
 
-> "Operations filed a work order to inspect the damper and bearing. Maintenance replaced the actuator linkage, but the problem came back two weeks later. This tells us we're treating symptoms, not root cause.
+> "Here's January 15th at 10:30 AM. Generation drops 65 MW in 5 minutes. Draft control is fighting instability—damper pegged at 100%, vibration in alarm.
 > 
-> The real issue is likely bearing wear combined with ash accumulation. The fix isn't just replacing parts—it's:
-> 1. **Bearing replacement** (not just inspection)
-> 2. **Ductwork cleaning** (remove ash buildup to restore airflow margin)
-> 3. **Damper PID tuning** (re-tune control loop with new mechanical tolerances)
-> 4. **Predictive monitoring** (install continuous bearing vibration monitoring to catch degradation early)
-> 
-> Cost of intervention: ~$85k (bearing + cleaning + controls).  
-> ROI: We're losing $135k/year to this one issue. Payback is 8 months."
+> True root causes: bearing wear + ash buildup in ductwork. The fix isn't just parts—it's bearing replacement, ductwork cleaning, and PID retuning. $85k investment, 8-month payback."
 
 ---
 
-### **Tab 4: GenAI Chatbot** — AI Synthesis & Prioritized Recommendations (1.5 min)
+### **Tab 6: Maintenance Criticality** (30 sec)
+
+---
+
+#### **4. AI-Driven Prioritization**
 
 **Setup:**
-- Mode: Mock or Real LLM
-- Context: Full dataset (all filters applied from previous tabs)
+- Asset-level view with maintenance insights
 
 **What to Show:**
 
-Type into chatbot:
-> "What are the top 3 actions we should take to improve revenue capture ratio? Prioritize by expected financial impact."
+**Function:** `maintenance_criticality_bubble_chart(df, color_mode='system')`
 
-**Mock Response (Example):**
+Visual output:
+- Bubble chart with:
+  - X-axis: Criticality score (0-1)
+  - Y-axis: Maintenance impact ($)
+  - Bubble size: Failure frequency
+  - Color: System category
 
-> **Top Revenue Improvement Actions (Prioritized by ROI):**
-> 
-> **1. Address ID Fan A Draft Instability** ($135k/year opportunity)  
-> *Action:* Replace IDF-A bearing, clean ductwork, retune damper PID loop.  
-> *Cost:* $85k | *Payback:* 8 months  
-> *Impact:* Eliminate 15 forced derate events/year, recover 450 MWh dispatch compliance.
-> 
-> **2. Optimize HP Turbine Seal Leak** ($98k/year opportunity)  
-> *Action:* Replace worn gland seals during next planned outage.  
-> *Cost:* $45k | *Payback:* 5 months  
-> *Impact:* Reduce steam leakage, improve heat rate by 1.2%, avoid efficiency penalties.
-> 
-> **3. Implement Coal Quality Monitoring** ($72k/year opportunity)  
-> *Action:* Install real-time coal moisture sensors + AI-based soot blower optimization.  
-> *Cost:* $120k | *Payback:* 20 months  
-> *Impact:* Reduce heat rate variability, improve boiler efficiency, extend tube life.
-> 
-> **Total Potential:** $305k/year | **Investment:** $250k | **Portfolio Payback:** 10 months
+Top priority assets highlighted:
+- **ID Fan A:** High criticality, high $/year impact
+- **HP Turbine Seal:** Medium criticality, medium cost
+- **Coal Quality Monitoring:** Low criticality, long-term gain
 
 **What to Say:**
 
-> "This is where the AI co-pilot synthesizes everything we've seen—events, historian data, work orders, financial impact—and ranks interventions by ROI.
+> "This is where AI ranks the maintenance backlog by financial ROI. ID Fan A is top priority: high criticality, high revenue impact, fast payback.
 > 
-> It's not just saying 'fix the fan.' It's saying: fix the fan first because it's costing you $135k/year and only takes $85k to solve. Then tackle the turbine seals. Then invest in coal quality monitoring for long-term heat rate gains.
+> The system generates actionable work orders with cost-benefit analysis—not just 'fix everything,' but 'fix these 3 things first for maximum return.'"
+
+---
+
+### **Tab 4: GenAI Chatbot** (30 sec)
+
+---
+
+#### **5. Conversational Insights & Recommendations**
+
+**Setup:**
+- Chatbot interface with context from all tabs
+- Mode: Mock (template-based) or Real LLM
+
+**What to Show:**
+
+Type or select pre-loaded query:
+> "What are the top 3 revenue improvement actions? Prioritize by ROI."
+
+**Function:** `build_mock_response()` or `call_openai_rag()` (depending on mode)
+
+**Mock Response Example:**
+
+> **Top Revenue Improvement Actions:**
 > 
-> This shifts the conversation from 'we have reliability issues' to 'here's a $305k revenue recovery plan with 10-month payback.'"
+> **1. ID Fan A Draft Stability Fix** - $135k/year opportunity  
+> *Action:* Replace bearing, clean ductwork, retune PID  
+> *Investment:* $85k | *Payback:* 8 months
+> 
+> **2. HP Turbine Seal Replacement** - $98k/year opportunity  
+> *Action:* Replace gland seals during next outage  
+> *Investment:* $45k | *Payback:* 5 months
+> 
+> **3. Coal Quality Monitoring** - $72k/year opportunity  
+> *Action:* Install moisture sensors + AI soot blower optimization  
+> *Investment:* $120k | *Payback:* 20 months
+> 
+> **Total Potential:** $305k/year | **Portfolio Payback:** 10 months
+
+**What to Say:**
+
+> "The AI co-pilot synthesizes events, historian data, work orders, and financial impact—then ranks interventions by ROI.
+> 
+> It's not saying 'you have reliability issues.' It's saying: 'Here's a $305k revenue recovery plan with 10-month payback. Start with the fan.'"
 
 ---
 
-## Summary: The Full Potential Story in 3 Layers
+## 5-Minute Demo Summary
 
-| **Layer**               | **Stakeholder**       | **Question Answered**                                      | **Tab/Tool**          |
-|-------------------------|-----------------------|------------------------------------------------------------|-----------------------|
-| **1. Revenue Gap**      | CFO / Plant Manager   | "How much money are we leaving on the table?"              | Tab 3: Revenue View   |
-| **2. Energy Loss Drivers** | Operations Manager | "Which systems are causing dispatch misses?"               | Tab 2: Generation View (Root Cause Chart) |
-| **3. Equipment Root Cause** | Maintenance / Reliability | "What's broken, why, and how do we fix it?"           | Tab 2: Historian + Tab 1: Node Inspector |
-| **4. AI Prioritization** | Executive Team       | "What should we do first, and what's the ROI?"             | Tab 4: GenAI Chatbot  |
-
----
-
-## Key Talking Points (Memorize These)
-
-1. **"Revenue capture ratio is the #1 KPI."** It's not about uptime—it's about dollars per MW-hour contracted vs delivered.
-
-2. **"Energy payment losses dominate the gap."** Availability gets attention (outages are visible), but dispatch misses are the silent killer. 5% dispatch gap = $2M+/year for a 350 MW plant.
-
-3. **"Boiler-side issues are 40% of the problem."** Draft fans, feedwater pumps, burner management—these are the unsexy systems that kill margin.
-
-4. **"Unstable draft is a perfect case study."** It's recurring, it has historian signatures, it has work order history, and it's expensive. Fixing it shows ROI in under a year.
-
-5. **"AI doesn't replace engineers—it ranks their backlog."** Maintenance has 200 open work orders. The chatbot says "do these 3 first" based on revenue impact, not just mean time to failure.
-
-6. **"This isn't monitoring—it's decision support."** We're not just alerting on alarms. We're connecting alarms → events → dispatch gaps → revenue loss → work orders → interventions → ROI.
+| **Time** | **Tab** | **Focus** | **Key Message** |
+|----------|---------|-----------|-----------------|
+| **0:00-1:30** | Revenue View | Revenue gap & loss attribution | "$2-3M left on table annually; energy losses dominate at $1.8M" |
+| **1:30-3:00** | Generation View | Dispatch compliance & system attribution | "92% compliance = $135k/month loss; boiler issues drive 40% of gaps" |
+| **3:00-4:00** | Data Mapping | Equipment root cause (ID Fan A) | "15 events, $135k impact; bearing + ductwork, $85k fix, 8-mo payback" |
+| **4:00-4:30** | Maintenance Criticality | AI-driven prioritization matrix | "Rank 200+ work orders by ROI; top 3 assets deliver $305k/year recovery" |
+| **4:30-5:00** | GenAI Chatbot | Executive recommendations | "AI synthesizes data → actionable $305k recovery plan with 10-mo payback" |
 
 ---
 
-## Handling Questions
+## Complete Function Reference
+
+### Revenue & Financial Metrics
+
+**Module:** `utils.metrics`
+- `compute_revenue_kpis(rev_df, dispatch_df, heat_df)` → dict of KPIs (revenue capture ratio, availability proxy, etc.)
+- `top_loss_components(attribution_df, top_n=10)` → Top N revenue loss drivers ranked by impact
+
+**Module:** `utils.viz`
+- `revenue_absolute_chart(revenue_df, show_gap=True, show_annotations=True)` → Actual vs potential revenue over time
+- `rcr_over_time_chart(monthly_df, show_annotations=True)` → Revenue capture ratio trend
+- `lost_revenue_driver_chart(attribution_df)` → Waterfall chart of loss categories
+- `loss_treemap(attribution_df)` → Hierarchical treemap of revenue losses
+
+### Generation & Dispatch
+
+**Module:** `utils.metrics`
+- `standardize_dispatch_columns(dispatch_df)` → Normalize column names across data sources
+- `detect_5min_miss_points(dispatch_df, threshold_mw=5.0)` → Flag dispatch compliance failures
+
+**Module:** `utils.viz`
+- `generation_main_chart(dispatch_df, show_gap_area=True, show_annotations=True)` → Dispatch target vs actual with gap shading
+- `dispatch_gap_attribution_chart(dispatch_df, resolution='daily')` → Stacked bar of missed MWh by root cause system
+
+### Heat Rate & Efficiency
+
+**Module:** `utils.viz`
+- `heat_rate_trend_chart(heat_df, show_benchmark=True)` → NSHR over time with contractual benchmarks
+- `heat_rate_sync_chart(heat_df)` → Compare heat rate across multiple timeframes
+- `build_heat_rate_chart(heat_df, chart_type='trend')` → Unified heat rate visualization interface
+- `heat_rate_anomaly_table(heat_rate_daily_df, top_n=10)` → Top N worst heat rate days with context
+
+### Asset Ontology & Root Cause
+
+**Module:** `utils.ontology`
+- `build_pyvis_html(nodes_df, edges_df, events_df, wo_df)` → Interactive network graph
+- `get_node_inspector(selected_node, events_df, wo_df, sensor_df)` → Asset detail panel with linked events/WOs
+- `node_options(nodes_df)` → Get selectable node list for dropdown
+
+**Module:** `utils.viz`
+- `historian_overlay_chart(merged_df, signals=['tag1', 'tag2'])` → Multi-axis correlation plot for equipment sensors
+
+### Maintenance Criticality & AI
+
+**Module:** `utils.viz`
+- `maintenance_criticality_bubble_chart(df, color_mode='system')` → Asset prioritization matrix
+
+**Module:** `utils.chat`
+- `build_retrieval_index(docs_dir, extra_snippets)` → Index documents for RAG
+- `build_data_context_snippets(catalog, unit, start_dt, end_dt)` → Generate data context for LLM
+- `build_mock_response(question, context, kpis)` → Template-based chatbot (no API needed)
+- `call_openai_rag(question, context, kpis, model, api_key)` → Real LLM with retrieval augmentation
+- `generate_llm_insight(metric_name, value, trend, context)` → AI commentary on specific metrics
+- `generate_maintenance_criticality_insight(asset_data, events, kpis)` → Maintenance ROI recommendations
+- `generate_evidence_summary(events_df, wo_df, asset_id)` → Structured evidence report for asset
+
+### Data Utilities
+
+**Module:** `utils.data`
+- `load_data_catalog(data_dir)` → Load all CSV datasets into DataCatalog object
+- `filter_by_unit_and_time(df, unit, start_dt, end_dt)` → Apply unit + date filters
+- `available_units(catalog)` → Get list of units in dataset
+- `get_available_date_range(catalog)` → Get min/max timestamps across all data
+- `best_default_date_range(catalog)` → Smart default date range (last 12-24 months)
+- `downsample_for_plotting(df, max_points=5000)` → Reduce timeseries density for performance
+
+**Module:** `utils.matching`
+- `build_entity_catalog(asset_df, sensor_df, ontology_df)` → Create searchable entity index
+- `fuzzy_match(query, entity_catalog, threshold=0.8)` → Match user text to asset/tag names
+- `map_work_orders(wo_df, entity_catalog)` → Link work orders to assets via NLP
+- `compute_mapping_accuracy(mapped_wo_df, events_df)` → Validate WO-to-asset linkage quality
+
+### Correlation & Analysis
+
+**Module:** `utils.metrics`
+- `cached_correlations(dispatch_df, signals, method='pearson')` → Compute sensor-to-generation correlations
+- `correlation_explanation(corr_df)` → Generate natural language explanation of correlation results
+
+---
+
+## Key Talking Points (5-Min Version)
+
+1. **"Revenue capture ratio is the #1 KPI"** — Not uptime, but dollars per MW contracted vs delivered.
+
+2. **"Energy losses are the silent killer"** — 5% dispatch gap = $1.8M/year for a 660 MW plant in this demo.
+
+3. **"Boiler-side issues drive 40% of losses"** — Draft fans, not turbines, are the top revenue detractor.
+
+4. **"Unstable draft = perfect case study"** — Recurring failures, clear historian signatures, incomplete fixes, measurable ROI.
+
+5. **"AI ranks the backlog, not just monitoring"** — 200 open work orders → "Do these 3 first" based on $/year impact.
+
+6. **"This is decision support, not dashboarding"** — Alarms → Events → Dispatch gaps → Revenue loss → Work orders → ROI → Action.
+
+---
+
+## Handling Questions (Quick Answers)
 
 **Q: "Is this data real?"**  
-A: "This is synthetic demo data calibrated to real coal plant operating profiles. The patterns—draft instability, heat rate variance, dispatch gaps—are taken from actual case studies. For your facility, we'd ingest your historian, work orders, and PPA contract to build a live twin."
+A: "Synthetic demo data calibrated to real coal plant patterns. For production, we ingest your historian, WO system, and PPA contract to build a live twin. Deployment: 8-12 weeks."
 
-**Q: "How long does implementation take?"**  
-A: "Data mapping takes 4-8 weeks depending on historian accessibility and asset registry maturity. The AI models train in days once data is structured. Typical production deployment is 8-12 weeks from kickoff."
+**Q: "What if we lack sensor coverage?"**  
+A: "70% of insights come from 20% of tags: MW output, heat rate, major equipment status, event timestamps. We start lean and expand as value is proven."
 
-**Q: "What if we don't have boiler chemistry sensors or detailed tag-level data?"**  
-A: "The demo shows an idealized ontology. In practice, 70% of insights come from 20% of tags: MW output, heat rate, major equipment status (on/off), and event timestamps. We start there and expand coverage as value is proven."
+**Q: "Integration with SAP/Maximo?"**  
+A: "Yes. API integrations pull WO history for root cause validation and push prioritized recommendations as maintenance tasks."
 
-**Q: "Can this integrate with our existing maintenance system (SAP/Maximo)?"**  
-A: "Yes. Work order linkage is critical. We pull WO history to validate root cause hypotheses and push prioritized recommendations back as maintenance tasks. API integrations are standard."
-
-**Q: "What's the accuracy of the AI root cause predictions?"**  
-A: "For well-instrumented equipment (like ID fans with vibration + position sensors), we see 85-90% correct attribution. For under-sensored systems, we rely on event clustering and work order text mining—accuracy drops to 70-75%, but still actionable for prioritization."
+**Q: "AI accuracy?"**  
+A: "85-90% for well-instrumented equipment (like ID fans). 70-75% for under-sensored systems using event clustering + WO text mining. Still actionable for prioritization."
 
 ---
 
