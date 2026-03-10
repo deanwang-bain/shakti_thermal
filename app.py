@@ -227,56 +227,56 @@ def render_tab_mapping(
         # Legend
         st.markdown("**Node Type Legend**")
         legend_html = """
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 13px;">
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #CB2026; border-radius: 50%; display: inline-block;"></span>
-                <span>Plant</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #EA6A6E; border-radius: 50%; display: inline-block;"></span>
-                <span>Unit</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #F0A3A6; border-radius: 50%; display: inline-block;"></span>
-                <span>System</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #BBD7EE; border-radius: 50%; display: inline-block;"></span>
-                <span>Subsystem</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #92B7D5; border-radius: 50%; display: inline-block;"></span>
-                <span>Component</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #6B7280; border-radius: 50%; display: inline-block;"></span>
-                <span>Tag</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 14px; height: 14px; background: #9CA3AF; border-radius: 50%; display: inline-block;"></span>
-                <span>Other</span>
-            </div>
-        </div>
-        """
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 13px;">
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #CB2026; border-radius: 50%; display: inline-block;"></span>
+        <span>Plant</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #EA6A6E; border-radius: 50%; display: inline-block;"></span>
+        <span>Unit</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #F0A3A6; border-radius: 50%; display: inline-block;"></span>
+        <span>System</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #BBD7EE; border-radius: 50%; display: inline-block;"></span>
+        <span>Subsystem</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #92B7D5; border-radius: 50%; display: inline-block;"></span>
+        <span>Component</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #6B7280; border-radius: 50%; display: inline-block;"></span>
+        <span>Tag</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 14px; height: 14px; background: #9CA3AF; border-radius: 50%; display: inline-block;"></span>
+        <span>Other</span>
+    </div>
+</div>
+"""
         st.markdown(legend_html, unsafe_allow_html=True)
         
         st.markdown("**Edge Mapping Legend**")
         edge_legend_html = """
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 13px;">
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 20px; height: 3px; background: #2563EB; display: inline-block;"></span>
-                <span>Mapped by ID</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 20px; height: 3px; background: #F59E0B; display: inline-block;"></span>
-                <span>Mapped by Fuzzy Logic</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="width: 20px; height: 3px; background: #10B981; display: inline-block;"></span>
-                <span>Mapped by Timestamp</span>
-            </div>
-        </div>
-        """
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 13px;">
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 20px; height: 3px; background: #2563EB; display: inline-block;"></span>
+        <span>Mapped by ID</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 20px; height: 3px; background: #F59E0B; display: inline-block;"></span>
+        <span>Mapped by Fuzzy Logic</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span style="width: 20px; height: 3px; background: #10B981; display: inline-block;"></span>
+        <span>Mapped by Timestamp</span>
+    </div>
+</div>
+"""
         st.markdown(edge_legend_html, unsafe_allow_html=True)
 
     with right:
