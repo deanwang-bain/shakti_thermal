@@ -740,12 +740,12 @@ def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "sy
         impact_norm = plot_df["revenue_impact_usd"] / plot_df["revenue_impact_usd"].max() if plot_df["revenue_impact_usd"].max() > 0 else 0
         mci = (cost_norm + impact_norm) / 2
     
-    # Assign bands 1-5 using quintiles (5 = highest criticality)
+    # Assign bands A-E using quintiles (E = highest criticality)
     try:
         plot_df["criticality_band"] = pd.qcut(
             mci, 
             q=5, 
-            labels=["Band 1", "Band 2", "Band 3", "Band 4", "Band 5"],
+            labels=["A", "B", "C", "D", "E"],
             duplicates="drop"
         ).astype(str)
     except (ValueError, TypeError):
@@ -754,7 +754,7 @@ def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "sy
         plot_df["criticality_band"] = pd.cut(
             mci,
             bins=[0, 0.2*max_mci, 0.4*max_mci, 0.6*max_mci, 0.8*max_mci, max_mci+0.01],
-            labels=["Band 1", "Band 2", "Band 3", "Band 4", "Band 5"],
+            labels=["A", "B", "C", "D", "E"],
             include_lowest=True
         ).astype(str)
     
