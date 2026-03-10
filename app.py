@@ -1123,6 +1123,30 @@ def render_tab_maintenance_criticality(
         # Rank by score (descending)
         df_filtered["criticality_rank"] = df_filtered["criticality_score_2d"].rank(ascending=False, method="dense").astype(int)
         
+        # Compute criticality band (A = highest, E = lowest)
+        if "maintenance_criticality_index" in df_filtered.columns:
+            mci = pd.to_numeric(df_filtered["maintenance_criticality_index"], errors="coerce").fillna(0)
+        else:
+            # Use the 2D score as MCI
+            mci = df_filtered["criticality_score_2d"]
+        
+        try:
+            df_filtered["criticality_band"] = pd.qcut(
+                mci, 
+                q=5, 
+                labels=["E", "D", "C", "B", "A"],
+                duplicates="drop"
+            ).astype(str)
+        except (ValueError, TypeError):
+            # Fallback: if qcut fails, use simple value-based binning
+            max_mci = mci.max() if mci.max() > 0 else 1
+            df_filtered["criticality_band"] = pd.cut(
+                mci,
+                bins=[0, 0.2*max_mci, 0.4*max_mci, 0.6*max_mci, 0.8*max_mci, max_mci+0.01],
+                labels=["E", "D", "C", "B", "A"],
+                include_lowest=True
+            ).astype(str)
+        
         # Sort by rank and take top N
         df_filtered = df_filtered.sort_values("criticality_rank").head(top_n)
     else:
@@ -1219,7 +1243,7 @@ def render_tab_maintenance_criticality(
     st.markdown("#### 📋 Criticality Ranking")
     
     # Prepare display columns
-    display_cols = ["criticality_rank", "criticality_score_2d", "asset_path", "system", "subsystem",
+    display_cols = ["criticality_rank", "criticality_score_2d", "criticality_band", "asset_path", "system", "subsystem",
                     "revenue_impact_usd", "maintenance_cost_usd", "event_count", "top_root_cause_category"]
     display_cols = [c for c in display_cols if c in df_filtered.columns]
     
