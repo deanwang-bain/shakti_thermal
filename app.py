@@ -1243,7 +1243,7 @@ def render_tab_maintenance_criticality(
     st.markdown("#### 📋 Criticality Ranking")
     
     # Prepare display columns
-    display_cols = ["criticality_rank", "criticality_score_2d", "criticality_band", "asset_path", "system", "subsystem",
+    display_cols = ["criticality_band", "criticality_score_2d", "asset_path", "system", "subsystem",
                     "revenue_impact_usd", "maintenance_cost_usd", "event_count", "top_root_cause_category"]
     display_cols = [c for c in display_cols if c in df_filtered.columns]
     
