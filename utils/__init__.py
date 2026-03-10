@@ -1,1 +1,1 @@
-"""Utility package for the Plant Co demo app.""
+"""Utility package for the Plant Co demo app."""
