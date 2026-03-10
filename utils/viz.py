@@ -741,12 +741,22 @@ def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "sy
         mci = (cost_norm + impact_norm) / 2
     
     # Assign bands 1-5 using quintiles (5 = highest criticality)
-    plot_df["criticality_band"] = pd.qcut(
-        mci, 
-        q=5, 
-        labels=["Band 1", "Band 2", "Band 3", "Band 4", "Band 5"],
-        duplicates="drop"
-    ).astype(str)
+    try:
+        plot_df["criticality_band"] = pd.qcut(
+            mci, 
+            q=5, 
+            labels=["Band 1", "Band 2", "Band 3", "Band 4", "Band 5"],
+            duplicates="drop"
+        ).astype(str)
+    except (ValueError, TypeError):
+        # Fallback: if qcut fails, use simple value-based binning
+        max_mci = mci.max() if mci.max() > 0 else 1
+        plot_df["criticality_band"] = pd.cut(
+            mci,
+            bins=[0, 0.2*max_mci, 0.4*max_mci, 0.6*max_mci, 0.8*max_mci, max_mci+0.01],
+            labels=["Band 1", "Band 2", "Band 3", "Band 4", "Band 5"],
+            include_lowest=True
+        ).astype(str)
     
     # Determine color column
     if color_mode == "criticality_band":
