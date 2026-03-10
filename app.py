@@ -1149,7 +1149,8 @@ def render_tab_maintenance_criticality(
             • <strong>Bubble Size</strong>: Number of maintenance events<br>
             • <strong>X-axis</strong>: Maintenance cost (USD) — burden on maintenance resources<br>
             • <strong>Y-axis</strong>: Revenue impact (USD) — consequence of failures<br>
-            • <strong>Criticality Rank</strong>: Computed from BOTH cost + impact (2D scoring)
+            • <strong>Criticality Rank</strong>: Computed from BOTH cost + impact (2D scoring)<br>
+            • <strong>Criticality Bands</strong>: A (Highest) → B → C → D → E (Lowest)
         </div>
         """, unsafe_allow_html=True)
     
