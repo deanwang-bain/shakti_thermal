@@ -1,4 +1,4 @@
-# Shakti Thermal Station — Full Potential Demo Path v2
+# Plant Co — Full Potential Demo Path v2
 
 **Last Updated:** March 9, 2026
 
@@ -199,14 +199,23 @@ Visual output:
 
 **What to Show:**
 
-**Function:** `maintenance_criticality_bubble_chart(df, color_mode='system')`
+**Function:** `maintenance_criticality_bubble_chart(df, color_mode='criticality_band')`
 
 Visual output:
 - Bubble chart with:
-  - X-axis: Criticality score (0-1)
-  - Y-axis: Maintenance impact ($)
+  - X-axis: Maintenance cost ($)
+  - Y-axis: Revenue impact ($)
   - Bubble size: Failure frequency
-  - Color: System category
+  - Color: Criticality band (1-5, where 5 = highest priority)
+
+**Criticality Bands:**
+- **Band 5** - Highest criticality (top 20% of assets by combined cost+impact)
+- **Band 4** - High criticality
+- **Band 3** - Medium criticality
+- **Band 2** - Low criticality
+- **Band 1** - Lowest criticality (bottom 20%)
+
+Multiple components can appear in each band.
 
 Top priority assets highlighted:
 - **ID Fan A:** High criticality, high $/year impact

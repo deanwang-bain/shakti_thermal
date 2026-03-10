@@ -1,1 +1,1 @@
-"""Utility package for the Shakti Thermal Station demo app."""
+"""Utility package for the Plant Co demo app.""

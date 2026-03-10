@@ -1,4 +1,4 @@
-"""Shakti Thermal Station — Full Potential Streamlit Demo."""
+"""Plant Co — Full Potential Streamlit Demo.""
 
 from __future__ import annotations
 
@@ -41,6 +41,7 @@ from utils.ontology import build_pyvis_html, get_node_inspector, node_options
 from utils.sanity import run_startup_checks
 from utils.style import apply_bain_style, render_header, render_kpi_strip
 from utils.viz import (
+    build_heat_rate_chart,
     dispatch_gap_attribution_chart,
     generation_main_chart,
     heat_rate_anomaly_table,
@@ -887,181 +888,154 @@ def render_tab_heat_rate(
     start_dt: pd.Timestamp,
     end_dt: pd.Timestamp,
 ) -> None:
-    """New Heat Rate analysis tab with daily/monthly views and anomaly detection."""
-    heat_daily = filtered.get("heat_rate_daily", pd.DataFrame())
-    heat_monthly = filtered.get("heat_rate_monthly", pd.DataFrame())
-    events = filtered.get("events", pd.DataFrame())
-    
+    """Heat Rate analysis tab with hourly/daily/monthly views and gross heat rate calculation."""
     st.markdown("#### Heat Rate Analysis")
     
-    # Granularity toggle
-    ctrl_cols = st.columns([1, 1, 2])
+    # Granularity toggle with HOURLY as first option
+    ctrl_cols = st.columns([1, 1, 1, 1])
     with ctrl_cols[0]:
-        granularity = st.radio("Granularity", ["Daily", "Monthly"], horizontal=True, key="hr_granularity")
-    with ctrl_cols[1]:
-        highlight_anomalies = st.toggle("Highlight Anomalies", value=True, key="hr_anomalies")
+        granularity = st.radio("Granularity", ["Hourly", "Daily", "Monthly"], horizontal=True, key="hr_granularity")
     
-    # Select appropriate dataset
-    heat_df = heat_daily if granularity == "Daily" else heat_monthly
-    gran_str = "daily" if granularity == "Daily" else "monthly"
+    with ctrl_cols[1]:
+        # PPA reference input
+        ppa_ref_flat = st.number_input(
+            "PPA Reference (Btu/kWh)",
+            min_value=9000,
+            max_value=9500,
+            value=9300,
+            step=50,
+            key="hr_ppa_ref",
+        )
+    
+    with ctrl_cols[2]:
+        if granularity == "Daily":
+            highlight_anomalies = st.toggle("Highlight Anomalies", value=True, key="hr_anomalies")
+        else:
+            highlight_anomalies = False
+            st.write("")  # Spacer
+    
+    # Load appropriate dataset
+    if granularity == "Hourly":
+        heat_df = filtered.get("heat_rate", pd.DataFrame())  # heat_rate_hourly.csv
+        time_col = "timestamp"
+        gran_str = "hourly"
+    elif granularity == "Daily":
+        heat_df = filtered.get("heat_rate_daily", pd.DataFrame())
+        time_col = "date"
+        gran_str = "daily"
+    else:  # Monthly
+        heat_df = filtered.get("heat_rate_monthly", pd.DataFrame())
+        time_col = "month"
+        gran_str = "monthly"
     
     if heat_df.empty:
         st.warning(f"Heat rate {gran_str} data unavailable.")
         return
     
-    # Normalize time columns
-    time_col = "date" if granularity == "Daily" else "month"
+    # Normalize time column
     if time_col in heat_df.columns:
         heat_df[time_col] = pd.to_datetime(heat_df[time_col], errors="coerce", utc=True)
     
+    # Compute gross heat rate and auxiliary heat rate
+    gross_col = None
+    aux_col = None
+    can_compute_gross = False
+    
+    # Check if pre-computed columns exist
+    if "gross_heat_rate" in heat_df.columns and "auxiliary_heat_rate" in heat_df.columns:
+        gross_col = "gross_heat_rate"
+        aux_col = "auxiliary_heat_rate"
+        can_compute_gross = True
+    # Otherwise try to compute from raw data (hourly only)
+    elif granularity == "Hourly":
+        required_cols = ["aux_load_mw", "fuel_heat_input_mmbtu", "net_station_heat_rate"]
+        if all(col in heat_df.columns for col in required_cols):
+            # Compute auxiliary heat rate
+            heat_df["fuel_btu"] = heat_df["fuel_heat_input_mmbtu"] * 1_000_000
+            heat_df["net_kwh"] = heat_df["fuel_btu"] / heat_df["net_station_heat_rate"].replace(0, pd.NA)
+            heat_df["net_mw"] = heat_df["net_kwh"] / 1000.0  # 1-hour bucket
+            heat_df["aux_ratio"] = heat_df["aux_load_mw"] / heat_df["net_mw"].replace(0, pd.NA).clip(lower=1e-6)
+            heat_df["auxiliary_heat_rate"] = heat_df["net_station_heat_rate"] * heat_df["aux_ratio"]
+            heat_df["gross_heat_rate"] = heat_df["net_station_heat_rate"] + heat_df["auxiliary_heat_rate"]
+            
+            # Filter out unstable rows (very low generation)
+            stable_mask = (heat_df["net_mw"] > 50) & (heat_df["auxiliary_heat_rate"] < heat_df["net_station_heat_rate"] * 0.5)
+            heat_df.loc[~stable_mask, ["auxiliary_heat_rate", "gross_heat_rate"]] = pd.NA
+            
+            gross_col = "gross_heat_rate"
+            aux_col = "auxiliary_heat_rate"
+            can_compute_gross = True
+        else:
+            st.warning(f"⚠️ Cannot compute Gross Heat Rate: missing columns {[c for c in required_cols if c not in heat_df.columns]}")
+    # For Daily/Monthly, try simple estimation
+    elif "aux_load_mw" in heat_df.columns:
+        # Simple estimation for daily/monthly
+        TYPICAL_NET_MW = 500.0
+        heat_df["auxiliary_heat_rate"] = (heat_df["aux_load_mw"] / TYPICAL_NET_MW) * heat_df["net_station_heat_rate"]
+        heat_df["gross_heat_rate"] = heat_df["net_station_heat_rate"] + heat_df["auxiliary_heat_rate"]
+        gross_col = "gross_heat_rate"
+        aux_col = "auxiliary_heat_rate"
+        can_compute_gross = True
+        st.info("ℹ️ **Gross Heat Rate**: Estimated using auxiliary load (~500 MW net capacity assumption)")
+    
     # Compute summary KPIs
     avg_hr = heat_df.get("net_station_heat_rate", pd.Series(dtype=float)).mean()
-    avg_ref = heat_df.get("ppa_reference_heat_rate", pd.Series(dtype=float)).mean()
     avg_dev = heat_df.get("heat_rate_deviation_percent", pd.Series(dtype=float)).mean()
     total_fuel_impact = heat_df.get("fuel_cost_impact_usd", pd.Series(dtype=float)).sum()
+    avg_gross = heat_df[gross_col].mean() if can_compute_gross and gross_col in heat_df.columns else None
     
     kpi_cols = st.columns(4)
-    kpi_cols[0].metric("Avg NSHR", f"{avg_hr:.0f} Btu/kWh" if pd.notna(avg_hr) else "N/A")
-    kpi_cols[1].metric("Avg PPA Ref", f"{avg_ref:.0f} Btu/kWh" if pd.notna(avg_ref) else "N/A")
+    kpi_cols[0].metric("Avg Net HR", f"{avg_hr:.0f} Btu/kWh" if pd.notna(avg_hr) else "N/A")
+    kpi_cols[1].metric("Avg Gross HR", f"{avg_gross:.0f} Btu/kWh" if pd.notna(avg_gross) and avg_gross else "N/A")
     kpi_cols[2].metric("Avg Deviation", f"{avg_dev:.2f}%" if pd.notna(avg_dev) else "N/A")
     kpi_cols[3].metric("Total Fuel Impact", fmt_usd(total_fuel_impact))
     
     # Trend chart
     st.plotly_chart(
-        heat_rate_trend_chart(heat_df, granularity=gran_str, highlight_anomalies=highlight_anomalies),
+        build_heat_rate_chart(
+            heat_df,
+            x_col=time_col,
+            net_col="net_station_heat_rate",
+            ppa_flat_value=ppa_ref_flat,
+            gross_col=gross_col if can_compute_gross else None,
+            aux_col=aux_col if can_compute_gross else None,
+            highlight_anomalies=highlight_anomalies,
+        ),
         use_container_width=True,
     )
     
-    # LLM Insight Callout
-    st.markdown("#### 💡 AI Generated Insights")
-    with st.expander("View Heat Rate Optimization Analysis", expanded=False):
-        # Compute KPIs for LLM
-        attr = filtered.get("attribution", pd.DataFrame())
-        dispatch = filtered.get("dispatch", pd.DataFrame())
-        dispatch = standardize_dispatch_columns(dispatch)
+    # Data table (for hourly view, show sample; for daily/monthly, show all)
+    if granularity == "Hourly":
+        st.markdown("#### 📊 Hourly Data Sample (First 100 rows)")
+        display_cols = [time_col, "net_station_heat_rate", "gross_heat_rate", "auxiliary_heat_rate", 
+                       "aux_load_mw", "fuel_heat_input_mmbtu", "heat_rate_deviation_percent"]
+        display_cols = [c for c in display_cols if c in heat_df.columns]
         
-        dispatch_miss_mwh = float(pd.to_numeric(dispatch.get("delta_mwh", 0), errors="coerce").clip(lower=0).sum()) if not dispatch.empty else 0.0
+        table_df = heat_df[display_cols].head(100).copy()
+        if time_col in table_df.columns:
+            table_df[time_col] = pd.to_datetime(table_df[time_col]).dt.strftime("%Y-%m-%d %H:%M")
         
-        kpis = {
-            "dispatch_miss_mwh": dispatch_miss_mwh,
-            "rcr": 0.0,
-            "top_loss_driver": "Heat Rate",
-            "heat_rate_dev_pct": avg_dev if pd.notna(avg_dev) else 0.0,
-            "event_count": len(events) if not events.empty else 0,
-        }
+        st.dataframe(table_df, use_container_width=True, hide_index=True)
         
-        # Get mode from session state if exists
-        mode = "mock"
-        if "chat_mode" in st.session_state:
-            mode = "mock" if st.session_state.chat_mode == "Local NLP" else "real"
-        
-        insight = generate_llm_insight(
-            data_context=f"Heat rate trends and efficiency analysis over selected {granularity.lower()} period",
-            kpis=kpis,
-            mode=mode,
-        )
-        st.markdown(insight)
+        # Download full dataset
+        download_df = heat_df[display_cols].copy()
+        if time_col in download_df.columns:
+            download_df[time_col] = pd.to_datetime(download_df[time_col]).dt.strftime("%Y-%m-%d %H:%M:%S")
+        _download_csv(download_df, "📥 Download Full Hourly Data CSV", f"heat_rate_{gran_str}.csv")
     
-    # Top anomalies table (only for daily view)
-    if granularity == "Daily" and not heat_daily.empty:
-        st.markdown("#### Top Heat Rate Anomalies")
+    # Anomaly analysis (only for daily)
+    if granularity == "Daily" and "anomaly_flag" in heat_df.columns:
+        st.markdown("#### 🔍 Top Heat Rate Anomalies")
         
         top_n = st.slider("Top N anomalies", min_value=5, max_value=30, value=10, key="hr_top_n")
-        anomaly_table = heat_rate_anomaly_table(heat_daily, top_n=top_n)
+        anomaly_table = heat_rate_anomaly_table(heat_df, top_n=top_n)
         
         if anomaly_table.empty:
             st.info("No anomalies detected in selected period.")
         else:
             st.dataframe(anomaly_table, use_container_width=True, hide_index=True)
             _download_csv(anomaly_table, "Export anomalies CSV", "heat_rate_anomalies.csv")
-            
-            # Event correlation
-            st.markdown("#### Event Correlation Analysis")
-            st.caption("Events occurring within ±24 hours of heat rate anomalies")
-            
-            if not events.empty and "start_time" in events.columns and not anomaly_table.empty and "date" in anomaly_table.columns:
-                # Normalize event timestamps
-                events_corr = events.copy()
-                events_corr["start_time"] = pd.to_datetime(events_corr["start_time"], errors="coerce", utc=True)
-                
-                # Find events near anomaly dates
-                correlated_events = []
-                for _, anomaly_row in anomaly_table.iterrows():
-                    anomaly_date = pd.to_datetime(anomaly_row["date"])
-                    if pd.isna(anomaly_date):
-                        continue
-                    
-                    # Ensure timezone consistency (localize to UTC if naive)
-                    if anomaly_date.tzinfo is None:
-                        anomaly_date = anomaly_date.tz_localize("UTC")
-                    
-                    # Find events within ±24 hours
-                    window_start = anomaly_date - pd.Timedelta(hours=24)
-                    window_end = anomaly_date + pd.Timedelta(hours=24)
-                    
-                    nearby = events_corr[
-                        (events_corr["start_time"] >= window_start) & 
-                        (events_corr["start_time"] <= window_end)
-                    ]
-                    
-                    for _, event_row in nearby.iterrows():
-                        correlated_events.append({
-                            "anomaly_date": anomaly_date.date(),
-                            "event_id": event_row.get("event_id", "N/A"),
-                            "event_type": event_row.get("type", "N/A"),
-                            "event_time": event_row.get("start_time"),
-                            "description": event_row.get("description", "N/A")[:80],
-                            "linked_asset": event_row.get("linked_asset_id", "N/A"),
-                        })
-                
-                if correlated_events:
-                    corr_df = pd.DataFrame(correlated_events)
-                    st.dataframe(corr_df.head(20), use_container_width=True, hide_index=True)
-                    
-                    # Try to map events to system/subsystem using asset hierarchy
-                    st.markdown("##### System/Subsystem Breakdown")
-                    asset_df = catalog.tables.get("asset_hierarchy", pd.DataFrame())
-                    
-                    if not asset_df.empty and "asset_id" in asset_df.columns:
-                        # Determine which columns are available
-                        merge_cols = ["asset_id"]
-                        display_cols = []
-                        
-                        if "system" in asset_df.columns:
-                            merge_cols.append("system")
-                            display_cols.append("system")
-                        if "subsystem" in asset_df.columns:
-                            merge_cols.append("subsystem")
-                            display_cols.append("subsystem")
-                        
-                        if display_cols:
-                            # Merge to get system/subsystem info
-                            merged = corr_df.merge(
-                                asset_df[merge_cols],
-                                left_on="linked_asset",
-                                right_on="asset_id",
-                                how="left"
-                            )
-                            
-                            # Show breakdown by available hierarchy
-                            primary_col = display_cols[0]  # Use first available (system or subsystem)
-                            if primary_col in merged.columns:
-                                col_counts = merged[primary_col].value_counts()
-                                if not col_counts.empty:
-                                    st.bar_chart(col_counts)
-                                    st.caption(f"Most affected {primary_col}: {col_counts.index[0]}")
-                                else:
-                                    st.info("No hierarchy mapping available for correlated events.")
-                            else:
-                                st.info("No hierarchy mapping available for correlated events.")
-                        else:
-                            st.info("Asset hierarchy does not contain system/subsystem columns.")
-                    else:
-                        st.info("Asset hierarchy unavailable for event mapping.")
-                else:
-                    st.info("No events found within ±24 hours of detected anomalies.")
-            else:
-                st.info("Event correlation unavailable (missing event timestamps or anomaly data).")
+
 
 
 def render_tab_maintenance_criticality(
@@ -1070,12 +1044,11 @@ def render_tab_maintenance_criticality(
     unit: str,
     glossary: dict[str, str],
 ) -> None:
-    """Maintenance Criticality tab with bubble chart and AI insights."""
+    """Maintenance Criticality tab with enhanced 2D ranking and hierarchy support."""
     df = filtered.get("maintenance_crit", pd.DataFrame())
-    ai_df = catalog.tables.get("maintenance_crit_ai", pd.DataFrame())  # Use unfiltered for mock insights
+    ai_df = catalog.tables.get("maintenance_crit_ai", pd.DataFrame())
     ev_df = filtered.get("maintenance_event_impacts", pd.DataFrame())
     work_orders = filtered.get("work_orders", pd.DataFrame())
-    events = filtered.get("events", pd.DataFrame())
     
     if df.empty:
         st.warning("Maintenance criticality data unavailable.")
@@ -1083,42 +1056,87 @@ def render_tab_maintenance_criticality(
     
     st.markdown("#### Maintenance Criticality Mapping")
     
-    # Controls
-    ctrl_cols = st.columns([1, 1, 1, 1])
+    # Controls row 1: Level, System, Subsystem
+    ctrl_row1 = st.columns([1, 1.2, 1.2, 1])
     
-    with ctrl_cols[0]:
-        level_options = ["Unit", "System", "Subsystem", "Component"]
-        level = st.selectbox("Hierarchy Level", level_options, index=2, key="maint_level")
+    with ctrl_row1[0]:
+        # Hierarchy level filter
+        level_options = ["All Levels"] + sorted(df["level"].dropna().unique().tolist()) if "level" in df.columns else ["All Levels"]
+        selected_level = st.selectbox("Hierarchy Level", level_options, key="maint_level")
     
-    with ctrl_cols[1]:
-        color_options = ["system", "criticality_quadrant", "level"]
-        # Filter to available columns
-        color_options_avail = [c for c in color_options if c in df.columns]
+    with ctrl_row1[1]:
+        # System filter (optional)
+        system_options = ["All Systems"] + sorted(df["system"].dropna().unique().tolist()) if "system" in df.columns else ["All Systems"]
+        selected_system = st.selectbox("System", system_options, key="maint_system")
+    
+    with ctrl_row1[2]:
+        # Subsystem filter (optional - depends on system selection)
+        if selected_system != "All Systems" and "subsystem" in df.columns:
+            subsystem_df = df[df["system"] == selected_system] if selected_system != "All Systems" else df
+            subsystem_options = ["All Subsystems"] + sorted(subsystem_df["subsystem"].dropna().unique().tolist())
+        else:
+            subsystem_options = ["All Subsystems"]
+        selected_subsystem = st.selectbox("Subsystem", subsystem_options, key="maint_subsystem")
+    
+    # Controls row 2: Color, Top N, Min Events
+    ctrl_row2 = st.columns([1, 1, 1, 1])
+    
+    with ctrl_row2[0]:
+        color_options = ["criticality_band", "system", "criticality_quadrant", "level"]
+        color_options_avail = [c for c in color_options if c in df.columns or c == "criticality_band"]
         if not color_options_avail:
-            color_options_avail = ["system"]  # fallback
+            color_options_avail = ["criticality_band"]
         color_mode = st.selectbox("Color By", color_options_avail, key="maint_color")
     
-    with ctrl_cols[2]:
-        min_events = st.slider("Min Event Count", min_value=0, max_value=20, value=0, key="maint_min_events")
+    with ctrl_row2[1]:
+        top_n = st.slider("Top N Assets", min_value=10, max_value=100, value=25, key="maint_top_n")
     
-    with ctrl_cols[3]:
-        top_n = st.slider("Top N Assets", min_value=10, max_value=100, value=50, key="maint_top_n")
+    with ctrl_row2[2]:
+        min_events = st.slider("Min Events", min_value=0, max_value=20, value=0, key="maint_min_events")
     
     # Filter data
     df_filtered = df.copy()
     
-    # Filter by level
-    if "level" in df_filtered.columns:
-        df_filtered = df_filtered[df_filtered["level"].astype(str) == level]
+    # Apply level filter
+    if selected_level != "All Levels" and "level" in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered["level"] == selected_level]
     
-    # Filter by min events
+    # Apply system filter
+    if selected_system != "All Systems" and "system" in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered["system"] == selected_system]
+    
+    # Apply subsystem filter
+    if selected_subsystem != "All Subsystems" and "subsystem" in df_filtered.columns:
+        df_filtered = df_filtered[df_filtered["subsystem"] == selected_subsystem]
+    
+    # Apply min events filter
     if "event_count" in df_filtered.columns:
         df_filtered = df_filtered[pd.to_numeric(df_filtered["event_count"], errors="coerce").fillna(0) >= min_events]
     
-    # Sort by criticality and take top N
-    if "maintenance_criticality_index" in df_filtered.columns:
-        df_filtered = df_filtered.sort_values("maintenance_criticality_index", ascending=False).head(top_n)
+    # Compute 2D criticality score and rank
+    if not df_filtered.empty and "maintenance_cost_usd" in df_filtered.columns and "revenue_impact_usd" in df_filtered.columns:
+        import numpy as np
+        
+        # Log transform for wide ranges
+        x = np.log1p(pd.to_numeric(df_filtered["maintenance_cost_usd"], errors="coerce").fillna(0))
+        y = np.log1p(pd.to_numeric(df_filtered["revenue_impact_usd"], errors="coerce").fillna(0))
+        
+        # Normalize
+        x_min, x_max = x.min(), x.max()
+        y_min, y_max = y.min(), y.max()
+        x_norm = (x - x_min) / (x_max - x_min + 1e-9)
+        y_norm = (y - y_min) / (y_max - y_min + 1e-9)
+        
+        # 2D score: sqrt((x^2 + y^2)/2) scaled to 0-100
+        df_filtered["criticality_score_2d"] = 100 * np.sqrt((x_norm**2 + y_norm**2) / 2)
+        
+        # Rank by score (descending)
+        df_filtered["criticality_rank"] = df_filtered["criticality_score_2d"].rank(ascending=False, method="dense").astype(int)
+        
+        # Sort by rank and take top N
+        df_filtered = df_filtered.sort_values("criticality_rank").head(top_n)
     else:
+        # Fallback if no cost/impact data
         df_filtered = df_filtered.head(top_n)
     
     if df_filtered.empty:
@@ -1134,14 +1152,14 @@ def render_tab_maintenance_criticality(
             use_container_width=True,
         )
         
-        # Legend for bubble sizes
+        # Legend
         st.markdown("""
         <div style="margin-top: -10px; padding: 8px 12px; background-color: #F9FAFB; border-radius: 6px; font-size: 13px;">
             <strong>📊 Chart Legend:</strong><br>
             • <strong>Bubble Size</strong>: Number of maintenance events<br>
-            • <strong>X-axis</strong>: Total maintenance cost (USD)<br>
-            • <strong>Y-axis</strong>: Total revenue impact (USD)<br>
-            • <strong>Quadrant Lines</strong>: Median cost & impact (dotted lines)
+            • <strong>X-axis</strong>: Maintenance cost (USD) — burden on maintenance resources<br>
+            • <strong>Y-axis</strong>: Revenue impact (USD) — consequence of failures<br>
+            • <strong>Criticality Rank</strong>: Computed from BOTH cost + impact (2D scoring)
         </div>
         """, unsafe_allow_html=True)
     
@@ -1161,24 +1179,26 @@ def render_tab_maintenance_criticality(
             asset_row = df_filtered[df_filtered["asset_path"] == selected_asset_path].iloc[0]
             asset_id = str(asset_row.get("asset_id", ""))
             
+            # Display rank and score
+            rank = asset_row.get("criticality_rank", "N/A")
+            score = asset_row.get("criticality_score_2d", 0)
+            
+            st.metric(
+                "Criticality Rank",
+                f"#{rank}" if pd.notna(rank) else "N/A",
+                f"Score: {score:.1f}/100" if pd.notna(score) else "",
+            )
+            
             # Generate insight button
-            if st.button("🔍 Generate Insight", key="maint_generate_insight"):
+            if st.button("🔍 Generate Detailed Analysis", key="maint_generate_insight"):
                 with st.spinner("Generating maintenance criticality analysis..."):
-                    # Filter evidence to selected asset
+                    # Get related events
                     related_events = ev_df[ev_df.get("asset_id", "").astype(str) == asset_id] if not ev_df.empty and "asset_id" in ev_df.columns else pd.DataFrame()
                     
-                    # Get related work orders by asset_id or linked events
+                    # Get related work orders
                     related_wos = pd.DataFrame()
-                    if not work_orders.empty:
-                        if "standard_asset_id_truth" in work_orders.columns:
-                            related_wos = work_orders[work_orders["standard_asset_id_truth"].astype(str) == asset_id]
-                        
-                        # Also try by linked events
-                        if not related_events.empty and "event_id" in related_events.columns:
-                            event_ids = related_events["event_id"].dropna().astype(str).unique().tolist()
-                            if "linked_event_id" in work_orders.columns:
-                                wo_by_event = work_orders[work_orders["linked_event_id"].astype(str).isin(event_ids)]
-                                related_wos = pd.concat([related_wos, wo_by_event]).drop_duplicates()
+                    if not work_orders.empty and "standard_asset_id_truth" in work_orders.columns:
+                        related_wos = work_orders[work_orders["standard_asset_id_truth"].astype(str) == asset_id]
                     
                     # Get mode from session state
                     mode = "mock"
@@ -1193,24 +1213,23 @@ def render_tab_maintenance_criticality(
                         mode=mode,
                     )
                     
-                    # Store in session state
                     st.session_state[f"maint_insight_{asset_id}"] = insight
             
-            # Display insight if generated
+            # Display insight
             insight_key = f"maint_insight_{asset_id}"
             if insight_key in st.session_state:
                 st.markdown(st.session_state[insight_key])
             else:
-                st.info("Click '🔍 Generate Insight' to analyze this asset's maintenance criticality.")
+                st.info("Click '🔍 Generate Detailed Analysis' to analyze this asset's maintenance criticality.")
         else:
-            st.info("Select an asset from the list above to view detailed AI analysis.")
+            st.info("Select an asset from the list above for detailed AI analysis.")
     
     # Ranked table below
     st.markdown("#### 📋 Criticality Ranking")
     
     # Prepare display columns
-    display_cols = ["asset_path", "revenue_impact_usd", "maintenance_cost_usd", "event_count", 
-                    "maintenance_criticality_index", "top_root_cause_category"]
+    display_cols = ["criticality_rank", "criticality_score_2d", "asset_path", "system", "subsystem",
+                    "revenue_impact_usd", "maintenance_cost_usd", "event_count", "top_root_cause_category"]
     display_cols = [c for c in display_cols if c in df_filtered.columns]
     
     if display_cols:
@@ -1221,27 +1240,27 @@ def render_tab_maintenance_criticality(
             if col in table_df.columns:
                 table_df[col] = table_df[col].apply(lambda x: f"${x:,.0f}" if pd.notna(x) else "-")
         
-        if "maintenance_criticality_index" in table_df.columns:
-            table_df["maintenance_criticality_index"] = table_df["maintenance_criticality_index"].round(2)
+        if "criticality_score_2d" in table_df.columns:
+            table_df["criticality_score_2d"] = table_df["criticality_score_2d"].round(1)
         
         st.dataframe(table_df, use_container_width=True, hide_index=True)
         
-        # Download button
-        _download_csv(df_filtered[display_cols], "Export criticality ranking CSV", "maintenance_criticality_ranking.csv")
+        # Download
+        _download_csv(df_filtered[display_cols], "📥 Export Ranking CSV", "maintenance_criticality_ranking.csv")
     else:
         st.info("No data columns available for display.")
     
-    # Drilldown evidence table
+    # Evidence drilldown (only if asset selected)
     if selected_asset_path:
         st.markdown("---")
         st.markdown("#### 🔍 Evidence Drilldown")
         
+        asset_row = df_filtered[df_filtered["asset_path"] == selected_asset_path].iloc[0]
+        asset_id = str(asset_row.get("asset_id", ""))
+        
         ev_tabs = st.tabs(["Event Impacts", "Work Orders"])
         
         with ev_tabs[0]:
-            asset_row = df_filtered[df_filtered["asset_path"] == selected_asset_path].iloc[0]
-            asset_id = str(asset_row.get("asset_id", ""))
-            
             related_events = ev_df[ev_df.get("asset_id", "").astype(str) == asset_id] if not ev_df.empty and "asset_id" in ev_df.columns else pd.DataFrame()
             
             st.write(f"**Event Impacts for {selected_asset_path}** ({len(related_events)})")
@@ -1253,18 +1272,9 @@ def render_tab_maintenance_criticality(
                 st.dataframe(related_events[ev_cols].head(10), use_container_width=True, hide_index=True)
         
         with ev_tabs[1]:
-            # Get related work orders
             related_wos = pd.DataFrame()
-            if not work_orders.empty:
-                if "standard_asset_id_truth" in work_orders.columns:
-                    related_wos = work_orders[work_orders["standard_asset_id_truth"].astype(str) == asset_id]
-                
-                # Also try by linked events
-                if not related_events.empty and "event_id" in related_events.columns:
-                    event_ids = related_events["event_id"].dropna().astype(str).unique().tolist()
-                    if "linked_event_id" in work_orders.columns:
-                        wo_by_event = work_orders[work_orders["linked_event_id"].astype(str).isin(event_ids)]
-                        related_wos = pd.concat([related_wos, wo_by_event]).drop_duplicates()
+            if not work_orders.empty and "standard_asset_id_truth" in work_orders.columns:
+                related_wos = work_orders[work_orders["standard_asset_id_truth"].astype(str) == asset_id]
             
             st.write(f"**Work Orders** ({len(related_wos)})")
             if related_wos.empty:
@@ -1275,8 +1285,9 @@ def render_tab_maintenance_criticality(
                 st.dataframe(related_wos[wo_cols].head(10), use_container_width=True, hide_index=True)
 
 
+
 def main() -> None:
-    st.set_page_config(page_title="Shakti Thermal Station — Full Potential Demo", layout="wide")
+    st.set_page_config(page_title="Plant Co — Full Potential Demo", layout="wide")
     apply_bain_style()
 
     root = Path(__file__).resolve().parent

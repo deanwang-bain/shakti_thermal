@@ -1,8 +1,8 @@
-## Shakti Thermal Station — 90-Second Demo Script
+## Plant Co — 90-Second Demo Script
 
 **Headline:** Revenue Capture Ratio is our north-star metric for value realization.
 
-"We built this full-potential cockpit for Shakti Thermal Station to answer one question fast: **where are we losing value, and what actions recover it?**
+"We built this full-potential cockpit for Plant Co to answer one question fast: **where are we losing value, and what actions recover it?**
 
 **Tab 1 — Data Mapping & Ontology:**
 Here, AI-style fuzzy mapping turns messy plant language into a clean ontology. We connect assets, tags, events, and work orders into one graph. On the right, we inspect any node, see linked tags and recent events, and audit mapping quality with accuracy metrics and export.
@@ -17,10 +17,10 @@ Now we translate operations into economics. At the top is **Revenue Capture Rati
 Finally, the chatbot synthesizes docs and live KPI context into action-oriented recommendations with evidence citations. In mock mode it is always available; with an API key, we can switch to LLM RAG mode.
 
 In short: one workflow from messy data to root-cause diagnosis to prioritized actions—with RCR as the headline outcome." 
-# 90-second Executive Demo Script — Shakti Thermal Station (Synthetic)
+# 90-second Executive Demo Script — Plant Co (Synthetic)
 
 **Context (5–10s)**
-“Shakti Thermal Station is a fictional 2×660 MW coal plant. This demo shows how an AI ‘Full Potential’ platform finds lost revenue and operational actions using synthetic, internally consistent data.”
+"Plant Co is a fictional 2×660 MW coal plant. This demo shows how an AI 'Full Potential' platform finds lost revenue and operational actions using synthetic, internally consistent data."
 
 ## Tab 1 — Data Mapping (15–25s)
 “First, the ontology: Plant→Unit→System→Subsystem→Component→Sensor. Maintenance and operations text is messy—‘IDF-A’, ‘draft fan #1’, ‘APH’. The GenAI fuzzy mapper links these raw terms to canonical assets and sensors, with hidden ground truth for evaluation. From a work order or alarm, we can trace to the affected component and the event window.”

@@ -10,7 +10,7 @@ from utils.sanity import run_startup_checks
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Validate Shakti app datasets and sanity checks")
+    parser = argparse.ArgumentParser(description="Validate Plant Co app datasets and sanity checks")
     parser.add_argument("--root", type=str, default=".", help="Project root path")
     args = parser.parse_args()
 

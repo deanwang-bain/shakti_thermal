@@ -86,7 +86,7 @@ def render_header(assets_dir: Path) -> None:
         f"""
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <div>
-                <h2 style="margin:0;">Shakti Thermal Station — Full Potential Demo</h2>
+                <h2 style="margin:0;">Plant Co — Full Potential Demo</h2>
             </div>
             <div>{logo_html}</div>
         </div>

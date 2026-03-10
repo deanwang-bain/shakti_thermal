@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validation for Shakti Thermal Station — Synthetic Full Potential Demo Dataset
+Validation for Plant Co — Synthetic Full Potential Demo Dataset
 
 Checks required:
 - Referential integrity (IDs across assets/sensors/events/text)

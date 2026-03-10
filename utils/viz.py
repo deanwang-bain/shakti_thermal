@@ -342,7 +342,8 @@ def rcr_over_time_chart(monthly_df: pd.DataFrame, show_annotations: bool = True)
                 font=dict(color="#2563EB", size=11),
             )
 
-    fig.update_layout(height=320, yaxis_title="RCR (%)", xaxis_title="Month", margin=dict(l=20, r=20, t=35, b=20))
+    fig.update_layout(height=320, yaxis_title="RCR (%)", xaxis_title="Month", margin=dict(l=20, r=20, t=35, b=60),
+                      legend=dict(orientation="h", yanchor="top", y=-0.15, xanchor="center", x=0.5))
     return fig
 
 
@@ -356,7 +357,8 @@ def lost_revenue_driver_chart(attribution_df: pd.DataFrame) -> go.Figure:
     grouped = df.groupby(["date", "loss_category"], dropna=False)["loss_usd"].sum().reset_index()
     grouped["date"] = pd.to_datetime(grouped["date"], errors="coerce", utc=True)
     fig = px.bar(grouped, x="date", y="loss_usd", color="loss_category", barmode="stack")
-    fig.update_layout(height=320, margin=dict(l=20, r=20, t=25, b=20), yaxis_title="Loss (USD)")
+    fig.update_layout(height=320, margin=dict(l=20, r=20, t=25, b=60), yaxis_title="Loss (USD)",
+                      legend=dict(orientation="h", yanchor="top", y=-0.15, xanchor="center", x=0.5))
     return fig
 
 
@@ -479,7 +481,8 @@ def revenue_absolute_chart(
         height=320,
         yaxis_title="Revenue (USD)",
         xaxis_title="Month" if granularity == "monthly" else "Date",
-        margin=dict(l=20, r=20, t=35, b=20),
+        margin=dict(l=20, r=20, t=35, b=60),
+        legend=dict(orientation="h", yanchor="top", y=-0.2, xanchor="center", x=0.5),
     )
     return fig
 
@@ -489,7 +492,7 @@ def heat_rate_trend_chart(
     granularity: str = "daily",
     highlight_anomalies: bool = True,
 ) -> go.Figure:
-    """Heat rate trend chart with anomaly highlighting."""
+    """Heat rate trend chart with anomaly highlighting, PPA reference, and gross heat rate."""
     fig = go.Figure()
     if heat_rate_df.empty:
         return fig
@@ -501,7 +504,64 @@ def heat_rate_trend_chart(
         df[time_col] = pd.to_datetime(df[time_col], errors="coerce", utc=True)
         df = df.sort_values(time_col)
     
-    # Add actual heat rate
+    # Calculate gross heat rate (estimated auxiliary heat rate penalty)
+    # Assuming typical net generation ~500 MW for auxiliary heat rate impact calculation
+    TYPICAL_NET_MW = 500.0
+    has_aux_data = "aux_load_mw" in df.columns
+    
+    if has_aux_data:
+        # Auxiliary heat rate penalty = (aux_load / net_gen) * net_heat_rate
+        # Approximation: aux_heat_penalty ≈ (aux_load_mw / TYPICAL_NET_MW) * net_heat_rate
+        aux_heat_penalty = (df["aux_load_mw"] / TYPICAL_NET_MW) * df["net_station_heat_rate"]
+        df["gross_heat_rate_est"] = df["net_station_heat_rate"] + aux_heat_penalty
+    
+    # Add flat PPA reference line (around 9-9.5k)
+    PPA_REFERENCE_FLAT = 9250  # Btu/kWh - typical contractual heat rate guarantee
+    
+    fig.add_trace(
+        go.Scatter(
+            x=df[time_col],
+            y=[PPA_REFERENCE_FLAT] * len(df),
+            mode="lines",
+            name="PPA Guarantee (9,250)",
+            line=dict(color="#9CA3AF", width=2, dash="dot"),
+            hovertemplate="PPA Guarantee: 9,250 Btu/kWh<extra></extra>",
+            yaxis="y",
+        )
+    )
+    
+    # Add gross heat rate (if we have aux data)
+    if has_aux_data:
+        # Add filled area between gross and net to highlight auxiliary impact
+        fig.add_trace(
+            go.Scatter(
+                x=df[time_col],
+                y=df["gross_heat_rate_est"],
+                mode="lines",
+                name="Gross Heat Rate (Est.)",
+                line=dict(color="#F97316", width=2, dash="dash"),
+                fill=None,
+                yaxis="y",
+            )
+        )
+        
+        # Add fill area for auxiliary penalty
+        fig.add_trace(
+            go.Scatter(
+                x=df[time_col],
+                y=df["net_station_heat_rate"],
+                mode="lines",
+                name="Auxiliary Penalty",
+                line=dict(color="#CB2026", width=0),
+                fill="tonexty",
+                fillcolor="rgba(249, 115, 22, 0.2)",
+                hoverinfo="skip",
+                showlegend=True,
+                yaxis="y",
+            )
+        )
+    
+    # Add actual net heat rate
     fig.add_trace(
         go.Scatter(
             x=df[time_col],
@@ -510,18 +570,23 @@ def heat_rate_trend_chart(
             name="Net Station Heat Rate",
             line=dict(color="#CB2026", width=2),
             marker=dict(size=4),
+            yaxis="y",
         )
     )
     
-    # Add PPA reference
-    if "ppa_reference_heat_rate" in df.columns:
+    # Add auxiliary heat rate penalty on secondary y-axis (if available)
+    # This shows the actual heat rate penalty in Btu/kWh that creates the gap
+    if has_aux_data:
         fig.add_trace(
             go.Scatter(
                 x=df[time_col],
-                y=df.get("ppa_reference_heat_rate"),
+                y=df["gross_heat_rate_est"] - df["net_station_heat_rate"],
                 mode="lines",
-                name="PPA Reference",
-                line=dict(color="#6B7280", width=2, dash="dash"),
+                name="Auxiliary Heat Rate Penalty",
+                line=dict(color="#8B5CF6", width=2),
+                yaxis="y2",
+                hovertemplate="Aux Penalty: %{y:.0f} Btu/kWh<br>Aux Load: ~%{customdata:.1f} MW<extra></extra>",
+                customdata=df["aux_load_mw"],
             )
         )
     
@@ -537,6 +602,7 @@ def heat_rate_trend_chart(
                         mode="markers",
                         name="Anomaly (Z-score)",
                         marker=dict(color="#F59E0B", size=10, symbol="diamond"),
+                        yaxis="y",
                     )
                 )
         
@@ -550,16 +616,46 @@ def heat_rate_trend_chart(
                         mode="markers",
                         name="Sudden Change",
                         marker=dict(color="#DC2626", size=10, symbol="x"),
+                        yaxis="y",
                     )
                 )
     
-    fig.update_layout(
-        height=360,
-        yaxis_title="Heat Rate (Btu/kWh)",
-        xaxis_title="Month" if granularity == "monthly" else "Date",
-        margin=dict(l=20, r=20, t=25, b=20),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
-    )
+    # Configure layout with dual y-axes
+    layout_config = {
+        "height": 360,
+        "xaxis_title": "Month" if granularity == "monthly" else "Date",
+        "margin": dict(l=20, r=100, t=25, b=20),
+        "legend": dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+        "yaxis": dict(
+            title="Heat Rate (Btu/kWh)",
+            side="left",
+        ),
+    }
+    
+    # Add secondary y-axis only if we have aux data
+    # Scale it to match the primary axis so the purple line height = gap size
+    if has_aux_data:
+        # Get the y-axis range of the main heat rate data
+        y_min = df["net_station_heat_rate"].min() * 0.95
+        y_max = df["gross_heat_rate_est"].max() * 1.02 if "gross_heat_rate_est" in df.columns else df["net_station_heat_rate"].max() * 1.05
+        y_range = y_max - y_min
+        
+        # Set secondary axis range to match the main axis
+        # This makes the aux penalty line height equal to the gap size
+        layout_config["yaxis"] = dict(
+            title="Heat Rate (Btu/kWh)",
+            side="left",
+            range=[y_min, y_max],
+        )
+        layout_config["yaxis2"] = dict(
+            title="Aux Penalty (Btu/kWh)",
+            overlaying="y",
+            side="right",
+            showgrid=False,
+            range=[0, y_range * 0.3],  # Scale to show penalty variation clearly
+        )
+    
+    fig.update_layout(**layout_config)
     return fig
 
 
@@ -612,7 +708,7 @@ def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "sy
     
     Args:
         df: DataFrame with columns: maintenance_cost_usd, revenue_impact_usd, event_count, asset_path, etc.
-        color_mode: 'system', 'criticality_quadrant', or 'level'
+        color_mode: 'system', 'criticality_quadrant', 'level', or 'criticality_band'
     """
     if df.empty:
         fig = go.Figure()
@@ -634,11 +730,32 @@ def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "sy
         if col in plot_df.columns:
             plot_df[col] = pd.to_numeric(plot_df[col], errors="coerce").fillna(0)
     
+    # Calculate criticality band (1-5) based on combined cost and impact
+    if "maintenance_criticality_index" in plot_df.columns:
+        # Use existing MCI if available
+        mci = pd.to_numeric(plot_df["maintenance_criticality_index"], errors="coerce").fillna(0)
+    else:
+        # Calculate composite score: normalize cost and impact, then average
+        cost_norm = plot_df["maintenance_cost_usd"] / plot_df["maintenance_cost_usd"].max() if plot_df["maintenance_cost_usd"].max() > 0 else 0
+        impact_norm = plot_df["revenue_impact_usd"] / plot_df["revenue_impact_usd"].max() if plot_df["revenue_impact_usd"].max() > 0 else 0
+        mci = (cost_norm + impact_norm) / 2
+    
+    # Assign bands 1-5 using quintiles (5 = highest criticality)
+    plot_df["criticality_band"] = pd.qcut(
+        mci, 
+        q=5, 
+        labels=["Band 1", "Band 2", "Band 3", "Band 4", "Band 5"],
+        duplicates="drop"
+    ).astype(str)
+    
     # Determine color column
-    color_col = color_mode if color_mode in plot_df.columns else "system"
+    if color_mode == "criticality_band":
+        color_col = "criticality_band"
+    else:
+        color_col = color_mode if color_mode in plot_df.columns else "system"
     
     # Create hover data
-    hover_cols = ["maintenance_criticality_index", "work_order_count", "top_root_cause_category"]
+    hover_cols = ["maintenance_criticality_index", "work_order_count", "top_root_cause_category", "criticality_band"]
     hover_data = {col: True for col in hover_cols if col in plot_df.columns}
     
     # Create scatter plot
@@ -686,4 +803,170 @@ def maintenance_criticality_bubble_chart(df: pd.DataFrame, color_mode: str = "sy
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
     )
     
+    return fig
+
+
+def build_heat_rate_chart(
+    df: pd.DataFrame,
+    x_col: str,
+    net_col: str = "net_station_heat_rate",
+    ppa_flat_value: float = 9300.0,
+    gross_col: str | None = None,
+    aux_col: str | None = None,
+    highlight_anomalies: bool = False,
+) -> go.Figure:
+    """Build heat rate chart with net, gross (if available), and flat PPA reference.
+    
+    Args:
+        df: DataFrame with heat rate data
+        x_col: Column name for x-axis (timestamp, date, or month)
+        net_col: Column name for net station heat rate
+        ppa_flat_value: Flat PPA reference value (Btu/kWh)
+        gross_col: Optional column name for gross heat rate (pre-computed)
+        aux_col: Optional column name for auxiliary heat rate (pre-computed)
+        highlight_anomalies: Whether to highlight anomalies (for daily data)
+    
+    Returns:
+        Plotly figure
+    """
+    fig = go.Figure()
+    
+    if df.empty or x_col not in df.columns or net_col not in df.columns:
+        fig.add_annotation(
+            text="Insufficient heat rate data",
+            xref="paper",
+            yref="paper",
+            x=0.5,
+            y=0.5,
+            showarrow=False,
+        )
+        return fig
+    
+    plot_df = df.copy()
+    plot_df[x_col] = pd.to_datetime(plot_df[x_col], errors="coerce", utc=True)
+    plot_df = plot_df.sort_values(x_col)
+    
+    # Add flat PPA reference line
+    fig.add_trace(
+        go.Scatter(
+            x=plot_df[x_col],
+            y=[ppa_flat_value] * len(plot_df),
+            mode="lines",
+            name=f"PPA Guarantee ({ppa_flat_value:,.0f})",
+            line=dict(color="#9CA3AF", width=2, dash="dot"),
+            hovertemplate=f"PPA Guarantee: {ppa_flat_value:,.0f} Btu/kWh<extra></extra>",
+        )
+    )
+    
+    # Check if we have gross and aux columns
+    has_gross = gross_col and gross_col in plot_df.columns
+    has_aux = aux_col and aux_col in plot_df.columns
+    
+    # Add gross heat rate trace (if available)
+    if has_gross:
+        fig.add_trace(
+            go.Scatter(
+                x=plot_df[x_col],
+                y=plot_df[gross_col],
+                mode="lines",
+                name="Gross Heat Rate",
+                line=dict(color="#F97316", width=2, dash="dash"),
+                hovertemplate="Gross HR: %{y:,.0f} Btu/kWh<extra></extra>",
+            )
+        )
+        
+        # Add filled area between gross and net (auxiliary penalty)
+        fig.add_trace(
+            go.Scatter(
+                x=plot_df[x_col],
+                y=plot_df[net_col],
+                mode="lines",
+                name="Auxiliary (Gross − Net)",
+                line=dict(color="#CB2026", width=0),
+                fill="tonexty",
+                fillcolor="rgba(249, 115, 22, 0.2)",
+                hoverinfo="skip",
+                showlegend=True,
+            )
+        )
+    
+    # Add net station heat rate
+    fig.add_trace(
+        go.Scatter(
+            x=plot_df[x_col],
+            y=plot_df[net_col],
+            mode="lines+markers",
+            name="Net Station Heat Rate",
+            line=dict(color="#CB2026", width=2),
+            marker=dict(size=4),
+            hovertemplate="Net HR: %{y:,.0f} Btu/kWh<extra></extra>",
+        )
+    )
+    
+    # Add auxiliary heat rate penalty on secondary y-axis (if available)
+    if has_aux:
+        fig.add_trace(
+            go.Scatter(
+                x=plot_df[x_col],
+                y=plot_df[aux_col],
+                mode="lines",
+                name="Auxiliary Heat Rate Penalty",
+                line=dict(color="#8B5CF6", width=2),
+                yaxis="y2",
+                hovertemplate="Aux Penalty: %{y:,.0f} Btu/kWh<extra></extra>",
+            )
+        )
+    
+    # Highlight anomalies (for daily data)
+    if highlight_anomalies and "anomaly_flag" in plot_df.columns:
+        anomalies = plot_df[plot_df["anomaly_flag"] == True]
+        if not anomalies.empty:
+            fig.add_trace(
+                go.Scatter(
+                    x=anomalies[x_col],
+                    y=anomalies[net_col],
+                    mode="markers",
+                    name="Anomaly (Z-score)",
+                    marker=dict(color="#F59E0B", size=10, symbol="diamond"),
+                )
+            )
+    
+    if highlight_anomalies and "sudden_change_flag" in plot_df.columns:
+        sudden = plot_df[plot_df["sudden_change_flag"] == True]
+        if not sudden.empty:
+            fig.add_trace(
+                go.Scatter(
+                    x=sudden[x_col],
+                    y=sudden[net_col],
+                    mode="markers",
+                    name="Sudden Change",
+                    marker=dict(color="#DC2626", size=10, symbol="x"),
+                )
+            )
+    
+    # Configure layout
+    layout_config = {
+        "height": 400,
+        "xaxis_title": x_col.replace("_", " ").title(),
+        "margin": dict(l=20, r=100 if has_aux else 20, t=25, b=20),
+        "legend": dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+        "yaxis": dict(title="Heat Rate (Btu/kWh)", side="left"),
+    }
+    
+    # Add secondary y-axis if we have auxiliary penalty
+    if has_aux:
+        y_min = plot_df[net_col].min() * 0.95
+        y_max = plot_df[gross_col].max() * 1.02 if has_gross else plot_df[net_col].max() * 1.05
+        y_range = y_max - y_min
+        
+        layout_config["yaxis"]["range"] = [y_min, y_max]
+        layout_config["yaxis2"] = dict(
+            title="Aux Penalty (Btu/kWh)",
+            overlaying="y",
+            side="right",
+            showgrid=False,
+            range=[0, y_range * 0.3],
+        )
+    
+    fig.update_layout(**layout_config)
     return fig

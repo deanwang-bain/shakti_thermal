@@ -1,4 +1,4 @@
-# Shakti Thermal Station — Full Potential Demo Path
+# Plant Co — Full Potential Demo Path
 
 ## Story: From Dispatch Tracking to AI-Driven Heat Rate Optimization
 

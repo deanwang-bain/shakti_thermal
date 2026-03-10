@@ -1,4 +1,4 @@
-# Shakti Thermal Station — Full Potential Demo (Streamlit Prototype)
+# Plant Co — Full Potential Demo (Streamlit Prototype)
 
 This repository contains a complete, runnable Streamlit prototype for a thermal plant “full potential” story centered on **Revenue Capture Ratio (RCR)**.
 The app is Bain-branded (accent `#CB2026`, Arial styling), resilient to missing optional files, and designed for executive demos.

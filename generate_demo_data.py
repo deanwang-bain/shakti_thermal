@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Synthetic dataset generator for: Shakti Thermal Station (STS) — Full Potential AI Demo (4 tabs)
+# Synthetic dataset generator for: Plant Co (STS) — Full Potential AI Demo (4 tabs)
 # Fictional plant, fictional artifacts. No real-world rows copied.
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ def build_asset_hierarchy()->pd.DataFrame:
     def add(aid,parent,level,system,name,crit,aliases):
         rows.append(dict(asset_id=aid,parent_asset_id=parent or "",level=level,system=system,canonical_name=name,
                          aliases_json=J(aliases),criticality_score=round(float(crit),3)))
-    add("STS-PLANT","", "Plant","Plant","Shakti Thermal Station",0.95,["STS","Shakti Station","Shakti Thermal"])
+    add("STS-PLANT","", "Plant","Plant","Plant Co",0.95,["STS","Plant Co","Plant Co Thermal"])
     add("STS-U1","STS-PLANT","Unit","Unit","Unit 1 (660 MW)",0.92,["U1","Unit-1","STS Unit One","Block-1"])
     add("STS-U2","STS-PLANT","Unit","Unit","Unit 2 (660 MW)",0.74,["U2","Unit-2","STS Unit Two","Block-2"])
 
