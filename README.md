@@ -7,6 +7,7 @@ The prototype includes four integrated tabs: ontology/mapping, generation diagno
 All heavy data loads and transformations are cached for fast re-runs.
 Startup sanity checks run non-fatally and surface pass/warn/fail status in-app.
 
+
 ## Tabs at a glance
 
 1. **Data Mapping & Ontology**
