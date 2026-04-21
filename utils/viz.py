@@ -149,9 +149,9 @@ def dispatch_gap_attribution_chart(dispatch_df: pd.DataFrame, resolution: str = 
     
     # Aggregate by time period and root cause
     if resolution == "hourly":
-        df["period"] = df["timestamp"].dt.floor("H")
+        df["period"] = df["timestamp"].dt.floor("h")
     else:
-        df["period"] = df["timestamp"].dt.floor("D")
+        df["period"] = df["timestamp"].dt.floor("d")
     
     pivot = df.groupby(["period", "root_cause_category"])["gap_mwh"].sum().reset_index()
     pivot = pivot.pivot(index="period", columns="root_cause_category", values="gap_mwh").fillna(0)

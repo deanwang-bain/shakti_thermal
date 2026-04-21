@@ -162,7 +162,7 @@ def main() -> None:
     # Heat rate part-load behavior (reference curve should be higher at part load)
     # Proxy load = hourly avg net MW from dispatch
     d = dispatch.copy()
-    d["hour"] = d["timestamp"].dt.floor("H")
+    d["hour"] = d["timestamp"].dt.floor("h")
     avg_net = d.groupby("hour")["net_generation_mw"].mean().reset_index().rename(columns={"hour":"timestamp"})
     h2 = heat.merge(avg_net, on="timestamp", how="left")
     low = h2[h2["net_generation_mw"] < 300]["ppa_reference_heat_rate"].astype(float).median()

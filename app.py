@@ -160,7 +160,7 @@ def render_sidebar(catalog: DataCatalog, checks: list) -> tuple[str, pd.Timestam
     if not health.empty:
         st.sidebar.dataframe(
             health[["dataset", "rows", "timestamp_min", "timestamp_max", "nulls_key_cols"]],
-            use_container_width=True,
+            width='stretch',
             hide_index=True,
             height=260,
         )
@@ -287,21 +287,21 @@ def render_tab_mapping(
             if linked_tags_df.empty:
                 st.caption("(No sensor tags measure this node)")
             else:
-                st.dataframe(linked_tags_df.head(12), use_container_width=True)
+                st.dataframe(linked_tags_df.head(12), width='stretch')
             
             st.write("**Recent events**")
             recent_events_df = details.get("recent_events", pd.DataFrame())
             if recent_events_df.empty:
                 st.caption("(No events affecting this node in selected date range)")
             else:
-                st.dataframe(recent_events_df.head(8), use_container_width=True)
+                st.dataframe(recent_events_df.head(8), width='stretch')
 
         st.markdown("#### GenAI-like Fuzzy Mapping")
         query = st.text_input("Messy string to map", placeholder="e.g., IDF A damper sat")
         entities = build_entity_catalog(asset_df, sensor_df)
         if query:
             out = fuzzy_match(query, entities, top_n=10)
-            st.dataframe(out, use_container_width=True)
+            st.dataframe(out, width='stretch')
 
     st.markdown("#### Mapping Audit")
     mapped = map_work_orders(wo_df, entities=build_entity_catalog(asset_df, sensor_df), sample_size=50)
@@ -315,7 +315,7 @@ def render_tab_mapping(
         ("Accuracy@5", f"{metrics['accuracy_at_5']:.1%}" if pd.notna(metrics["accuracy_at_5"]) else "n/a"),
     ]
     render_kpi_strip(kpi)
-    st.dataframe(mapped, use_container_width=True, height=260)
+    st.dataframe(mapped, width='stretch', height=260)
     _download_csv(mapped, "Export mapped work orders CSV", "mapped_work_orders.csv")
 
 
@@ -346,7 +346,7 @@ def render_tab_generation(
 
     st.plotly_chart(
         generation_main_chart(dispatch_plot, events, show_outages=show_outages, show_misses=show_misses),
-        use_container_width=True,
+        width='stretch',
     )
 
     # LLM Insight Callout
@@ -385,7 +385,7 @@ def render_tab_generation(
     st.markdown("#### Dispatch Gap Attribution by Root Cause")
     st.plotly_chart(
         dispatch_gap_attribution_chart(dispatch, resolution=resolution),
-        use_container_width=True,
+        width='stretch',
     )
 
     st.markdown("#### Historian Correlation Panel")
@@ -453,9 +453,9 @@ def render_tab_generation(
         st.info("Unable to compute correlations for selected signals.")
         return
     
-    st.dataframe(corr_df, use_container_width=True, hide_index=True)
+    st.dataframe(corr_df, width='stretch', hide_index=True)
     
-    st.plotly_chart(historian_overlay_chart(merged, selected_signals), use_container_width=True)
+    st.plotly_chart(historian_overlay_chart(merged, selected_signals), width='stretch')
     if show_annotations:
         st.success(correlation_explanation(corr_df))
 
@@ -520,9 +520,9 @@ def render_tab_revenue(
     left, right = st.columns([1.1, 1.0])
     with left:
         if view_mode == "% (RCR)":
-            st.plotly_chart(rcr_over_time_chart(revenue_df, show_annotations=show_ann), use_container_width=True)
+            st.plotly_chart(rcr_over_time_chart(revenue_df, show_annotations=show_ann), width='stretch')
         else:
-            st.plotly_chart(revenue_absolute_chart(revenue_df, granularity=gran_str, show_annotations=show_ann), use_container_width=True)
+            st.plotly_chart(revenue_absolute_chart(revenue_df, granularity=gran_str, show_annotations=show_ann), width='stretch')
 
     with right:
         # Only show Capacity, Energy, Penalty (no Efficiency)
@@ -531,7 +531,7 @@ def render_tab_revenue(
             # Filter to only these categories
             valid_categories = ["Capacity", "Energy", "Penalty"]
             attr_filtered = attr_filtered[attr_filtered["loss_category"].isin(valid_categories)]
-        st.plotly_chart(lost_revenue_driver_chart(attr_filtered), use_container_width=True)
+        st.plotly_chart(lost_revenue_driver_chart(attr_filtered), width='stretch')
 
     # LLM Insight Callout
     st.markdown("#### 💡 AI Generated Insights")
@@ -591,12 +591,12 @@ def render_tab_revenue(
     if component != "All" and "component" in attr_drilldown.columns:
         attr_drilldown = attr_drilldown[attr_drilldown["component"].astype(str) == component]
 
-    st.plotly_chart(loss_treemap(attr_drilldown), use_container_width=True)
+    st.plotly_chart(loss_treemap(attr_drilldown), width='stretch')
 
     # Top N components table
     top_n = st.slider("Top N components", min_value=5, max_value=30, value=10, key="rev_top_n")
     top_components_df = top_loss_components(attr_drilldown, top_n=top_n)
-    st.dataframe(top_components_df, use_container_width=True)
+    st.dataframe(top_components_df, width='stretch')
     _download_csv(top_components_df, "Export attribution table CSV", "attribution_top_components.csv")
 
     # Evidence Panel - Enhanced with Voice, Images, Events
@@ -669,7 +669,7 @@ def render_tab_revenue(
                 # Show key columns
                 cols_to_show = ["event_id", "type", "description", "start_time", "duration_hours", "severity"]
                 cols_to_show = [c for c in cols_to_show if c in related_events.columns]
-                st.dataframe(related_events[cols_to_show].head(20), use_container_width=True)
+                st.dataframe(related_events[cols_to_show].head(20), width='stretch')
         
         with ev_tabs[1]:
             st.write(f"**Linked Work Orders** ({len(related_wos)})")
@@ -678,7 +678,7 @@ def render_tab_revenue(
             else:
                 cols_to_show = ["work_order_id", "title", "status", "priority", "created_at", "completed_at"]
                 cols_to_show = [c for c in cols_to_show if c in related_wos.columns]
-                st.dataframe(related_wos[cols_to_show].head(20), use_container_width=True)
+                st.dataframe(related_wos[cols_to_show].head(20), width='stretch')
         
         with ev_tabs[2]:
             st.write(f"**Images** ({len(images)})")
@@ -792,7 +792,7 @@ def render_tab_chatbot(
     # Suggested questions as chips
     st.markdown("**💡 Suggested Questions**")
     quick = st.columns(3)
-    if quick[0].button("📊 Summarize recent performance", use_container_width=True):
+    if quick[0].button("📊 Summarize recent performance", width='stretch'):
         question = "Summarize the last 30 days of plant performance. What are the key trends in dispatch misses and revenue capture?"
         st.session_state.chat_history.append({"role": "user", "content": question})
         if mode == "Local NLP":
@@ -803,7 +803,7 @@ def render_tab_chatbot(
         st.session_state.chat_history.append({"role": "assistant", "content": response})
         st.rerun()
     
-    if quick[1].button("🎯 How can we improve RCR?", use_container_width=True):
+    if quick[1].button("🎯 How can we improve RCR?", width='stretch'):
         question = "What are the top 3 actions we should take to improve revenue capture ratio? Prioritize by expected financial impact."
         st.session_state.chat_history.append({"role": "user", "content": question})
         if mode == "Local NLP":
@@ -814,7 +814,7 @@ def render_tab_chatbot(
         st.session_state.chat_history.append({"role": "assistant", "content": response})
         st.rerun()
     
-    if quick[2].button("🔍 Why is heat rate degraded?", use_container_width=True):
+    if quick[2].button("🔍 Why is heat rate degraded?", width='stretch'):
         question = "Explain why our net station heat rate is deviating from the PPA reference. What are the likely root causes and how do we address them?"
         st.session_state.chat_history.append({"role": "user", "content": question})
         if mode == "Local NLP":
@@ -829,7 +829,7 @@ def render_tab_chatbot(
     if st.session_state.chat_history:
         action_cols = st.columns([1, 1, 3])
         with action_cols[0]:
-            if st.button("🗑️ Clear Chat", use_container_width=True):
+            if st.button("🗑️ Clear Chat", width='stretch'):
                 st.session_state.chat_history = []
                 st.rerun()
         with action_cols[1]:
@@ -839,7 +839,7 @@ def render_tab_chatbot(
                 data=io.StringIO(transcript).getvalue(),
                 file_name="chat_transcript.md",
                 mime="text/markdown",
-                use_container_width=True,
+                width='stretch',
             )
 
     st.markdown("---")
